@@ -8,10 +8,11 @@
 - **`develop`**: This branch is the parent branch for the additional branches
 ### Additional Branches
 
+These branches merge to the develop branch
+
 - **Feature Branch**
-  - **Purpose**: To develop new features or make changes.
+  - **Role**: To develop new features or make changes.
   - **Name**: `feature/island-encoder`
-  - **Example**: `feature/user-authentication` (it can be what ever feature you are trying to implement)
   - **Commands**:
     ```sh
     # Create a new feature branch from develop
@@ -29,7 +30,7 @@
     ```
 
 - **Release Branch**
-  - **Purpose**: Used for final testing and bug fixes before merging into `main` branch.
+  - **Role**: Used for final testing and bug fixes before merging into `main` branch.
   - **Naming Convention**: `release/version-number` (btw you can change the version-number)
   - **Example**: `release/1.0.0`
   - **Commands**:
@@ -51,9 +52,8 @@
     ```
 
 - **Hotfix Branch**
-  - **Purpose**: To quickly address urgent issues in the production code. Created from `main` and merged back into both `main` and `develop`.
+  - **Role**: To quickly address urgent issues in the production code. Created from `main` and merged back into both `main` and `develop`.
   - **Naming Convention**: `hotfix/issue-description`
-  - **Example**: `hotfix/fix-login-bug`
   - **Commands**:
     ```sh
     # Create a new hotfix branch from main

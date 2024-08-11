@@ -93,8 +93,5 @@
    - Delete the hotfix branch locally and remotely.
 
 ## Notes
-this is just what gitflow looks lie via a diagram
-- Follow the naming conventions for clarity and consistency.
-- Always sync with `develop` and `main` branches before creating new branches.
-
-By following this Gitflow schema, we can maintain a structured workflow and ensure that our codebase remains organized and stable throughout the development lifecycle.
+This is just what gitflow looks like via diagram
+Also, always sync with `develop` and `main` branches before creating new branches.

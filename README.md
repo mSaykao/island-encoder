@@ -5,14 +5,13 @@
 ### Main Branches
 
 - **`main`**: This branch contains the finished code
-- **`develop`**: This branch serves as the parent branch for features and fixes
-
+- **`develop`**: This branch is the parent branch for the additional branches
 ### Additional Branches
 
 - **Feature Branch**
   - **Purpose**: To develop new features or make changes.
   - **Name**: `feature/island-encoder`
-  - **Example**: `feature/user-authentication`
+  - **Example**: `feature/user-authentication` (it can be what ever feature you are trying to implement)
   - **Commands**:
     ```sh
     # Create a new feature branch from develop
@@ -93,5 +92,6 @@
    - Delete the hotfix branch locally and remotely.
 
 ## Notes
-This is just what gitflow looks like via diagram
+This is just what gitflow looks like via diagram.
+
 Also, always sync with `develop` and `main` branches before creating new branches.

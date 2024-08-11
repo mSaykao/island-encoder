@@ -92,6 +92,6 @@ These branches merge to the develop branch
    - Delete the hotfix branch locally and remotely.
 
 ## Notes
-This is just what gitflow looks like via diagram.
+This is just what gitflow looks like based on diagrams.
 
 Also, always sync with `develop` and `main` branches before creating new branches.

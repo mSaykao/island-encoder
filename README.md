@@ -10,11 +10,11 @@ git checkout develop
 
 git pull origin develop
 
-git checkout -b feature/mathias
+git checkout -b feature/mathias // create and switch to the feature branch
 
-git add .
+git add . //commits stages
 
-git commit -m "Add feature: feature-name" // this is just a message
+git commit -m "Add feature: hello" // this is just a message
 
 Push Feature Branch to Develop:
 

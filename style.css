@@ -33,7 +33,7 @@
 
 }
 
-.navbar .btnlogin-popup{
+.navbar .btnLogin-popup{
     position: relative;
     background: transparent;
     border: none;
@@ -77,7 +77,34 @@
     justify-content: center;
     flex-direction: column;
     padding: 0 40px;
+    opacity: 0;
+    pointer-events: none;
 }
+
+.wrapper.active-popup{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+}
+
+.icon-close i {
+    font-size: 32px;
+    color: #333;
+}
+
 
 .wrapper .logreg-box{
     width: 100%;
@@ -87,9 +114,16 @@
     display: block;
 }
 
+.wrapper.active .form-box.login{
+    display: none;
+}
 
 .wrapper .form-box.register{
     display: none;
+}
+
+.wrapper.active .form-box.register{
+    display: block;
 }
 
 .logreg-box .logreg-title{
@@ -277,4 +311,84 @@
 .media-options a span{
     font-size: 16px;
     font-weight: 600;
+}
+
+.InputStatus{
+    display: inline-flex;
+    justify-content: center;
+    width: 450px;
+    height: 200px;
+    border: 2px solid #fff;
+    margin: 200px 180px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    backdrop-filter: blur(15px);
+}
+
+#title1{
+    margin: 15px;
+}
+
+.Encoder{
+    display: inline-flex;
+    justify-content: center;
+    width: 450px;
+    height: 200px;
+    border: 2px solid #fff;
+    margin: 200px 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    backdrop-filter: blur(15px);
+}
+
+#title2{
+    margin: 15px;
+}
+
+.recordingstatus{
+    display: inline-flex;
+    justify-content: center;
+    width: 450px;
+    height: 200px;
+    border: 2px solid #fff;
+    margin: -50px 170px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    backdrop-filter: blur(15px);
+}
+
+#title3{
+    margin: 15px;
+}
+
+.NetworkStatus{
+    display: inline-flex;
+    justify-content: center;
+    width: 450px;
+    height: 200px;
+    border: 2px solid #fff;
+    margin: -50px 70px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    backdrop-filter: blur(15px);
+}
+
+#title4{
+    margin: 15px;
 }

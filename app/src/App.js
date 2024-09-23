@@ -26,7 +26,7 @@ function App() {
     <div>
       {/* Header */}
       <header className="header">
-        <img id="logo" src="./images/Colour_LOGO.png" alt="ISLAND" />
+        <img id="logo" src="images/Colour_LOGO.png" alt="ISLAND" />
         <nav className="navbar">
           <a href="#">Home</a>
           <a href="#">About</a>
@@ -43,15 +43,19 @@ function App() {
         <div className="details">
           <div className="InputStatus">
             <h3 id="title1">Input Status</h3>
+            {/* linkpi api calls required here */}
           </div>
           <div className="Encoder">
             <h3 id="title2">Encoder/Streaming Status</h3>
+            {/* linkpi api calls required here */}
           </div>
           <div className="recordingstatus">
             <h3 id="title3">Recording Status</h3>
+            {/* linkpi api calls required here */}
           </div>
           <div className="NetworkStatus">
             <h3 id="title4">Network Status</h3>
+            {/* linkpi api calls required here */}
           </div>
         </div>
 
@@ -70,12 +74,12 @@ function App() {
               </div>
               <form action="#">
                 <div className="input-box">
-                  <span className="icon"><i className="bx bxs-user"></i></span>
+                  <span className="icon"></span>
                   <input type="text" required />
                   <label>Username</label>
                 </div>
                 <div className="input-box">
-                  <span className="icon"><i className="bx bxs-lock-alt"></i></span>
+                  <span className="icon"></span>
                   <input type="password" required />
                   <label>Password</label>
                 </div>
@@ -99,17 +103,17 @@ function App() {
               </div>
               <form action="#">
                 <div className="input-box">
-                  <span className="icon"><i className="bx bxs-envelope"></i></span>
+                  <span className="icon"></span>
                   <input type="text" required />
                   <label>Email</label>
                 </div>
                 <div className="input-box">
-                  <span className="icon"><i className="bx bxs-user"></i></span>
+                  <span className="icon"></span>
                   <input type="text" required />
                   <label>Username</label>
                 </div>
                 <div className="input-box">
-                  <span className="icon"><i className="bx bxs-lock-alt"></i></span>
+                  <span className="icon"></span>
                   <input type="password" required />
                   <label>Password</label>
                 </div>
@@ -125,11 +129,9 @@ function App() {
 
             <div className="media-options">
               <a href="#">
-                <i className="bx bxl-google"></i>
                 <span>Login with Google</span>
               </a>
               <a href="#">
-                <i className="bx bxl-facebook-circle"></i>
                 <span>Login with Facebook</span>
               </a>
             </div>

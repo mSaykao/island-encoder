@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISLAND LOGIN</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header class="header">
+        <!--Isalnd logo-->
+        <img id="logo" src="./Colour_LOGO.png" alt="ISLAND">
+        
+        <!--nav-->
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+           
+    </header>
+    
+    <!--home-->
+    <section class="section">
+        
+        <!--detials-->
+        <div class="detials">
+            <div class="InputStatus">
+                <h3 id="title1">Input Status</h3>
+            </div>
+
+            <div class="Encoder">
+                <h3 id="title2">Encoder/Streaming Status</h3>
+            </div>
+
+            <div class="recordingstatus">
+                <h3 id="title3">Recording Status</h3>
+            </div>
+
+            <div class="NetworkStatus">
+                <h3 id="title4">Network Status</h3>
+            </div>
+        </div>
+        
+            <div class="wrapper">
+            <span class="icon-close">
+                <i class='bx bx-x'></i>
+            </span>
+           
+            <div class="logreg-box">
+                <!--login part-->
+                <div class="form-box login">
+                    <div class="logreg-title">
+                        <h2>Login</h2>
+                        <p>Id:Comp Sci H1</p>
+                    </div> 
+                    
+                    <form action="#">
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-user'></i></span>
+                            <input type="username" required>
+                            <label>Username</label>
+                        </div>
+                       
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                            <input type="password" required>
+                            <label>password</label>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">Remember me</label>  
+                            <a href="#">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn">Login</button>
+                        <a href="#" class="syncer">Syncer</a>
+                        
+                        <div class="logreg-link">
+                            <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!--register form-->
+                <div class="form-box register">
+                    <div class="logreg-title">
+                        <h2 id="reg">Registration</h2>
+                        <p id="regtext">Please provide the following to verify your identity</p>
+                    </div> 
+                    
+                    <form action="#">
+
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-envelope' ></i></i></span>
+                            <input type="text" required>
+                            <label>Email</label>
+                        </div>
+
+                        
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-user'></i></span>
+                            <input type="username" required>
+                            <label>Username</label>
+                        </div>
+                       
+                        <div class="input-box">
+                            <span class="icon"><i class='bx bxs-lock-alt' ></i></span>
+                            <input type="password" required>
+                            <label>password</label>
+                        </div>
+
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">I agree to the terms & conditions</label>  
+                        </div>
+
+                        <button type="submit" class="btn">Register</button>
+                        
+                        <div class="logreg-link">
+                            <p id="zhuce">Already have an account?<a href="#" class="login-link">Login</a></p>
+                        </div>
+                    </form>
+                </div>
+
+            <div class="media-options">
+                <a href="#">
+                    <i class='bx bxl-google'></i>
+                    <span>Login with Google</span>
+                </a>
+                <a href="#">
+                    <i class='bx bxl-facebook-circle' ></i>
+                    <span>Login with Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

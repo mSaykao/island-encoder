@@ -319,7 +319,6 @@
     width: 450px;
     height: 200px;
     border: 2px solid #fff;
-    margin: 200px 180px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
     border-radius: 20px;
     color: white;
@@ -327,6 +326,9 @@
     font-weight: 600;
     font-size: 16px;
     backdrop-filter: blur(15px);
+    position: relative;
+    top: 300px;
+    left: 280px;
 }
 
 #title1{
@@ -339,7 +341,6 @@
     width: 450px;
     height: 200px;
     border: 2px solid #fff;
-    margin: 200px 50px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
     border-radius: 20px;
     color: white;
@@ -347,6 +348,9 @@
     font-weight: 600;
     font-size: 16px;
     backdrop-filter: blur(15px);
+    position: relative;
+    top: 700px;
+    left: -180px;
 }
 
 #title2{
@@ -359,7 +363,6 @@
     width: 450px;
     height: 200px;
     border: 2px solid #fff;
-    margin: -50px 170px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
     border-radius: 20px;
     color: white;
@@ -367,6 +370,9 @@
     font-weight: 600;
     font-size: 16px;
     backdrop-filter: blur(15px);
+    position: relative;
+    top:700px;
+    left: 50px;
 }
 
 #title3{
@@ -379,7 +385,6 @@
     width: 450px;
     height: 200px;
     border: 2px solid #fff;
-    margin: -50px 70px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
     border-radius: 20px;
     color: white;
@@ -387,6 +392,9 @@
     font-weight: 600;
     font-size: 16px;
     backdrop-filter: blur(15px);
+    position: relative;
+    top: 300px;
+    left: -400px;
 }
 
 #title4{

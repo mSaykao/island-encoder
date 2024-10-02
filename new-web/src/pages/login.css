@@ -57,7 +57,7 @@
 
 .section{
     min-height: 100vh;
-    background: url('images/background3.jpg') no-repeat;
+    background: url('../images/background3.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }

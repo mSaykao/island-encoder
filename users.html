@@ -10,6 +10,8 @@
 </head>
 <body>
     <div class="container">
+        
+        <!--Dashboard-->
         <aside>
             <div class="top">
                 <div class="logo">
@@ -101,23 +103,174 @@
             </div>
         </aside>
 
-
-
-
+       
+       
+        <!-------------------------System state---------------------------->
         <main>
             <h1>Dashboard</h1>
-
             <div class="date">
                 <input type="date">
             </div>
 
             <div class="insights">
                 <div class="CPU">
-                    
+                    <span class="material-symbols-outlined">monitoring</span>
+                    <div class="middle">
+                        <div class="lef">
+                            <h1>CPU<br>Usage</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p>21%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Memory">
+                    <span class="material-symbols-outlined">memory</span>
+                    <div class="middle">
+                        <div class="lef">
+                            <h1>Memory<br>Usage</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p>31%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Core">
+                    <span class="material-symbols-outlined">thermometer</span>
+                    <div class="middle">
+                        <div class="lef">
+                            <h1>Core<br>Temperature</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p>41°C</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
 
+            <!--Pictures-->
+            <div class="review">
+                <h1>Preview</h1>
+                <div id="slideshow">
+                    <img class="active" src="./snap0.jpg" alt="">
+                    <img src="./snap1.jpg" alt="">
+                    <img src="./snap2.jpg" alt="">
+                    <img src="./snap3.jpg" alt="">
+                    <img src="./snap4.jpg" alt="">
+                    <img src="./snap5.jpg" alt="">
+                    <img src="./snap6.jpg" alt="">
+                    <img src="./snap7.jpg" alt="">
+                    <img src="./snap8.jpg" alt="">
+                    <div>
+                        <span class="active">1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+                        <span>6</span>
+                        <span>7</span>
+                        <span>8</span>
+                        <span>9</span>
+                    </div>
+                    <p class="active">HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                    <p>HDMI Input</p>
+                </div>
+
+                <div id="slideshow1">
+                    <img class="active1" src="./snap0.jpg" alt="">
+                    <img src="./snap1.jpg" alt="">
+                    <img src="./snap2.jpg" alt="">
+                    <img src="./snap3.jpg" alt="">
+                    <img src="./snap4.jpg" alt="">
+                    <img src="./snap5.jpg" alt="">
+                    <img src="./snap6.jpg" alt="">
+                    <img src="./snap7.jpg" alt="">
+                    <img src="./snap8.jpg" alt="">
+                    <div>
+                        <span class="active1">1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>4</span>
+                        <span>5</span>
+                        <span>6</span>
+                        <span>7</span>
+                        <span>8</span>
+                        <span>9</span>
+                    </div>
+                    <p class="active1">Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                    <p>Multiview</p>
+                </div>
+            </div>
+
+            <!--some detials-->
+            <div class="HDMI">
+                <h1>1080P60</h1>
+                <span class="material-symbols-outlined">settings_input_hdmi</span>
+                <h1>HDMI</h1>
+            </div>
+
+             <div class="netWork">
+                <h1>Network State</h1>
+             </div>
+
+             <div class="vpn">
+                <h1>VPN State</h1>
+             </div>
+        </main>
+
+        <!--background switch-->
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active2">light_mode</span>
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Dan</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <span class="material-symbols-outlined">account_box</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./user.js"></script>
 </body>
 </html>

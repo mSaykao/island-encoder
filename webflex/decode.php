@@ -97,6 +97,14 @@
                                         </button>
                                     </div>
                                 </div>
+                                <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                                    <cn>添加</cn>
+                                    <en>Add</en>
+                                </button>
+                                <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                                    <cn>保存</cn>
+                                    <en>Save</en>
+                                </button>
                                 <hr>
                             </div>
                         </div>
@@ -586,16 +594,6 @@
                             </button>
                         </div>
                         <div class="col-lg-12 text-center" v-if="tabType==='rtmp'">
-                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                <cn>添加</cn>
-                                <en>Add</en>
-                            </button>
-                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                <cn>保存</cn>
-                                <en>Save</en>
-                            </button>
-                        </div>
-                        <div class="col-lg-12 text-center" v-if="tabType==='srt'">
                             <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
                                 <cn>添加</cn>
                                 <en>Add</en>

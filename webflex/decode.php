@@ -14,91 +14,106 @@
                 <div class="card">
                     <div class="card-header bg-transparent">
                         <div class="p-2 mb-0 d-flex align-items-end">
-                            <cn>全局配置</cn>
-                            <en>Overall config</en>
+                            <en>Receive SRT</en>
                         </div>
                     </div>
                     <div class="card-body overflow-auto">
                         <div class="row">
-                            <div class="col-lg-12" v-if="Object.keys(globalConf).length !== 0">
+                            <div class="col-2 text-center">
+                                <cn>描述</cn>
+                                <en>description</en>
+                            </div>
+                            <div class="col-5 text-center">
+                                <cn>推流地址</cn>
+                                <en>recive url</en>
+                            </div>
+                            <div class="col text-center">
+                                <cn>解码频道</cn>
+                                <en>decode channel</en>
+                            </div>
+                            <div class="col text-center">
+                                <cn>端口</cn>
+                                <en>port</en>
+                            </div>
+                            <div class="col text-center">
+                                <cn>密码</cn>
+                                <en>password</en>
+                            </div>
+                            <div class="col text-center">
+                                <cn>延时</cn>
+                                <en>delay</en>
+                            </div>
+                            <div class="col text-center">
+                                <cn>Stream ID</cn>
+                                <en>stream id</en>
+                            </div>
+                            <div class="col text-center">
+                                <cn>操作</cn>
+                                <en>option</en>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mt-1" v-for="(item,index) in handleSrtPushConf" :key="item.id">
+                            <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-2 text-center"></div>
                                     <div class="col-2 text-center">
-                                        <cn>帧率</cn>
-                                        <en>framerate</en>
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.desc">
                                     </div>
-                                    <div class="col text-center">
-                                        <cn>缓冲模式</cn>
-                                        <en>buffer mode</en>
-                                    </div>
-                                    <div class="col-2 text-center">
-                                        <cn>缓冲时间</cn>
-                                        <en>buffer time</en>
-                                    </div>
-                                    <div class="col text-center">
-                                        <cn>协议</cn>
-                                        <en>protocol</en>
-                                    </div>
-                                    <div class="col text-center">
-                                        <cn>视频解码</cn>
-                                        <en>video decode</en>
-                                    </div>
-                                    <div class="col text-center">
-                                        <cn>音频解码</cn>
-                                        <en>audio decode</en>
-                                    </div>
-                                    <div class="col text-center"></div>
-                                </div>
-                                <hr>
-                                <div class="row mt-1">
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="col-2 text-center p-0 pt-2">
-                                                <cn>拉流配置</cn>
-                                                <en>Pull config</en>
-                                            </div>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control"
-                                                       v-model.trim.lazy="globalConf.net.framerate">
-                                            </div>
-                                            <div class="col">
-                                                <select class="form-select" v-model="globalConf.net.bufferMode">
-                                                    <option value="0" cn="一般" en="Normal" v-language-option></option>
-                                                    <option value="1" cn="实时" en="NoBuffer" v-language-option></option>
-                                                    <option value="2" cn="缓冲" en="Buffer" v-language-option></option>
-                                                    <option value="3" cn="帧同步" en="Sync" v-language-option></option>
-                                                </select>
-                                            </div>
-                                            <div class="col-2">
-                                                <input type="text" class="form-control"
-                                                       v-model.trim.lazy="globalConf.net.minDelay">
-                                            </div>
-                                            <div class="col">
-                                                <select class="form-select" v-model="globalConf.net.protocol">
-                                                    <option value="udp">UDP</option>
-                                                    <option value="tcp">TCP</option>
-                                                </select>
-                                            </div>
-                                            <div class="col lp-align-center">
-                                                <bs-switch v-model="globalConf.net.decodeV"></bs-switch>
-                                            </div>
-                                            <div class="col lp-align-center">
-                                                <bs-switch v-model="globalConf.net.decodeA"></bs-switch>
-                                            </div>
-                                            <div class="col lp-align-center"></div>
+                                    <div class="col-5">
+                                        <div class="input-group">
+                                            <input class="form-control" v-model.trim.lazy="item.url" disabled readonly>
+                                            <button class="btn btn-primary input-group-text input-group-addon lp-cursor-pointer"
+                                                    @click="onCopyReceiveChnUrl(index)">
+                                                <i class="fa-regular fa-copy"></i>
+                                            </button>
                                         </div>
-                                        <hr>
                                     </div>
-                                </div>
-                                <div class="row text-center mt-3">
-                                    <div class="col-lg-12">
-                                        <button type="button" class="btn  border-3 btn-primary me-2"
-                                                @click="saveGlobalConfByLocal">
-                                            <cn>应用到全部</cn>
-                                            <en>Apply to all</en>
+                                    <div class="col">
+                                        <select class="form-select" v-model="item.bind">
+                                            <option v-if="handleNetConf.length > 0" v-for="(it,index) in handleNetConf"
+                                                    :key="index" :value="it.id">{{it.name}}
+                                            </option>
+                                            <option value="-1" cn="关闭" en="Close" v-language-option></option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.port">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.passphrase">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.latency">
+                                    </div>
+                                    <div class="col lp-align-center">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.streamid">
+                                    </div>
+
+                                    <div class="col lp-align-center">
+                                        <button type="button" class="btn btn-primary border-1 px-3"
+                                                @click="onDelReceiveChn(index)">
+                                            <cn>删除</cn>
+                                            <en>delete</en>
                                         </button>
                                     </div>
                                 </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-12 tips">
+                                <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 SRT 流。</cn>
+                                <en>1. The device is used as a streaming media server and can receive SRT streams pushed by other devices.</en>
+                            </div>
+                            <div class="col-lg-12 tips">
+                                <cn>2、需要绑定解码频道时，请确定要绑定的频道没有正在使用。</cn>
+                                <en>2. Make sure that the binding channel is not in use</en>
+                            </div>
+                            <div class="col-lg-12 tips">
+                                <cn>3、设置解码频道后，保存时会自动把该频道的拉流地址替换为对应的解码地址。</cn>
+                                <en>3. After the decoding channel is set, the stream address of the corresponding
+                                    channel is automatically replaced with the current decoding address when saving.
+                                </en>
                             </div>
                         </div>
                     </div>
@@ -139,17 +154,6 @@
                                 <div class="tab-title">
                                     <cn>接收rtmp流</cn>
                                     <en>Receive rtmp</en>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="nav-item" role="presentation" @click="tabType = 'srt'">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab4" role="tab" aria-selected="false">
-                            <div class="d-flex align-items-center">
-                                <div class="tab-icon"><i class="fa-solid fa-arrow-down-short-wide me-1"></i></div>
-                                <div class="tab-title">
-                                    <cn>接收srt流</cn>
-                                    <en>Receive srt</en>
                                 </div>
                             </div>
                         </a>
@@ -483,106 +487,6 @@
                             <div class="col-lg-12 tips">
                                 <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 RTMP 流。</cn>
                                 <en>1. The device is used as a streaming media server and can receive RTMP streams pushed by other devices.</en>
-                            </div>
-                            <div class="col-lg-12 tips">
-                                <cn>2、需要绑定解码频道时，请确定要绑定的频道没有正在使用。</cn>
-                                <en>2. Make sure that the binding channel is not in use</en>
-                            </div>
-                            <div class="col-lg-12 tips">
-                                <cn>3、设置解码频道后，保存时会自动把该频道的拉流地址替换为对应的解码地址。</cn>
-                                <en>3. After the decoding channel is set, the stream address of the corresponding
-                                    channel is automatically replaced with the current decoding address when saving.
-                                </en>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab4" role="tabpanel">
-                        <div class="row">
-                            <div class="col-2 text-center">
-                                <cn>描述</cn>
-                                <en>description</en>
-                            </div>
-                            <div class="col-5 text-center">
-                                <cn>推流地址</cn>
-                                <en>recive url</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>解码频道</cn>
-                                <en>decode channel</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>端口</cn>
-                                <en>port</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>密码</cn>
-                                <en>password</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>延时</cn>
-                                <en>delay</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>Stream ID</cn>
-                                <en>stream id</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>操作</cn>
-                                <en>option</en>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row mt-1" v-for="(item,index) in handleSrtPushConf" :key="item.id">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-2 text-center">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.desc">
-                                    </div>
-                                    <div class="col-5">
-                                        <div class="input-group">
-                                            <input class="form-control" v-model.trim.lazy="item.url" disabled readonly>
-                                            <button class="btn btn-primary input-group-text input-group-addon lp-cursor-pointer"
-                                                    @click="onCopyReceiveChnUrl(index)">
-                                                <i class="fa-regular fa-copy"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <select class="form-select" v-model="item.bind">
-                                            <option v-if="handleNetConf.length > 0" v-for="(it,index) in handleNetConf"
-                                                    :key="index" :value="it.id">{{it.name}}
-                                            </option>
-                                            <option value="-1" cn="关闭" en="Close" v-language-option></option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.port">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.passphrase">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.latency">
-                                    </div>
-                                    <div class="col lp-align-center">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.streamid">
-                                    </div>
-
-                                    <div class="col lp-align-center">
-                                        <button type="button" class="btn btn-primary border-1 px-3"
-                                                @click="onDelReceiveChn(index)">
-                                            <cn>删除</cn>
-                                            <en>delete</en>
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-lg-12 tips">
-                                <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 SRT 流。</cn>
-                                <en>1. The device is used as a streaming media server and can receive SRT streams pushed by other devices.</en>
                             </div>
                             <div class="col-lg-12 tips">
                                 <cn>2、需要绑定解码频道时，请确定要绑定的频道没有正在使用。</cn>

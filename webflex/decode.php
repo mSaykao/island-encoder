@@ -97,14 +97,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                    <cn>添加</cn>
-                                    <en>Add</en>
-                                </button>
-                                <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                    <cn>保存</cn>
-                                    <en>Save</en>
-                                </button>
                                 <hr>
                             </div>
                         </div>
@@ -123,6 +115,16 @@
                                     channel is automatically replaced with the current decoding address when saving.
                                 </en>
                             </div>
+                        </div>
+                        <div class="col-lg-12 text-center" v-if="tabType==='rtmp'">
+                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                                <cn>添加</cn>
+                                <en>Add</en>
+                            </button>
+                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                                <cn>保存</cn>
+                                <en>Save</en>
+                            </button>
                         </div>
                     </div>
                 </div>

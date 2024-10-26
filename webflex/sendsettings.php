@@ -15,7 +15,7 @@
                         <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab" aria-selected="true">
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fa fa-sign-in me-1"></i></div>
-                                <div class="tab-title"><cn>ç¼–ç å‚æ•°</cn><en>Video Settings</en></div>
+                                <div class="tab-title"><en>Video Settings</en></div>
                             </div>
                         </a>
                     </li>
@@ -23,7 +23,7 @@
                         <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab" aria-selected="false">
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fas fa-volume-up me-1"></i></div>
-                                <div class="tab-title"><cn>éŸ³é¢‘å‚æ•°</cn><en>Audio Settings</en></div>
+                                <div class="tab-title"><en>Audio Settings</en></div>
                             </div>
                         </a>
                     </li>
@@ -35,20 +35,21 @@
                             </div>
                         </a>
                     </li>
-                    <li class="nav-item" role="presentation" v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== '3559A' && hardwareConf.chip !== '3516E' && hardwareConf.chip !== 'SS626V100'">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab4" role="tab" aria-selected="false">
-                            <div class="d-flex align-items-center">
-                      	        <div class="tab-icon"><i class="fa-regular fa-clock me-1"></i></div>
-                                <div class="tab-title"><cn>è§†é¢‘å‚æ•°</cn><en>Latency Calculator</en></div>
-                            </div>
-                        </a>
-                    </li>
-
+                    <? if ($chip != "HI3520DV400") { ?>
+                        <li class="nav-item" role="presentation" v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== '3559A' && hardwareConf.chip !== '3516E' && hardwareConf.chip !== 'SS626V100'">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab4" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon"><i class="fa-regular fa-clock me-1"></i></div>
+                                    <div class="tab-title"><en>Latency Calculator</en></div>
+                                </div>
+                            </a>
+                        </li>
+                    <? } ?>
                     <li class="nav-item" role="presentation" v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'SS626V100'">
                         <a class="nav-link" data-bs-toggle="tab" href="#tab5" role="tab" aria-selected="false">
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fas fa-gear me-1"></i></div>
-                                <div class="tab-title"><cn>é«˜çº§ç¼–ç å‚æ•°</cn><en>Advanced Encode Settings</en></div>
+                                <div class="tab-title"><en>Advanced Encode Settings</en></div>
                             </div>
                         </a>
                     </li>
@@ -57,39 +58,30 @@
                     <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>é¢‘é“åç§°</cn>
                                 <en>Channel</en>
                             </div>
                             <div class="col-2 text-center">
-                                <cn>åˆ†è¾¨çŽ‡</cn>
                                 <en>Video Resolution</en>
                             </div>
                             <div class="col-2 text-center">
-                                <cn>ç¼–ç æ–¹å¼</cn>
                                 <en>Video Codec</en>
                             </div>
                             <div class="col text-center">
-                                <cn>ç çŽ‡æŽ§åˆ¶</cn>
                                 <en>Rate Control</en>
                             </div>
                             <div class="col text-center">
-                                <cn>ç çŽ‡(kb/s)</cn>
                                 <en>Bitrate(kb/s)</en>
                             </div>
                             <div class="col text-center">
-                                <cn>å¸§çŽ‡</cn>
                                 <en>Framerate</en>
                             </div>
                             <div class="col text-center">
-                                <cn>GOP(ç§’)</cn>
                                 <en>GOP(sec)</en>
                             </div>
                             <div class="col text-center" style="display: none;">
-                                <cn>å¸§åŒæ­¥</cn>
                                 <en>sync</en>
                             </div>
                             <div class="col text-center">
-                                <cn>å¼€å…³</cn>
                                 <en>enable</en>
                             </div>
                         </div>
@@ -152,197 +144,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab4" role="tabpanel">
-                        <div class="row">
-                            <div class="col-2 text-center">
-                                <cn>é¢‘é“åç§°</cn>
-                                <en>channel name</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>å®½</cn>
-                                <en>width</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>é«˜</cn>
-                                <en>height</en>
-                            </div>
-                            <div class="col-2 text-center">
-                                <cn>æ™ºèƒ½ç¼–ç æ¨¡å¼</cn>
-                                <en>smart encode</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>minQP</cn>
-                                <en>minQP</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>maxQP</cn>
-                                <en>maxQP</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>fixIQP</cn>
-                                <en>fixIQP</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>fixPQP</cn>
-                                <en>fixPQP</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>ä½Žå»¶æ—¶ç¼–ç </cn>
-                                <en>low latency</en>
-                            </div>
-                        </div>
-                        <hr >
-                        <div class="row mt-1" v-for="(item,index) in handleEncConf" :key="item.id">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-2 text-center">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.name">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.width">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.height">
-                                    </div>
-                                    <div class="col-2">
-                                        <select class="form-select" v-model="item.encv.gopmode">
-                                            <option value="0">Normal</option>
-                                            <option value="1">SmartP</option>
-                                            <option value="2">DualP</option>
-                                            <option v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.capability.encode.BFrame" value="3">BiPredB</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.minqp">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.maxqp">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.Iqp">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.Pqp">
-                                    </div>
-                                    <div class="col lp-align-center">
-                                        <bs-switch v-model="item.encv.lowLatency" ></bs-switch>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab5" role="tabpanel">
-                        <div class="row">
-                            <div class="col-2 text-center">
-                                <cn>é¢‘é“åç§°</cn>
-                                <en>channel name</en>
-                            </div>
-                            <div class="col-2 text-center">
-                                <cn>æ—‹è½¬</cn>
-                                <en>rotate</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>å·¦è£å‰ª</cn>
-                                <en>left crop</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>å³è£å‰ª</cn>
-                                <en>right crop</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>ä¸Šè£å‰ª</cn>
-                                <en>top crop</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>ä¸‹è£å‰ª</cn>
-                                <en>bottom crop</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>å¯¹æ¯”åº¦(0-63)</cn>
-                                <en>contrast(0-63)</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>å…¨å¸§çŽ‡åŽ»éš”è¡Œ</cn>
-                                <en>full framerate deinterlace</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>NTSCå…¼å®¹</cn>
-                                <en>NTSC Compatible</en>
-                            </div>
-                        </div>
-                        <hr >
-                        <div class="row mt-1" v-for="(item,index) in handleVdoConf" :key="item.id">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-2 text-center">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.name">
-                                    </div>
-                                    <div class="col-2">
-                                        <select class="form-select" v-model="item.cap.rotate">
-                                            <option value="0">0</option>black
-                                            <option value="90">90</option>
-                                            <option value="180">180</option>
-                                            <option value="270">270</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.L">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.R">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.T">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.B">
-                                    </div>
-                                    <div class="col text-center">
-                                        <input type="text" class="form-control" v-if="item.type==='vi'" v-model.trim.lazy="item.cap.contrast">
-                                    </div>
-                                    <div class="col lp-align-center">
-                                        <bs-switch v-model="item.cap.deinterlace" v-if="item.type==='vi'"></bs-switch>
-                                    </div>
-                                    <div class="col lp-align-center">
-                                        <bs-switch v-model="item.cap.ntsc" v-if="item.type==='vi'"></bs-switch>
-                                    </div>
-                                </div>
-                                <hr >
-                            </div>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="tab2" role="tabpanel">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>é¢‘é“åç§°</cn>
                                 <en>Input name</en>
                             </div>
                             <div class="col text-center">
-                                <cn>ç¼–ç æ ¼å¼</cn>
                                 <en>Codec</en>
                             </div>
                             <div class="col text-center">
-                                <cn>éŸ³æº</cn>
                                 <en>Source</en>
                             </div>
                             <div class="col text-center">
-                                <cn>å¢žç›Š</cn>
                                 <en>Gain</en>
                             </div>
                             <div class="col text-center">
-                                <cn>é‡‡æ ·çŽ‡</cn>
                                 <en>Sample rate</en>
                             </div>
                             <div class="col text-center">
-                                <cn>å£°é“</cn>
                                 <en>Channels</en>
                             </div>
                             <div class="col text-center">
-                                <cn>ç çŽ‡(kb/s)</cn>
                                 <en>Bitrate (kb/s)</en>
                             </div>
                             <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.model==='ENC8'" class="col text-center">
-                                <cn>éŸ³è½¨</cn>
                                 <en>audio track</en>
                             </div>
                         </div>
@@ -360,7 +185,6 @@
                                             <option value="mp2">MPEG2</option>
                                             <option value="mp3">MP3</option>
                                             <option value="opus">OPUS</option>
-                                            <option value="close" cn="å…³é—­" en="close" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -458,11 +282,96 @@
                                 <hr >
                             </div>
                         </div>
-                    </div> 
+                        <? include "srt-help-text.php"; ?>
+                        <div class="row justify-content-center mx-auto">
+                            <div class="col-md-12 text-center" role="group">
+                                <a href="stream.php"><button type="button" class="btn btn-secondary">Advanced stream settings</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <?
+                    if ($chip != "HI3520DV400") {
+                    ?>
+                        <div role="tabpanel" class="tab-pane fade in thin2" id="tab4">
+                            <? include "latency-calculator-panel.php" ?>
+                        </div>
+                    <?
+                    }
+                    ?>
+                    <div class="tab-pane fade" id="tab5" role="tabpanel">
+                        <div class="row">
+                            <div class="col-2 text-center">
+                                <en>Channel name</en>
+                            </div>
+                            <div class="col-2 text-center">
+                                <en>Width</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Height</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Smart Encode</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Min QP</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Max QP</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Fix IQP</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Fix PQP</en>
+                            </div>
+                            <div class="col text-center">
+                                <en>Low Latency</en>
+                            </div>
+                        </div>
+                        <hr >
+                        <div class="row mt-1" v-for="(item,index) in handleVdoConf" :key="item.id">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-2 text-center">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.name">
+                                    </div>
+                                    <div class="col-2">
+                                        <select class="form-select" v-model="item.cap.rotate">
+                                            <option value="0">0</option>black
+                                            <option value="90">90</option>
+                                            <option value="180">180</option>
+                                            <option value="270">270</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.L">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.R">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.T">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.B">
+                                    </div>
+                                    <div class="col text-center">
+                                        <input type="text" class="form-control" v-if="item.type==='vi'" v-model.trim.lazy="item.cap.contrast">
+                                    </div>
+                                    <div class="col text-center">
+                                        <input type="text" class="form-control" v-if="item.type==='vi'" v-model.trim.lazy="item.cap.contrast">
+                                    </div>
+                                    <div class="col lp-align-center">
+                                        <bs-switch v-model="item.cap.ntsc" v-if="item.type==='vi'"></bs-switch>
+                                    </div>
+                                </div>
+                                <hr >
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mt-3">
                         <div class="col-lg-12 text-center">
                             <button type="button" class="btn btn-primary border-3 px-5" @click="saveDefaultConf">
-                                <cn>ä¿å­˜</cn>
                                 <en>Save</en>
                             </button>
                         </div>
@@ -472,6 +381,33 @@
         </div>
     </main>
 </div>
+
+<? # used by latency calculator
+?>
+<div class="modal" tabindex="-1" role="dialog" id="results-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Results</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ping-results">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="vendor/switch/bootstrap-switch.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/confirm/jquery-confirm.min.js"></script>
+<script src="js/zcfg.js"></script>
+<script src="js/networkInterfaces.js"></script>
+<script src="js/latency-calculator.js"></script>
 <?php include ("./public/foot.inc") ?>
 <script type="module">
     
@@ -571,15 +507,15 @@
             const onCodecChange = (conf) => {
                 let hadReset = false;
                 if(conf.enca.codec === "opus" && (conf.stream.rtmp || conf.stream2.rtmp)) {
-                    alertMsg("<cn>RTMPåè®®æµä¸æ”¯æŒOPUSéŸ³é¢‘ç¼–ç æ ¼å¼,è¯·å…ˆå…³é—­RTMPåè®®æµåŽåœ¨é‡è¯•</cn><en>The RTMP protocol does not support OPUS audio encoding, please disable the RTMP stream and try again.</en>", "warning",8000);
+                    alertMsg("<en>The RTMP protocol does not support OPUS audio encoding, please disable the RTMP stream and try again.</en>", "warning",8000);
                     hadReset = true;
                 }
                 if(conf.enca.codec !== "opus" && conf.enca.codec !== "close" && (conf.stream.webrtc || conf.stream2.webrtc)) {
-                    alertMsg("<cn>WebRTCåè®®æµä»…æ”¯æŒOPUSéŸ³é¢‘ç¼–ç æ ¼å¼,è¯·å…ˆå…³é—­WebRTCåè®®æµåŽåœ¨é‡è¯•</cn><en>The WebRTC protocol only supports OPUS audio encoding, please disable the WebRTC stream and try again.</en>", "warning",8000);
+                    alertMsg("<en>The WebRTC protocol only supports OPUS audio encoding, please disable the WebRTC stream and try again.</en>", "warning",8000);
                     hadReset = true;
                 }
                 if((conf.encv.codec !== "h264" && conf.encv.codec !== "close"  && conf.stream.webrtc) || (conf.encv2.codec !== "h264" && conf.encv2.codec !== "close" && conf.stream2.webrtc)) {
-                    alertMsg("<cn>WebRTCåè®®æµä»…æ”¯æŒH264è§†é¢‘ç¼–ç æ ¼å¼,è¯·å…ˆå…³é—­WebRTCåè®®æµåŽåœ¨é‡è¯•</cn><en>The WebRTC protocol only supports H264 video encoding, please disable the WebRTC stream and try again.</en>", "warning",8000);
+                    alertMsg("<en>The WebRTC protocol only supports H264 video encoding, please disable the WebRTC stream and try again.</en>", "warning",8000);
                     hadReset = true;
                 }
                 if(hadReset) {

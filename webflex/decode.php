@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="input-group">
-                                            <input class="form-control" v-model.trim.lazy="item.url" disabled readonly>
+                                            <input type="text" class="form-control" v-model.trim.lazy="item.url" disabled readonly>
                                             <button class="btn btn-primary input-group-text input-group-addon lp-cursor-pointer"
                                                     @click="onCopyReceiveChnUrl(index)">
                                                 <i class="fa-regular fa-copy"></i>
@@ -116,7 +116,7 @@
                                 </en>
                             </div>
                         </div>
-                        <div class="col-lg-12 text-center" v-if="tabType==='rtmp'">
+                        <div class="col lp-align-center">
                             <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
                                 <cn>添加</cn>
                                 <en>Add</en>

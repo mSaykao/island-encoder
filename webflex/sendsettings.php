@@ -95,7 +95,7 @@
                                     <div class="col-2">
                                         <multiple-select v-model:value1="item.encv.width" v-model:value2="item.encv.height" split="x">
                                             <option value="-1x-1">auto</option>
-                                            <option v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.capability.encode.maxSize === '4K'" value="3840x2160">4K :)</option>
+                                            <option v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.capability.encode.maxSize === '4K'" value="3840x2160">4K</option>
                                             <option value="1920x1080">1080p</option>
                                             <option value="1280x720">720p</option>
                                             <option value="640x360">360p</option>

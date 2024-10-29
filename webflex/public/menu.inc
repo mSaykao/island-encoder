@@ -77,14 +77,26 @@
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.videoOut">
                         <a href="output.php">
-                            <div class="parent-icon"><i class="fa-solid fa-microchip"></i></div>
+                            <div class="parent-icon"><i class="fa fa-external-link menuIcon"></i></div>
                             <div class="menu-title"><cn>æŽ¥å£è¾“å‡º</cn><en>Output</en></div>
+                        </a>
+                    </li>
+                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
+                        <a href="record.php">
+                            <div class="parent-icon"><i class="fa-solid fa-floppy-disk"></i></div>
+                            <div class="menu-title"><en>Record</en></div>
                         </a>
                     </li>
                     <li>
                         <a href="sys.php">
                             <div class="parent-icon"><i class="fa-solid fa-gear"></i></div>
                             <div class="menu-title"><cn>ç³»ç»Ÿè®¾ç½®</cn><en>System</en></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <div class="parent-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                            <div class="menu-title"><en>Tally</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.overlay || hardwareConf.function.mix)" class="menu-label"><cn>è§†é¢‘ç‰¹æ•ˆ</cn><en>Effect</en></li>
@@ -113,12 +125,6 @@
 <!--                                    <div class="menu-title"><cn>NDIè§£ç </cn><en>NDI Decode</en></div>-->
 <!--                                </a>-->
 <!--                            </li>-->
-                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
-                                <a href="record.php">
-                                    <i class="fa-solid fa-folder-open"></i>
-                                    <div class="menu-title"><cn>æ–‡ä»¶å½•åˆ¶</cn><en>Record</en></div>
-                                </a>
-                            </li>
                             <li>
                                 <a href="player.php">
                                     <i class="fa-solid fa-circle-play"></i>

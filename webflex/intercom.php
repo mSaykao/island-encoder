@@ -35,34 +35,49 @@
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <en>vMix Tally Link</en>
+                                <cn>集成通信设置</cn>
+                                <en>Intercom config</en>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row mt-3">
-                                <div class="col-lg-5 lp-align-center">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
                                     <label>
+                                        <cn>开关</cn>
                                         <en>Enable</en>
                                     </label>
                                 </div>
-                                <div class="col-lg-7">
-                                    <bs-switch v-model="intercomConf.tally.enable" :size="'normal'"></bs-switch>
-                                </div>
-                            </div>
-                            <div class="row my-4">
-                                <div class="col-lg-2 offset-lg-1 lp-align-center">
-                                    <label>
-                                        <en>vMix IP</en>
-                                    </label>
-                                </div>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" v-model="intercomConf.vmix.ip">
+                                    <bs-switch v-model="intercomConf.intercom.enable" :size="'normal'"></bs-switch>
                                 </div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-lg-3 offset-lg-1 lp-align-center">
                                     <label>
-                                        <en>Device Name</en>
+                                        <cn>服务器IP</cn>
+                                        <en>Server IP</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" v-model="intercomConf.intercom.ip">
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>服务器端口</cn>
+                                        <en>Server port</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" v-model="intercomConf.intercom.port">
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>名称</cn>
+                                        <en>Name</en>
                                     </label>
                                 </div>
                                 <div class="col-lg-6">
@@ -72,7 +87,8 @@
                             <div class="row mt-4">
                                 <div class="col-lg-3 offset-lg-1 lp-align-center">
                                     <label>
-                                        <en>vMix Input</en>
+                                        <cn>本机ID</cn>
+                                        <en>Local ID</en>
                                     </label>
                                 </div>
                                 <div class="col-lg-6">
@@ -87,6 +103,187 @@
                                         <option value="7">7</option>
                                         <option value="8">8</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>目标ID</cn>
+                                        <en>Target ID</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-select" v-model="intercomConf.intercom.tid">
+                                        <option value="-1">ALL</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>缓冲时间</cn>
+                                        <en>Buffer time</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-select" v-model="intercomConf.intercom.buf">
+                                        <option value="8">200ms</option>
+                                        <option value="16">400ms</option>
+                                        <option value="24">600ms</option>
+                                        <option value="32">800ms</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>麦克增益</cn>
+                                        <en>Mic gain</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-select" v-model="intercomConf.intercom.gain">
+                                        <option value="24">+24db</option>
+                                        <option value="18">+18db</option>
+                                        <option value="12">+12db</option>
+                                        <option value="6">+6db</option>
+                                        <option value="0">+0db</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>自动静音</cn>
+                                        <en>Auto mute</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-select" v-model="intercomConf.intercom.vad">
+                                        <option value="-1" cn="按键发言" en="Press to speak" v-language-option></option>
+                                        <option value="0" cn="常开" en="Keep open" v-language-option></option>
+                                        <option value="40" cn="低" en="Low" v-language-option></option>
+                                        <option value="50" cn="中" en="Mid" v-language-option></option>
+                                        <option value="65" cn="高" en="High" v-language-option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header bg-transparent">
+                                    <div class="p-2 mb-0 d-flex align-items-end">
+                                        <cn>导播软件对接</cn>
+                                        <en>Director software hook</en>
+                                    </div>
+                                </div>
+                                <div class="card-body" >
+                                    <div class="row mt-3">
+                                        <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                            <label>
+                                                <cn>开关</cn>
+                                                <en>Enable</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <bs-switch v-model="intercomConf.vmix.enable" :size="'normal'"></bs-switch>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                            <label>
+                                                <cn>模式</cn>
+                                                <en>Model</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <select class="form-select" v-model="intercomConf.vmix.mode">
+                                                <option value="vmix">vMix</option>
+                                                <option value="sinsam">Sinsam</option>
+                                                <option value="rs232">RS232</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row my-4">
+                                        <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                            <label>
+                                                <cn>导播IP</cn>
+                                                <en>Director IP</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" v-model="intercomConf.vmix.ip">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header bg-transparent">
+                                    <div class="p-2 mb-0 d-flex align-items-end">
+                                        <cn>集成通信服务端</cn>
+                                        <en>Intercom server</en>
+                                    </div>
+                                </div>
+                                <div class="card-body" >
+                                    <div class="row my-3">
+                                        <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                            <label>
+                                                <cn>开关</cn>
+                                                <en>Enable</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <bs-switch v-model="intercomConf.server.enable" :size="'normal'"></bs-switch>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header bg-transparent">
+                                    <div class="p-2 mb-0 d-flex align-items-end">
+                                        <cn>Tally灯控制</cn>
+                                        <en>Tally light control</en>
+                                    </div>
+                                </div>
+                                <div class="card-body" >
+                                    <div class="row mt-3 mb-4">
+                                        <div class="col-lg-4" v-if="!hadLed">
+                                            <div class="row">
+                                                <div class="col-lg-5 lp-align-center">
+                                                    <label>
+                                                        <cn>开关</cn>
+                                                        <en>Enable</en>
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-7">
+                                                    <bs-switch v-model="intercomConf.tally.enable" :size="'normal'"></bs-switch>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div :class="['col-lg-3',{'offset-lg-2':hadLed}]">
+                                            <button type="button" class="btn border-3 btn-primary px-4" @click="showTallyModal = !showTallyModal">
+                                                <cn>测试</cn>
+                                                <en>Test</en>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

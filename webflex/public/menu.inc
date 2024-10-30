@@ -72,7 +72,7 @@
                     <li>
                         <a href="push.php">
                             <div class="parent-icon"><i class="fa-solid fa-fan"></i></div>
-                            <div class="menu-title"><cn>ç›´æ’­æŽ¨æµ</cn><en>Push</en></div>
+                            <div class="menu-title"><cn>ç›´æ’­æŽ¨æµ</cn><en>Push (Remove This)</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.videoOut">
@@ -82,15 +82,9 @@
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
-                        <a href="record.php">
+                        <a href="island-record.php">
                             <div class="parent-icon"><i class="fa-solid fa-floppy-disk"></i></div>
                             <div class="menu-title"><en>Record</en></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="sys.php">
-                            <div class="parent-icon"><i class="fa-solid fa-gear"></i></div>
-                            <div class="menu-title"><cn>ç³»ç»Ÿè®¾ç½®</cn><en>System</en></div>
                         </a>
                     </li>
                     <li>
@@ -99,24 +93,36 @@
                             <div class="menu-title"><en>Tally</en></div>
                         </a>
                     </li>
-                    <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.overlay || hardwareConf.function.mix)" class="menu-label"><cn>è§†é¢‘ç‰¹æ•ˆ</cn><en>Effect</en></li>
-                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.overlay">
-                        <a href="overlay.php">
-                            <div class="parent-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                            <div class="menu-title"><cn>å åŠ ç‰¹æ•ˆ</cn><en>Overlay</en></div>
-                        </a>
-                    </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.mix">
                         <a href="mix.php">
                             <div class="parent-icon"><i class="fa-solid fa-chart-simple"></i></div>
-                            <div class="menu-title"><cn>è§†é¢‘æ··åˆ</cn><en>Video mix</en></div>
+                            <div class="menu-title"><cn>è§†é¢‘æ··åˆ</cn><en>Video mix (Remove This)</en></div>
                         </a>
                     </li>
-                    <li class="menu-label"><cn>å…¶ä»–è®¾ç½®</cn><en>OTHER</en></li>
+                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">
+                        <a href="javascript:;" class="has-arrow">
+                            <div class="parent-icon"><i class="fa-solid fa-gears"></i></div>
+                            <div class="menu-title"><cn>é«˜çº§è®¾ç½®</cn><en>Settings</en></div>
+                        </a>
+                        <ul class="ps-3">
+                            <li>
+                                <a href="tailscale.php">
+                                    <i class="fa-solid fa-plug"></i>
+                                    <div class="menu-title"><en>VPN & ATEM Link</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="sys.php">
+                                    <i class="fa-solid fa-gear"></i>
+                                    <div class="menu-title"><cn>ç³»ç»Ÿè®¾ç½®</cn><en>System</en></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="fa-solid fa-puzzle-piece ms-1 mb-1"></i></div>
-                            <div class="menu-title"><cn>æ‰©å±•åŠŸèƒ½</cn><en>Extend</en></div>
+                            <div class="parent-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                            <div class="menu-title"><en>Advanced</en></div>
                         </a>
                         <ul class="ps-3">
 <!--                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.ndi">-->
@@ -125,98 +131,100 @@
 <!--                                    <div class="menu-title"><cn>NDIè§£ç </cn><en>NDI Decode</en></div>-->
 <!--                                </a>-->
 <!--                            </li>-->
+                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
+                                <a href="record.php">
+                                    <i class="fa-solid fa-folder-open"></i>
+                                    <div class="menu-title"><cn>????</cn><en>Record</en></div>
+                                </a>
+                            </li>
                             <li>
                                 <a href="player.php">
                                     <i class="fa-solid fa-circle-play"></i>
-                                    <div class="menu-title"><cn>H5 æ’­æ”¾å™¨</cn><en>H5 Player</en></div>
+                                    <div class="menu-title"><en>H5 Player</en></div>
                                 </a>
                             </li>
                             <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.intercom">
                                 <a href="intercom.php">
                                     <i class="fa-solid fa-headset"></i>
-                                    <div class="menu-title"><cn>é›†æˆé€šä¿¡</cn><en>Intercom</en></div>
+                                    <div class="menu-title"><en>Intercom</en></div>
                                 </a>
                             </li>
                             <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.remote)">
                                 <a href="remote.php">
                                     <i class="fa-brands fa-cloudsmith"></i>
-                                    <div class="menu-title"><cn>çº¢å¤–é¥æŽ§</cn><en>Remote</en></div>
+                                    <div class="menu-title"><en>Remote</en></div>
                                 </a>
                             </li>
                             <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.serialport || hardwareConf.function.button)">
                                 <a href="uart.php">
                                     <i class="fa-solid fa-link"></i>
-                                    <div class="menu-title"><cn>ä¸²å£ã€æŒ‰é”®</cn><en>Serial, Button</en></div>
+                                    <div class="menu-title"><en>Serial, Button</en></div>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">
-                        <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="fa-solid fa-gears"></i></div>
-                            <div class="menu-title"><cn>é«˜çº§è®¾ç½®</cn><en>Options</en></div>
-                        </a>
-                        <ul class="ps-3">
-                            <li>
-                                <a href="group.php">
-                                    <i class="fa-solid fa-server"></i>
-                                    <div class="menu-title"><cn>ç¾¤ç»„è®¾ç½®</cn><en>Group</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="rproxy.php">
-                                    <i class="fa-solid fa-comments"></i>
-                                    <div class="menu-title"><cn>è¿œç¨‹è®¿é—®</cn><en>Reverse Proxy</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="service.php">
-                                    <i class="fa-solid fa-cloud"></i>
-                                    <div class="menu-title"><cn>æœåŠ¡è®¾ç½®</cn><en>Service</en></div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">
-                        <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="fa-solid fa-flask"></i></div>
-                            <div class="menu-title"><cn>å®žéªŒåŠŸèƒ½</cn><en>Laboratory</en></div>
-                        </a>
-                        <ul class="ps-3">
                             <li>
                                 <a href="gb28181.php">
                                     <i class="fa-solid fa-cloud"></i>
-                                    <div class="menu-title"><cn>GB28181</cn><en>GB28181</en></div>
+                                    <div class="menu-title"><en>GB28181</en></div>
                                 </a>
                             </li>
                             <li>
                                 <a href="roi.php">
                                     <i class="fa-solid fa-circle-user"></i>
-                                    <div class="menu-title"><cn>ROI</cn><en>ROI</en></div>
+                                    <div class="menu-title"><en>ROI</en></div>
                                 </a>
                             </li>
                             <li>
                                 <a href="insta360.php">
                                     <i class="fa-solid fa-camera"></i>
-                                    <div class="menu-title"><cn>Insta360 Link</cn><en>Insta360 Link</en></div>
+                                    <div class="menu-title"><en>Insta360 Link</en></div>
                                 </a>
                             </li>
                             <li>
                                 <a href="onvif.php">
                                     <i class="fa fa-video-camera"></i>
-                                    <div class="menu-title"><cn>Onvif PTZ</cn><en>Onvif PTZ</en></div>
+                                    <div class="menu-title"><en>Onvif PTZ</en></div>
                                 </a>
                             </li>
                             <li>
                                 <a href="colorKey.php">
                                     <i class="fa fa-cut"></i>
-                                    <div class="menu-title"><cn>æŠ åƒ</cn><en>ColorKey</en></div>
+                                    <div class="menu-title"><en>ColorKey</en></div>
                                 </a>
                             </li>
                             <li>
                                 <a href="sync.php">
                                     <i class="fa-solid fa-bars-staggered"></i>
-                                    <div class="menu-title"><cn>åŒæ­¥è°ƒèŠ‚</cn><en>Synchronization</en></div>
+                                    <div class="menu-title"><en>Synchronization</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="group.php">
+                                    <i class="fa-solid fa-server"></i>
+                                    <div class="menu-title"><en>Group</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="rproxy.php">
+                                    <i class="fa-solid fa-comments"></i>
+                                    <div class="menu-title"><en>Reverse Proxy</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="service.php">
+                                    <i class="fa-solid fa-cloud"></i>
+                                    <div class="menu-title"><en>Service</en></div>
+                                </a>
+                            </li>
+                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.overlay">
+                                <a href="overlay.php">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    <div class="menu-title"><en>Overlay</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="stream.php">
+                                    <i class="fa fa-upload"></i>
+                                    <div class="menu-title"><en>Stream</en></div>
                                 </a>
                             </li>
                         </ul>
@@ -264,8 +272,8 @@
            const state = {
                simplebarEle: ref(null),
                metismenuEle: ref(null),
-               isMenuToggled : ref(false),
-               isSidebarHovered: ref(false),
+               isMenuToggled : ref(true),
+               isSidebarHovered: ref(true),
                hadLed: ref(false),
                simplebar: null,
            }

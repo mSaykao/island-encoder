@@ -49,8 +49,8 @@
                                     <bs-switch v-model="intercomConf.tally.enable" :size="'normal'"></bs-switch>
                                 </div>
                             </div>
-                            <div class="row my-4">
-                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                            <div class="row mt-3">
+                                <div class="col-lg-5 lp-align-center">
                                     <label>
                                         <en>vMix IP</en>
                                     </label>
@@ -59,8 +59,8 @@
                                     <input type="text" class="form-control" v-model="intercomConf.vmix.ip">
                                 </div>
                             </div>
-                            <div class="row mt-4">
-                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                            <div class="row mt-3">
+                                <div class="col-lg-5 lp-align-center">
                                     <label>
                                         <en>Device Name</en>
                                     </label>
@@ -69,8 +69,8 @@
                                     <input type="text" class="form-control" v-model="intercomConf.intercom.name">
                                 </div>
                             </div>
-                            <div class="row mt-4">
-                                <div class="col-lg-3 offset-lg-1 lp-align-center">
+                            <div class="row mt-3">
+                                <div class="col-lg-5 lp-align-center">
                                     <label>
                                         <en>vMix Input</en>
                                     </label>

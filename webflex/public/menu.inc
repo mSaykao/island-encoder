@@ -88,7 +88,7 @@
                         </a>
                     </li>
                     <li>
-                        <a>
+                        <a href="tally.php">
                             <div class="parent-icon"><i class="fa-solid fa-lightbulb"></i></div>
                             <div class="menu-title"><en>Tally</en></div>
                         </a>

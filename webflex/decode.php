@@ -98,16 +98,14 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="col lp-align-center" v-if="tabType==='srt'">
-                                    <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                        <cn>添加</cn>
-                                        <en>Add</en>
-                                    </button>
-                                    <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                        <cn>保存</cn>
-                                        <en>Save</en>
-                                    </button>
-                                </div>
+                            </div>
+                            <div class="col lp-align-center" v-if="tabType==='srt'">
+                                <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                                    <en>Add</en>
+                                </button>
+                                <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                                    <en>Save</en>
+                                </button>
                             </div>
                         </div>
                         <div class="row mt-3">

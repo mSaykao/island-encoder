@@ -40,9 +40,10 @@
                     </li>
 
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.wifi && !Object.values(netAdapter).some(item => item.type === 'wifi')" class="nav-item lp-cursor-pointer" ref="wifiHandler">
-                        <a class="nav-link">
+                        <a class="nav-link" :class="['nav-link',{'active':index===1}]" data-bs-toggle="tab" :href="'#tab2'" role="tab" aria-selected="false">
                             <div class="d-flex align-items-center">
-                                <wifi-flag icon="wifi-off" :width="20" :height="20" :stroke="'#999999'" :stroke-width="2.3"></wifi-flag>
+                                <wifi-flag icon="wifi" :width="20" :height="20" :stroke="'#999999'" :stroke-width="2.3"></wifi-flag>
+
                                 <div class="tab-title">
                                     <cn>无线网</cn>
                                     <en>WIFI</en>
@@ -51,20 +52,21 @@
                         </a>
                     </li>
 
-                    <li v-if="!Object.values(netAdapter).some(item => item.type === 'dongle')" class="nav-item lp-cursor-pointer" ref="antenanHandler">
-                        <a class="nav-link">
-                            <div class="d-flex align-items-center">
-                                <antenan-flag icon="antenan-off" :width="20" :height="20" :stroke="'#999999'" :stroke-width="2.3"></antenan-flag>
-                                <div class="tab-title">
-                                    <cn>移动网络</cn>
-                                    <en>Cellular network</en>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
+<!--                    <li v-if="!Object.values(netAdapter).some(item => item.type === 'dongle')" class="nav-item lp-cursor-pointer" ref="antenanHandler">-->
+<!--                        <a class="nav-link">-->
+<!--                            <div class="d-flex align-items-center">-->
+<!--                                <antenan-flag icon="antenan-off" :width="20" :height="20" :stroke="'#999999'" :stroke-width="2.3"></antenan-flag>-->
+<!--                                <div class="tab-title">-->
+<!--                                    <cn>移动网络</cn>-->
+<!--                                    <en>Cellular network</en>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </li>-->
                 </ul>
 
                 <div class="tab-content py-3 pe-2 ps-2">
+
                     <div v-if="Object.keys(netAdapter).length > 0 && Object.keys(netManagerConf).length > 0" v-for="(item,index) in Object.values(netAdapter)" :class="['tab-pane fade',{'show active':index===0}]" :key="index" :id="'tab'+(index+1)" role="tabpanel">
                         <div v-if="netManagerConf.interface.hasOwnProperty(item.dev) && (item.type === 'lan' || item.type === 'other')">
                             <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.dhcp" class="row mt-3">
@@ -142,7 +144,325 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.wifi && netManagerConf.interface.hasOwnProperty(item.dev) && item.type === 'wifi'">
+                        <!-- <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.wifi && netManagerConf.interface.hasOwnProperty(item.dev) && item.type === 'wifi'"> -->
+                        <div v-if="item.type === 'wifi'">
+                            <div class="row mt-4">
+                                <div class="col-lg-6 border-right">
+                                    <div class="row mt-4">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>启用</cn>
+                                                <en>Enable</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <bs-switch v-model="netManagerConf.interface[item.dev].enable" :size="'normal'" @switch-change="enableWifi"></bs-switch>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                WIFI
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                                <select class="form-select" v-model="wifiConnectId">
+                                                    <option v-for="(it,idx) in wifiList" :key="idx+10" :value="it.ssid">{{it.ssid}}</option>
+                                                </select>
+                                                <span class="input-group-text input-group-addon lp-cursor-pointer" @click="refreshWifi"><i :class="['fa-solid fa-arrows-rotate',{'spin':wifiRefresh}]"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>密码</cn>
+                                                <en>Password</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                                <input class="form-control" :type="!showPasswd.wifipwd ? 'password' : 'text'" v-model.trim.lazy="wifiPassword">
+                                                <span class="input-group-text input-group-addon lp-cursor-pointer" @click="showPasswd.wifipwd = !showPasswd.wifipwd"><i :class="['fa-regular',{'fa-eye-slash':!showPasswd.wifipwd},{'fa-eye':showPasswd.wifipwd}]"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>状态</cn>
+                                                <en>Status</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <label v-if="!netManagerConf.interface[item.dev].enable">
+                                                <cn>未启用</cn><en>Disabled</en>
+                                            </label>
+                                            <label v-else-if="(!item.ssid && wifiPassword) || (!item.linkup && item.ssid)">
+                                                <cn class="pointLoading">连接中</cn><en class="pointLoading">connecting</en>
+                                            </label>
+                                            <label v-else-if="item.linkup && item.ssid">
+                                                <cn>已连接</cn><en>connected </en>
+                                                {{item.ssid}}
+                                            </label>
+                                            <label v-else>
+                                                <cn>未连接</cn><en>not connected</en>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12 text-center">
+                                            <button type="button" class="btn border-3 btn-primary px-4 me-2" @click="connectWifi"><cn>连接</cn><en>Connect</en></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>DHCP</cn>
+                                                <en>DHCP</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <bs-switch v-model="netManagerConf.interface[item.dev].dhcp" :size="'normal'"></bs-switch>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>IP</cn>
+                                                <en>IP</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].ip">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>掩码</cn>
+                                                <en>Mask</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].mask">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>网关</cn>
+                                                <en>Gateway</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].gw">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 lp-align-center">
+                                            <label>
+                                                <cn>DNS</cn>
+                                                <en>DNS</en>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].dns">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 mb-4">
+                                        <div class="col-lg-12 text-center">
+                                            <button type="button" class="btn border-3 btn-primary px-4" @click="updateNetManagerConf"><cn>保存</cn><en>Save</en></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="item.type === 'dongle'">
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>运营商</cn>
+                                        <en>Operator</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div v-if="!netAdapter[item.dev].oper" v-html="`<cn class='pointLoading'>检测中</cn><en class='pointLoading'>Detecting...</en>`"></div>
+                                    <input v-else class="form-control" v-model.trim.lazy="netAdapter[item.dev].oper" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>服务</cn>
+                                        <en>Service</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netAdapter[item.dev].service" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>上行</cn>
+                                        <en>Service</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" :value="formatNetSpeed(netAdapter[item.dev].tx)" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>下行</cn>
+                                        <en>Service</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" :value="formatNetSpeed(netAdapter[item.dev].rx)" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>IP</cn>
+                                        <en>IP</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netAdapter[item.dev].ip" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>掩码</cn>
+                                        <en>Mask</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netAdapter[item.dev].mask" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-2">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>网关</cn>
+                                        <en>Gateway</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netAdapter[item.dev].gw" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="Object.keys(netAdapter).length > 0 && Object.keys(netManagerConf).length > 0" v-for="(item,index) in Object.values(netAdapter)" :class="['tab-pane fade',{'show active':index===1}]" :key="index" :id="'tab'+(index+2)" role="tabpanel">
+                        <div v-if="netManagerConf.interface.hasOwnProperty(item.dev) && (item.type === 'lan' || item.type === 'other')">
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>SSID</cn>
+                                        <en>SSID</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" value="null" >
+                                </div>
+                            </div>
+                            <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.dhcp" class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>Enable</cn>
+                                        <en>Enable</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <bs-switch v-model="netManagerConf.interface[item.dev].enable" :size="'normal'"></bs-switch>
+                                </div>
+                            </div>
+                            <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.dhcp" class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>DHCP</cn>
+                                        <en>DHCP</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-5">
+                                    <bs-switch v-model="netManagerConf.interface[item.dev].dhcp" :size="'normal'"></bs-switch>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>IP</cn>
+                                        <en>IP</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].ip">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>掩码</cn>
+                                        <en>Mask</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].mask">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>网关</cn>
+                                        <en>Gateway</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].gw">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                    <label>
+                                        <cn>DNS</cn>
+                                        <en>DNS</en>
+                                    </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="form-control" v-model.trim.lazy="netManagerConf.interface[item.dev].dns">
+                                </div>
+                            </div>
+<!--                            <div class="row mt-3">-->
+<!--                                <div class="col-lg-2 offset-lg-1 lp-align-center">-->
+<!--                                    <label>-->
+<!--                                        <cn>MAC</cn>-->
+<!--                                        <en>MAC</en>-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                                <div class="col-lg-6">-->
+<!--                                    <div class="input-group">-->
+<!--                                        <input class="form-control" type="text" :disabled="macLock" v-model.trim.lazy="netManagerConf.interface[item.dev].mac">-->
+<!--                                        <span class="input-group-text input-group-addon lp-cursor-pointer" @click="macLock=!macLock"><i :class="['fa-solid',{'fa-lock':macLock},{'fa-unlock':!macLock}]"></i></span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="row mt-4">
+                                <div class="col-lg-12 text-center">
+                                    <button type="button" class="btn border-3 btn-primary px-4" @click="updateDefNetwork(item.dev)"><cn>保存</cn><en>Save</en></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.wifi && netManagerConf.interface.hasOwnProperty(item.dev) && item.type === 'wifi'"> -->
+                        <div v-if="item.type === 'wifi'">
                             <div class="row mt-4">
                                 <div class="col-lg-6 border-right">
                                     <div class="row mt-4">
@@ -1047,17 +1367,17 @@
 
             watch(state.wifiHandler,() => {
                 if(state.wifiHandler.value) {
-                    if(Object.keys(state.wifiPopover).length > 0) {
-                        state.wifiPopover.dispose();
-                        state.wifiPopover = {};
-                    }
-                    state.wifiPopover = popover(state.wifiHandler.value, {
-                        placement:"bottom",
-                        trigger:"hover",
-                        content:`<cn>请先插入USB WIFI网卡</cn><en>Please insert the USB WIFI network card first</en>`,
-                    });
-                    if(document.querySelector('a[href="#tab1"]'))
-                        document.querySelector('a[href="#tab1"]').click();
+                    // if(Object.keys(state.wifiPopover).length > 0) {
+                    //     state.wifiPopover.dispose();
+                    //     state.wifiPopover = {};
+                    // }
+                    // state.wifiPopover = popover(state.wifiHandler.value, {
+                    //     placement:"bottom",
+                    //     trigger:"hover",
+                    //     content:`<cn>请先插入USB WIFI网卡</cn><en>Please insert the USB WIFI network card first</en>`,
+                    // });
+                    // if(document.querySelector('a[href="#tab1"]'))
+                    //     document.querySelector('a[href="#tab1"]').click();
                 } else {
                     if(!state.wifiHandler.value && Object.keys(state.wifiPopover).length !== 0) {
                         state.wifiPopover.dispose();

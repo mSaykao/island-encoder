@@ -5,89 +5,85 @@
      <?php include ("./public/head.inc") ?>
  </head>
   <body>
-
   <?php include ("./public/menu.inc") ?>
     <div data-simplebar>
         <main class="page-content dashboard" id="app" v-cloak>
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div class="p-2 mb-0 d-flex align-items-end">
-                            <en>H1 Test Island</en>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div class="p-2 mb-0 d-flex align-items-end">
-                            <en>Preview</en>
-                            <small style="color: #AAA">
-                                <en>Note: Preview only, not realtime</en>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'SS626V100'">
+        <div class="row mt-2">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <en>Input Status</en>
+                                <cn>é¢„è§ˆ</cn>
+                                <en>Preview</en>
+                                <small style="margin-left: 5px;color: grey;font-size: 12px;">
+                                    <cn>éžå®žæ—¶è§†é¢‘ï¼Œä»…é¢„è§ˆå›¾ç‰‡</cn>
+                                    <en>Not a realtime video, picture only</en>
+                                </small>
                             </div>
                         </div>
-                    <div class="card-body iface py-3">
-                        <div v-for="(item,index) in input" :key="index" :class="[{'ms-5':index > 0},{'hdmi':item.protocol==='HDMI'},{'sdi':item.protocol==='SDI' || item.protocol==='AHD'},{'vga':item.protocol==='VGA'},{'disable':!item.avalible}]">
-                            <span class="info">{{item.info}}</span>
-                            <div :class="['icon']"></div>
-                            <span class="name">{{item.name}}</span>
+                        <div class="card-body">
+                            <div class="row row-cols-2 row-cols-lg-4 g-3">
+                                <div v-for="(item,index) in preview" :key="index" class="col">
+                                    <div class="card">
+                                        <div class="card-img-content">
+                                            <div class="card-img-background"></div>
+                                            <img v-once class="card-img-top preview">
+                                            <img v-once src="assets/img/nosignal.jpg" class="card-img-top" style="visibility: hidden">
+                                        </div>
+                                        <div class="chn-volume" :style="{'width':handleChnVolume(item.id,'L')}"></div>
+                                        <div class="chn-volume" :style="{'width':handleChnVolume(item.id,'R')}"></div>
+                                        <div class="card-body">
+                                            <p class="card-text text-center">{{item.name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div>
-                            <en>Encoder/Streaming Status</en>
+            <div class="row">   
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-transparent">
+                            <div>
+                                <en>Encoder/Streaming Status</en>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="padding: 20px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Encoding</th>
+                                        <th>Streaming</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="streamStatus"></tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="panel-body" style="padding: 20px;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Encoding</th>
-                                    <th>Streaming</th>
-                                </tr>
-                            </thead>
-                            <tbody id="streamStatus"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>                
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div class="p-2 mb-0 d-flex align-items-end">
-                            <en>Recording Status</en>
+                </div>            
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-transparent">
+                            <div class="p-2 mb-0 d-flex align-items-end">
+                                <en>Recording Status</en>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body" style="padding: 20px;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Channel</th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="card-body" style="padding: 20px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Channel</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-           
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
@@ -97,13 +93,13 @@
                                 <en>System state</en>
                             </div>
                         </div>
-                        <div class="panel-body" style="padding: 20px;">
+                        <div class="card-body" >
                             <div class="row row-cols-3 text-center">
                                 <div class="col-lg-4 ">
                                     <pie-chart v-if="theme_color" v-model="cpu" :active-color="theme_color"></pie-chart>
                                     <div>
                                         <cn>CPUä½¿ç”¨çŽ‡</cn>
-                                        <en>CPU MADNESS</en>
+                                        <en>CPU Usage</en>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 text-center">
@@ -130,13 +126,31 @@
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
                                 <cn>ç½‘ç»œçŠ¶æ€</cn>
-                                <en>Network Traffic</en>
+                                <en>Network state</en>
                             </div>
                         </div>
                         <div class="card-body">
                             <net-chart v-if="theme_color && tx.length > 0" :maxy="maxy" :data1="tx" :data2="rx" :key="netFlotKey"
                                        :line1-color="theme_color" :line2-color="line2_color" :tick-color="tickColor" :border-color="borderColor"
                                        :tip-border-color="tipBorderColor" :tip-bg-color="tipBgColor" :tip-txt-color="tipTxtColor"></net-chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'SS626V100'">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header bg-transparent">
+                            <div class="p-2 mb-0 d-flex align-items-end">
+                                <en>Input status</en>
+                            </div>
+                        </div>
+                        <div class="card-body iface py-3">
+                            <div v-for="(item,index) in input" :key="index" :class="[{'ms-5':index > 0},{'hdmi':item.protocol==='HDMI'},{'sdi':item.protocol==='SDI' || item.protocol==='AHD'},{'vga':item.protocol==='VGA'},{'disable':!item.avalible}]">
+                                <span class="info">{{item.info}}</span>
+                                <div :class="['icon']"></div>
+                                <span class="name">{{item.name}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -338,20 +352,6 @@
                   setTimeout(updatePreview,500);
               }
 
-              function restartEncoderSoftware() {
-                  callback = function(result) {
-                      if (result.error != undefined && result.error != "") {
-                          htmlAlert("#alert", "danger", "Error", result.error);
-                      } else {
-                          htmlAlert("#alert", "success", "Success", "Restarting...", 5000);
-                      }
-                  }
-                  if (confirm("This will interrupt streaming! Are you sure?")) {
-                      func("restartEncoderSoftware", undefined, callback);
-                  }
-              }
-
-
               const handleChnVolume = (chnId,type) => {
                   let volume = state.volume.filter((item,index)=>{
                       return chnId === index;
@@ -448,514 +448,5 @@
       app.use(filterKeywordPlugin);
       app.mount('#app')
   </script>
-  <script src="vendor/flot-chart/jquery.flot.js"></script>
-  <script src="vendor/flot-chart/jquery.flot.tooltip.js"></script>
-  <script src="vendor/flot-chart/jquery.flot.resize.js"></script>
-  <script src="vendor/flot-chart/jquery.flot.pie.resize.js"></script>
-  <script src="vendor/flot-chart/jquery.flot.selection.js"></script>
-  <script src="vendor/flot-chart/jquery.flot.stack.js"></script>
-  <script src="vendor/flot-chart/jquery.flot.time.js"></script>
-  <script src="vendor/pie/jquery.easypiechart.js"></script>
-  <script src="vendor/switch/bootstrap-switch.min.js"></script>
-  <script src="js/networkInterfaces.js"></script>
-  <script src="js/streamStatus.js"></script>
-  <script src="js/recordStatus.js"></script>
-  <script>
-      function restartTailscale() {
-          callback = function(result) {
-              if (result.error != undefined && result.error != "") {
-                  htmlAlert("#alert", "danger", "Error", result.error);
-              } else {
-                  htmlAlert("#alert", "success", "Success", "Restarting VPN", 2000);
-              }
-          }
-          if (confirm("This will temporarily interrupt VPN access! Are you sure?")) {
-              func("tailscaleUp", undefined, callback);
-          }
-      }
-
-      function restartEncoderSoftware() {
-          callback = function(result) {
-              if (result.error != undefined && result.error != "") {
-                  htmlAlert("#alert", "danger", "Error", result.error);
-              } else {
-                  htmlAlert("#alert", "success", "Success", "Restarting...", 5000);
-              }
-          }
-          if (confirm("This will interrupt streaming! Are you sure?")) {
-              func("restartEncoderSoftware", undefined, callback);
-          }
-      }
-
-      function rebootEncoderBox() {
-          callback = function(result) {
-              if (result.error != undefined && result.error != "") {
-                  htmlAlert("#alert", "danger", "Error", result.error);
-              } else {
-                  htmlAlert("#alert", "success", "Success", "Rebooting...", 2000);
-              }
-          }
-          if (confirm("This will interrupt streaming! Are you sure?")) {
-              func("rebootEncoderBox", undefined, callback);
-          }
-      }
-
-      function checkNotifications() {
-          fetch("/notifications.php").then(r => r.text()).then(text => {
-              if (text.trim().length > 0) {
-                  document.querySelector("#notification-text").innerHTML = text;
-                  document.querySelector('#notifications').classList.remove("hidden");
-
-                  document.querySelector("#notification-ack-btn").addEventListener('click', dismissNotifications);
-              }
-          });
-      }
-
-      function dismissNotifications() {
-          document.querySelector('#notifications').classList.add("hidden");
-          fetch("/notifications.php", {
-              method: "DELETE"
-          });
-      }
-
-      $(function() {
-          navIndex(0);
-          $.fn.bootstrapSwitch.defaults.size = 'mini';
-          $.fn.bootstrapSwitch.defaults.onColor = 'warning';
-          var timerVol = 0;
-          var timerSnap = 0;
-          var highUsage = false;
-
-          checkNotifications();
-          setTimeout(updateStreamStatus, 1000);
-          getNetworkInterfaces(); // Automatically repeats
-          initRecordInfo();
-
-          $("#restartEncoderSoftware").click(restartEncoderSoftware);
-          $("#rebootEncoderBox").click(rebootEncoderBox);
-          $("#restartTailscale").click(restartTailscale);
-
-          $(".switch").bootstrapSwitch();
-          if ($.cookie('preview') == undefined) {
-              $.cookie('preview', 'on', {
-                  expires: 365
-              });
-          }
-
-          if ($.cookie('preview') == 'on') {
-              $("#previewSwitch").bootstrapSwitch('state', true, true);
-          } else
-              $("#previewSwitch").bootstrapSwitch('state', false, true);
-
-          $("#previewSwitch").on("switchChange.bootstrapSwitch", function(evt) {
-              if ($(this).is(":checked"))
-                  $.cookie('preview', 'on', {
-                      expires: 365
-                  });
-              else
-                  $.cookie('preview', 'off', {
-                      expires: 365
-                  });
-          });
-
-          var interfaceCount = 6;
-          try {
-              $.ajaxSetup({
-                  cache: false
-              });
-              $('.chart').easyPieChart({
-                  easing: 'easeOutElastic',
-                  delay: 2000,
-                  barColor: '#aaa',
-                  trackColor: '#eee',
-                  scaleColor: false,
-                  lineWidth: 20,
-                  trackWidth: 16,
-                  lineCap: 'butt',
-                  width: 50,
-                  onStep: function(from, to, percent) {
-                      $(this.el).parent().find('.percent').text(Math.round(percent) + "%");
-                  }
-              });
-          } catch (e) {
-
-          }
-
-
-          {
-              var cnt = 0;
-              var config;
-              $.getJSON("config/hardware.json", function(data) {
-                  var ifaceV = data.interfaceV;
-                  var htmlStr = "";
-                  for (var i = 0; i < ifaceV.length; i++) {
-                      var pro = ifaceV[i].type;
-                      var name = ifaceV[i].name;
-
-                      if (pro == "HDMI")
-                          htmlStr += '<div class="hdmi disable"> <span class="info">NO SIGNAL</span>\n' +
-                          '<div></div>\n' +
-                          '<span class="name">' + name + '</span> </div>';
-                      else if (pro == "SDI" || pro == "AHD")
-                          htmlStr += '<div class="sdi disable"> <span class="info">NO SIGNAL</span>\n' +
-                          '<div></div>\n' +
-                          '<span class="name">' + name + '</span> </div>';
-                  }
-
-                  $("#iface").html(htmlStr);
-
-                  $.getJSON("config/config.json", function(data) {
-                      config = data;
-                      show();
-  
-                      timerVol = setInterval(getVolume, 300);
-
-                      update();
-                      for (var i = 0; i < config.length; i++) {
-                          if (config[i].type != "vi")
-                              continue;
-                          $("#iface .name").eq(i).text(config[i].name);
-                      }
-                  });
-              });
-              var first = true;
- 
-              function getVolume() {
-                  if (!$("#previewSwitch").is(":checked"))
-                      return;
- 
-                  rpc("enc.getVolume", null, function(data) {
-                      var k = 0;
-                      for (var i = 0; i < config.length; i++) {
-
-                          if (config[i].enable) {
-                              $("#preview #L").eq(k).css("width", (data[i].L * 100 / 96) + "%");
-                              $("#preview #R").eq(k).css("width", (data[i].R * 100 / 96) + "%");
-                              k++;
-                          }
-
-
-                      }
-                  });
-              }
-
-
-
-              function show() {
-                  if (!$("#previewSwitch").is(":checked")) {
-                      $("#preview").html("");
-                      cnt = 0;
-                      return;
-                  }
-
-                  rpc("enc.snap", null, function(ret) {
-                      if (first) {
-                          first = false;
-                          return;
-                      }
-
-                      if (config.length != cnt) {
-                          cnt = config.length;
-                          $("#preview").html("");
-                          var str = "";
-                          config.forEach(channel => {
-                              if (channel.enable && !(channel.type == "net" && !channel.net.decodeV)) {
-                                  let target = "/sendsettings.php";
-                                  if (channel.type == "net")
-                                      target = "/receivesettings.php";
-                                  str += `<a href="${target}">` +
-                                      '<div class="col-xs-6 col-sm-6 col-md-3">' +
-                                      `<div class="thumbnail text-center" id="preview-${channel.id}">` +
-                                      '<div id="L" style="width:0; background-color:#88BB4A; height:5px;"></div>' +
-                                      '<div id="R" style="width:0; background-color:#88BB4A; height:5px;"></div>' +
-                                      '<div class="caption text-center">' +
-                                      channel.name +
-                                      '</div></div></div></a>';
-                              }
-                          });
-                          $("#preview").html(str);
-                      }
-
-                      var k = 0;
-                      for (var i = 0; i < config.length; i++) {
-                          if (!config[i].enable || (config[i].type == "net" && !config[i].net.decodeV))
-                              continue;
-
-                          if (config[i].type == "usb" && config[i].encv.codec == "close") {
-                              var icon = document.querySelector(`#preview-${i}-img`);
-                              if (icon == undefined) {
-                                  img = document.createElement("img");
-                                  img.setAttribute("id", `preview-${i}-img`);
-                                  img.setAttribute("src", "img/mic-icon.png");
-                                  document.querySelector(`#preview-${i}`).prepend(img);
-                                  document.querySelector(`#preview-${i} div.caption`).innerHTML = config[i].name + " (Audio Only)";
-                              }
-                          } else {
-                              var img = document.querySelector(`#preview-${i}-img`);
-                              if (img == undefined) {
-                                  img = document.createElement("img");
-                                  img.setAttribute("id", `preview-${i}-img`);
-                                  document.querySelector(`#preview-${i}`).prepend(img);
-                                  document.querySelector(`#preview-${i} div.caption`).innerHTML = config[i].name;
-                              }
-                              img.setAttribute("src", "snap/snap" + config[i].id + ".jpg?rnd=" + Math.random());
-                          }
-
-                          k++;
-                      }
-                  });
-  
-              }
-              timerSnap = setInterval(show, 500);
-          }
-
-
-
-          function update() {
-              rpc("enc.getSysState", null, function(data) {
-                  try {
-                      $("#usage #cpu").data('easyPieChart').update(data.cpu);
-                      $("#usage #mem").data('easyPieChart').update(data.mem);
-                      $("#usage #temperature #bar").css("background", '#ccc');
-                      $("#usage #temperature #mask").css("bottom", data.temperature + "%");
-  
-                  } catch (e) {
-  
-                  }
-                  if (data.cpu > 60 && !highUsage) {
-                      highUsage = true;
-                      clearInterval(timerVol);
-                      clearInterval(timerSnap);
-                      timerSnap = setInterval(show, 2000);
-                      timerVol = setInterval(getVolume, 1000);
-                  }
-                  $("#usage #cpu .percent .p").text(data.cpu + "%");
-                  $("#usage #mem .percent .p").text(data.mem + "%");
-                  $("#usage #temperature .percent").text(data.temperature + "?");
-
-              });
-
-              rpc("enc.getInputState", null, function(data) {
-                  var hdmi = [];
-                  var sdi = [];
-
-                  for (var i = 0; i < data.length; i++) {
-                      if (data[i].protocol == "HDMI")
-                          hdmi.push(data[i]);
-                      else
-                          sdi.push(data[i]);
-                  }
-
-                  for (var i = 0; i < hdmi.length; i++) {
-                      if (hdmi[i].avalible) {
-                          $(".hdmi").eq(i).removeClass("disable");
-                          $(".hdmi").eq(i).find(".info").html(hdmi[i].height + (hdmi[i].interlace ? "I" : "P") + hdmi[i].framerate);
-                          $(".hdmi").eq(i).attr("title", hdmi[i].width + "x" + hdmi[i].height + (hdmi[i].interlace ? "I" : "P") + hdmi[i].framerate);
-                      } else {
-                          $(".hdmi").eq(i).addClass("disable");
-                          $(".hdmi").eq(i).find(".info").html("NO SIGNAL");
-                          $(".hdmi").eq(i).find(".name").html(hdmi[i].name);
-                          $(".hdmi").eq(i).attr("title", "");
-                      }
-
-                  }
-
-                  for (var i = hdmi.length; i < $(".hdmi").length; i++) {
-                      $(".hdmi").eq(i).hide();
-                  }
-
-                  for (var i = 0; i < sdi.length; i++) {
-                      if (sdi[i].avalible) {
-                          $(".sdi").eq(i).removeClass("disable");
-                          $(".sdi").eq(i).find(".info").html(sdi[i].height + (sdi[i].interlace ? "I" : "P") + sdi[i].framerate);
-                      } else {
-                          $(".sdi").eq(i).addClass("disable");
-                          $(".sdi").eq(i).find(".info").html("NO SIGNAL");
-                          $(".sdi").eq(i).find(".name").html(sdi[i].name);
-                      }
- 
-                  }
-  
-                  for (var i = sdi.length; i < $(".sdi").length; i++) {
-                      $(".sdi").eq(i).hide();
-                  }
-
-              });
-
-              getRecordStatus();
-
-              setTimeout(update, 3000);
-          }
-
-
-          var data1 = [];
-          var data2 = [];
-
-          var maxy = 800;
-          for (var i = 0; i < 100; i++) {
-              data1.push(0);
-              data2.push(0);
-          }
-
-          function GetData1(d) {
-              data1.shift();
-              data1.push(d);
-              var rt = [];
-              for (var i = 0; i < 100; i++)
-                  rt.push([i, data1[i]]);
-              return rt;
-          }
-
-          function GetData2(d) {
-              data2.shift();
-              data2.push(d);
-              var rt = [];
-              for (var i = 0; i < 100; i++)
-                  rt.push([i, data2[i]]);
-              return rt;
-          }
-
-          var plot = null;
-          try {
-              plot = $.plot($("#netState"), [{
-                  data: GetData1(0),
-                  lines: {
-                      fill: true
-                  }
-              }, {
-                  data: GetData2(0),
-                  lines: {
-                      show: true
-                  }
-              }], {
-                  series: {
-                      lines: {
-                          show: true,
-                          fill: true
-                      },
-                      shadowSize: 0
-                  },
-                  yaxis: {
-                      min: 0,
-                      max: 800,
-                      tickSize: 160,
-                      tickFormatter: function(v, axis) {
- 
-                          if (axis.max < 1024)
-                              return v + "Kb/s";
-                          else {
-                              v /= 1024;
-  
-                              if (axis.max < 10240)
-                                  return v.toFixed(2) + "Mb/s";
-                              else
-                                  return Math.floor(v) + "Mb/s";
-                          }
-                      }
-                  },
-                  xaxis: {
-                      show: false
-                  },
-                  grid: {
-                      hoverable: true,
-                      clickable: true,
-                      tickColor: "#eeeeee",
-                      borderWidth: 1,
-                      borderColor: "#cccccc"
-                  },
-                  colors: ['#ccf', "#fcc"],
-                  tooltip: false
-              });
-          } catch (e) {}
-  
-          //???
-          function showTooltip(x, y, color, contents) {
-              $('<div id="tooltip">' + contents + '</div>').css({
-                  position: 'absolute',
-                  display: 'none',
-                  top: y - 40,
-                  left: x - 120,
-                  border: '2px solid ' + color,
-                  padding: '3px',
-                  'font-size': '9px',
-                  'border-radius': '5px',
-                  'background-color': '#555',
-                  color: '#eee',
-                  'font-family': 'Roboto, sans-serif',
-                  opacity: 0.9
-              }).appendTo("body").fadeIn(200);
-          }
-
-          //??hover??
-          $.fn.tooltip = function() {
-              let prePoint = null,
-                  preLabel = null;
-              $(this).bind("plothover", function(event, pos, item) {
-                  if (item) {
-                      if ((preLabel !== item.series.label) || (prePoint !== item.dataIndex)) {
-                          prePoint = item.dataIndex;
-                          preLabel = item.series.label;
-                          $("#tooltip").remove();
-  
-                          $(this).css({
-                              "cursor": "pointer"
-                          })
-
-                          let data = item.series.data[item.dataIndex][1];
-                          if (data > 1024)
-                              data = parseInt(data / 1024) + "Mb/s";
-                          else
-                              data += "kb/s";
-  
-                          if (item.seriesIndex === 0)
-                              showTooltip(item.pageX + 100, item.pageY - 10, '#fff', "Up: " + data);
-                          if (item.seriesIndex === 1)
-                              showTooltip(item.pageX + 100, item.pageY - 10, '#fff', "Down: " + data);
-                      }
-                  } else {
-                      prePoint = null;
-                      preLabel = null;
-                      $(this).css({
-                          "cursor": "auto"
-                      });
-                      $("#tooltip").remove();
-                  }
-              });
-          }
-
-          $("#netState").tooltip();
-
-          function updateNetState() {
-              rpc("enc.getNetState", null, function(data) {
-                  try {
-                      plot.setData([GetData1(data.tx), GetData2(data.rx)]);
-                      plot.draw();
-                      if (data.tx * 1.3 > maxy)
-                          maxy = data.tx * 1.3;
-                      if (data.rx * 1.3 > maxy)
-                          maxy = data.rx * 1.3;
-                      if (maxy < 1024)
-                          maxy = Math.ceil(maxy / 100) * 100;
-                      else
-                          maxy = Math.ceil(maxy / 1024) * 1024;
-                      if (maxy > 1024000)
-                          maxy = 1024000;
-                      plot.getOptions().yaxes[0].max = maxy;
-                      plot.getOptions().yaxes[0].tickSize = Math.floor(maxy / 5);
-                      plot.setupGrid();
-                      setTimeout(updateNetState, 500);
-                  } catch (e) {
-                      $('#netState').text("TX: " + data.tx + " kbps RX: " + data.rx + " kbps");
-                  }
-              });
-          }
-          updateNetState();
-      });
-  </script>
-
-<?php
-include("foot.php");
-?>
-
   </body>
 </html>

@@ -8,27 +8,6 @@
 <?php include ("./public/menu.inc") ?>
     <div data-simplebar>
         <main class="page-content intercom" id="app" v-cloak>
-            <div class="row">
-                <div class="col-lg-6" v-for="(rowItems, rowIndex) in handleDevicesArray" :key="rowIndex">
-                    <div class="row row-cols-4">
-                        <div class="col-lg-3" v-for="(item, index) in rowItems" :key="index">
-                            <div class="card">
-                                <div class="card-header bg-transparent">
-                                    <div class="py-1 px-2 text-center">
-                                        {{ item.title }}
-                                    </div>
-                                </div>
-                                <div class="card-body text-center">
-                                    <div :class="['intercomBtn','state'+item.state]">
-                                        <i :class="['fa fa-microphone intercomMic',{'lp-display-hide':!item.talking}]"></i>
-                                        <span>{{ item.content }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
     
             <div class="row" v-if="Object.keys(intercomConf).length > 0">
                 <div class="col-lg-6">
@@ -93,12 +72,35 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-3" v-for="(rowItems, rowIndex) in handleDevicesArray" :key="rowIndex">
+                    <div class="row row-cols-4">
+                        <div class="col-lg-3" v-for="(item, index) in rowItems" :key="index">
+                            <div class="card">
+                                <div class="card-header bg-transparent">
+                                    <div class="py-1 px-2 text-center">
+                                        {{ item.title }}
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <div :class="['intercomBtn','state'+item.state]">
+                                        <i :class="['fa fa-microphone intercomMic',{'lp-display-hide':!item.talking}]"></i>
+                                        <span>{{ item.content }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row my-4">
-                                <button type="button" @click="updateIntercomConf" class="col-2 offset-5 btn border-3 btn-primary text-center"><cn>保存</cn><en>Save</en></button>
+                                <button type="button" @click="updateIntercomConf" class="col-2 offset-5 btn border-3 btn-primary text-center"><en>Save</en></button>
                             </div>
                         </div>
                     </div>
@@ -175,14 +177,14 @@
             const handleDevicesArray = computed(()=>{
 
                 const deviceList = [
-                    { id: 1, title: 'offline', content: '1',talking:false, state:-1 },
-                    { id: 2, title: 'offline', content: '2',talking:false, state:-1 },
-                    { id: 3, title: 'offline', content: '3',talking:false, state:-1 },
-                    { id: 4, title: 'offline', content: '4',talking:false, state:-1 },
-                    { id: 5, title: 'offline', content: '5',talking:false, state:-1 },
-                    { id: 6, title: 'offline', content: '6',talking:false, state:-1 },
-                    { id: 7, title: 'offline', content: '7',talking:false, state:-1 },
-                    { id: 8, title: 'offline', content: '8',talking:false, state:-1 },
+                    { id: 1, content: '1',talking:false, state:-1 },
+                    { id: 2, content: '2',talking:false, state:-1 },
+                    { id: 3, content: '3',talking:false, state:-1 },
+                    { id: 4, content: '4',talking:false, state:-1 },
+                    { id: 5, content: '5',talking:false, state:-1 },
+                    { id: 6, content: '6',talking:false, state:-1 },
+                    { id: 7, content: '7',talking:false, state:-1 },
+                    { id: 8, content: '8',talking:false, state:-1 },
                 ];
 
                 if(Object.keys(state.intercomState).length > 0 && Object.keys(intercomConf).length > 0) {

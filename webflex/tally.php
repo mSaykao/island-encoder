@@ -71,17 +71,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12" v-for="(rowItems, rowIndex) in handleDevicesArray" :key="rowIndex">
-                    <div class="row row-cols-4">
-                        <div class="col-lg-3" v-for="(item, index) in rowItems" :key="index">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <div :class="['intercomBtn','state'+item.state]">
-                                        <i :class="['fa fa-microphone intercomMic',{'lp-display-hide':!item.talking}]"></i>
-                                        <span>{{ item.content }}</span>
+                <div class="col-lg-6">
+                    <div class="col-12" v-for="(rowItems, rowIndex) in handleDevicesArray" :key="rowIndex">
+                        <div class="row row-cols-4">
+                            <div class="col-lg-3" v-for="(item, index) in rowItems" :key="index">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <div :class="['intercomBtn','state'+item.state]">
+                                            <i :class="['fa fa-microphone intercomMic',{'lp-display-hide':!item.talking}]"></i>
+                                            <span>{{ item.content }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@
     <main class="page-content decode" id="app" v-cloak>
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <div class="card">
+                <div class="card" v-if="tabType==='srt'">
                     <div class="card-header bg-transparent">
                         <div class="p-2 mb-0 d-flex align-items-end">
                             <en>Receive SRT</en>
@@ -81,6 +81,14 @@
                             </div>
                         </div>
                         <div class="row mt-3">
+                            <div class="col lp-align-center">
+                                <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                                    <en>Add</en>
+                                </button>
+                                <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                                    <en>Save</en>
+                                </button>
+                            </div>
                             <div class="col-lg-12 tips">
                                 <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 SRT 流。</cn>
                                 <en>1. The device is used as a streaming media server and can receive SRT streams pushed by other devices.</en>
@@ -96,14 +104,6 @@
                                 </en>
                             </div>
                         </div>
-                    </div>
-                    <div class="col lp-align-center" v-if="tabType==='srt'">
-                        <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                            <en>Add</en>
-                        </button>
-                        <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                            <en>Save</en>
-                        </button>
                     </div>
                 </div>
             </div>

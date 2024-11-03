@@ -145,6 +145,47 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header bg-transparent">
+                        <div class="p-2 mb-0 d-flex align-items-end">
+                            Frp
+                        </div>
+                    </div>
+                    <div class="card-body pb-4 gpio-btn">
+                        <div class="row mt-3">
+                            <div class="col-lg-2 offset-lg-1 lp-align-center">
+                                <label>
+                                    <cn>启用</cn>
+                                    <en>Enable</en>
+                                </label>
+                            </div>
+                            <div class="col-lg-6">
+                                <bs-switch v-model="frpEnableConf" :size="'normal'"></bs-switch>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-2 offset-lg-1 d-flex justify-content-center">
+                                <label>
+                                    <cn>配置</cn>
+                                    <en>Config</en>
+                                </label>
+                            </div>
+                            <div class="col-lg-8">
+                                <textarea  class="form-control" name="config" v-model="frpcConf"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12 text-center">
+                                <button type="button" class="btn border-3 btn-primary px-4" @click="saveFrpConf">
+                                    <cn>保存</cn>
+                                    <en>Save</en>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <mqtt-modal :modal-title="'扫一扫绑定设备&Scan qrcode'" :modal-show="showMqttModal"
                     :had-confirm-btn="false" :cancel-btn-name="'确定&OK'" @modal-visible="onModalVisible">
@@ -156,7 +197,7 @@
 <script src="assets/plugins/qrcode/qrcode.js"></script>
 <script type="module">
     import { rpc4,func,alertMsg } from "./assets/js/lp.utils.js";
-    import { useMqttConf,useRttyConf } from "./assets/js/vue.hooks.js";
+    import { useMqttConf,useRttyConf,useFrpEnableConf,useFrpcConf } from "./assets/js/vue.hooks.js";
     import { ignoreCustomElementPlugin,filterKeywordPlugin,bootstrapSwitchComponent,customModalComponent } from "./assets/js/vue.helper.js"
     import vue from "./assets/js/vue.build.js";
 
@@ -169,6 +210,8 @@
         setup(props,context) {
             
             const { mqttConf,updateMqttConf } = useMqttConf();
+            const { frpEnableConf,updateFrpEnableConf } = useFrpEnableConf();
+            const { frpcConf,updateFrpcConf } = useFrpcConf();
             const { rttyConf,updateRttyConf } = useRttyConf();
 
             const state = {
@@ -223,9 +266,22 @@
                     func("/system/reloadRtty");
                 })
             }
+
+            const saveFrpConf = () => {
+                Promise.all([
+                    updateFrpEnableConf("noTip"),
+                    updateFrpcConf("noTip")
+                ]).then((results) => {
+                    const [data1, data2] = results;
+                    if(data1.status==="success" && data2.status==="success")
+                        alertMsg('<cn>保存设置成功,重启设备生效</cn><en>Save config successfully，please restart the device!</en>', 'success');
+                    else
+                        alertMsg('<cn>保存设置失败</cn><en>Save config failed!</en>', 'error');
+                });
+            }
             
             onMounted(handleMqttState);
-            return {...state,mqttConf,rttyConf,handleDocumentTitle,updateMqttConf,saveRttyConf,bindMqtt,onModalVisible}
+            return {...state,mqttConf,rttyConf,handleDocumentTitle,updateMqttConf,saveRttyConf,bindMqtt,onModalVisible,frpcConf,frpEnableConf}
         }
     });
     app.use(ignoreCustomElementPlugin);

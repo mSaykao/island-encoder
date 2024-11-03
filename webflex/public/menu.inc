@@ -54,31 +54,25 @@
                     <li>
                         <a href="dashboard.php">
                             <div class="parent-icon"><i class="fa fa-tachometer"></i></div>
-                            <div class="menu-title"><cn>è®¾å¤‡çŠ¶æ€</cn><en>Dashboard</en></div>
+                            <div class="menu-title"><cn>????</cn><en>Dashboard</en></div>
                         </a>
                     </li>
                     <li>
                         <a href="sendsettings.php">
                             <div class="parent-icon"><i class="fa fa-upload"></i></div>
-                            <div class="menu-title"><cn>ç¼–ç è®¾ç½®</cn><en>Send</en></div>
+                            <div class="menu-title"><cn>????</cn><en>Send</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">
                         <a href="decode.php">
-                            <div class="parent-icon"><i class="fa fa-image"></i></div>
-                            <div class="menu-title"><cn>è§£ç è®¾ç½®</cn><en>Decode</en></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="push.php">
-                            <div class="parent-icon"><i class="fa-solid fa-fan"></i></div>
-                            <div class="menu-title"><cn>ç›´æ’­æŽ¨æµ</cn><en>Push (Remove This)</en></div>
+                            <div class="parent-icon"><i class="fa-solid fa-download"></i></div>
+                            <div class="menu-title"><cn>????</cn><en>Receive</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.videoOut">
                         <a href="output.php">
                             <div class="parent-icon"><i class="fa fa-external-link menuIcon"></i></div>
-                            <div class="menu-title"><cn>æŽ¥å£è¾“å‡º</cn><en>Output</en></div>
+                            <div class="menu-title"><cn>????</cn><en>Output</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
@@ -96,13 +90,13 @@
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.mix">
                         <a href="mix.php">
                             <div class="parent-icon"><i class="fa-solid fa-chart-simple"></i></div>
-                            <div class="menu-title"><cn>è§†é¢‘æ··åˆ</cn><en>Video mix (Remove This)</en></div>
+                            <div class="menu-title"><cn>????</cn><en>Video mix (Remove This)</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="fa-solid fa-gears"></i></div>
-                            <div class="menu-title"><cn>é«˜çº§è®¾ç½®</cn><en>Settings</en></div>
+                            <div class="menu-title"><cn>????</cn><en>Settings</en></div>
                         </a>
                         <ul class="ps-3">
                             <li>
@@ -114,7 +108,7 @@
                             <li>
                                 <a href="sys.php">
                                     <i class="fa-solid fa-gear"></i>
-                                    <div class="menu-title"><cn>ç³»ç»Ÿè®¾ç½®</cn><en>System</en></div>
+                                    <div class="menu-title"><cn>????</cn><en>System</en></div>
                                 </a>
                             </li>
                         </ul>
@@ -128,7 +122,7 @@
 <!--                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.ndi">-->
 <!--                                <a href="ndi.php">-->
 <!--                                    <i class="fa-solid fa-desktop"></i>-->
-<!--                                    <div class="menu-title"><cn>NDIè§£ç </cn><en>NDI Decode</en></div>-->
+<!--                                    <div class="menu-title"><cn>NDI??</cn><en>NDI Decode</en></div>-->
 <!--                                </a>-->
 <!--                            </li>-->
                             <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
@@ -158,7 +152,7 @@
                             <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.serialport || hardwareConf.function.button)">
                                 <a href="uart.php">
                                     <i class="fa-solid fa-link"></i>
-                                    <div class="menu-title"><en>Serial, Button</en></div>
+                                    <div class="menu-title"><en>Serial Port</en></div>
                                 </a>
                             </li>
                             <li>
@@ -210,9 +204,45 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="disk.php">
+                                    <i class="fa fa-database"></i>
+                                    <div class="menu-title"><en>Mount Disk</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="explorer.php">
+                                    <i class="fa-regular fa-folder-open"></i>
+                                    <div class="menu-title"><en>USB Disk</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ndi.php">
+                                    <i class="fa fa-television"></i>
+                                    <div class="menu-title"><en>NDI decode</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="encode.php">
+                                    <i class="fa fa-image"></i>
+                                    <div class="menu-title"><en>Encode</en></div>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="service.php">
                                     <i class="fa-solid fa-cloud"></i>
                                     <div class="menu-title"><en>Service</en></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="carousel.php">
+                                    <i class="fa-solid fa-square-caret-right"></i>
+                                    <div class="menu-title"><en>Video Carousel</en></div>
+                                </a>
+                            </liv>
+                            <li>
+                                <a href="push.php">
+                                    <i class="fa-solid fa-circle-arrow-up"></i>
+                                    <div class="menu-title"><en>Mulitple Push</en></div>
                                 </a>
                             </li>
                             <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.overlay">
@@ -238,7 +268,7 @@
                     </div>
                     <div class="user-info">
                         <h5 class="mb-0 user-name">Admin</h5>
-                        <p class="mb-0 user-designation"><cn>ç³»ç»Ÿç®¡ç†å‘˜</cn><en>administrator</en></p>
+                        <p class="mb-0 user-designation"><cn>?????</cn><en>administrator</en></p>
                     </div>
                     <div class="logout-icon" @click="onLogout">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -365,11 +395,11 @@
 
            const changeWeb = () => {
                confirm({
-                   title: '<cn>åˆ‡æ¢ç‰ˆæœ¬</cn><en>Switch Web</en>',
-                   content: '<cn>æ˜¯å¦åˆ‡æ¢è‡³ç»å…¸ç‰ˆé¡µé¢,å¹¶é‡æ–°å¯åŠ¨ï¼Ÿ</cn><en>Whether to switch to the classic version and restart?</en>',
+                   title: '<cn>????</cn><en>Switch Web</en>',
+                   content: '<cn>??????????,??????</cn><en>Whether to switch to the classic version and restart?</en>',
                    buttons: {
                        ok: {
-                           text: "<cn>åˆ‡æ¢</cn><en>Switch</en>",
+                           text: "<cn>??</cn><en>Switch</en>",
                            btnClass: 'btn-primary',
                            keys: ['enter'],
                            action: () => {
@@ -378,7 +408,7 @@
                            }
                        },
                        cancel: {
-                           text: "<cn>å–æ¶ˆ</cn><en>Cancel</en>"
+                           text: "<cn>??</cn><en>Cancel</en>"
                        }
 
                    }

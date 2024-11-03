@@ -343,15 +343,14 @@
                }
            })
 
-           watch(state.isMenuToggled, (newValue) => {
-                console.log("isMenuToggled changed:", newValue);
-                const body = document.querySelector('body');
-                if (newValue) {
-                    body.classList.add('toggled');
-                } else {
-                    body.classList.remove('toggled');
-                }
-            });
+           watch(state.isMenuToggled,() => {
+               const body = document.querySelector('body');
+               console.log("isMenuToggled changed:", state.isMenuToggled.value);
+               if(state.isMenuToggled.value)
+                   body.classList.add('toggled');
+               else
+                   body.classList.remove('toggled');
+           })
 
 
             const observeMenuChanges = element => {

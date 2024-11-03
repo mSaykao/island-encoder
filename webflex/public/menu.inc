@@ -344,6 +344,7 @@
 
            watch(state.isMenuToggled,() => {
                const body = document.querySelector('body');
+               console.log("isMenuToggled changed:", newValue);
                if(state.isMenuToggled.value)
                    body.classList.add('toggled');
                else

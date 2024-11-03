@@ -280,7 +280,6 @@
 </div>
 <script type="module">
     import vue from "../assets/js/vue.build.js";
-    import { ref, watch } from 'vue';
     import Metismenu from '../assets/plugins/metismenu/js/metisMenu.esm.js';
     import { func,updateSysLanguage,confirm } from "../assets/js/lp.utils.js";
     import { useThemeConf,useHardwareConf,useWebVerConf } from "../assets/js/vue.hooks.js"
@@ -345,13 +344,12 @@
 
            watch(state.isMenuToggled,() => {
                const body = document.querySelector('body');
-               console.log("isMenuToggled changed:", state.isMenuToggled.value);
+               console.log("isMenuToggled changed:", newValue);
                if(state.isMenuToggled.value)
                    body.classList.add('toggled');
                else
                    body.classList.remove('toggled');
            })
-
 
             const observeMenuChanges = element => {
                 const observer = new mutationObserver((mutations) => {

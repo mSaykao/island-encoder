@@ -10,7 +10,7 @@
         <main class="page-content intercom" id="app" v-cloak>
     
             <div class="row" v-if="Object.keys(intercomConf).length > 0">
-                <div class="col-12">
+                <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">

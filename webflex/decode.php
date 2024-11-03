@@ -35,7 +35,7 @@
                                 <en>Latency</en>
                             </div>
                             <div class="col text-center">
-                                <en>option</en>
+                                <en>Delete</en>
                             </div>
                         </div>
                         <hr>
@@ -96,14 +96,14 @@
                                 </en>
                             </div>
                         </div>
-                        <div class="col lp-align-center" v-if="tabType==='srt'">
-                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                <en>Add</en>
-                            </button>
-                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                <en>Save</en>
-                            </button>
-                        </div>
+                    </div>
+                    <div class="col lp-align-center" v-if="tabType==='srt'">
+                        <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                            <en>Add</en>
+                        </button>
+                        <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                            <en>Save</en>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,5 @@
 
-<?php include ("./public/headhead.inc");
-include("hardware.php");
-include("session.php");
-include("headhead.php");
-?>
+<?php include ("./public/headhead.inc")?>
 <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/plugins/fontawesome/css/fontawesome-all.min.css" rel="stylesheet">
 <link href="assets/plugins/pace/css/pace.min.css" rel="stylesheet">

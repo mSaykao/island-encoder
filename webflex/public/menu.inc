@@ -39,7 +39,7 @@
         <aside class="sidebar-wrapper" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
             <div class="sidebar-header">
                 <div class="logo-icon lp-cursor-pointer" @click="onHrefDash">
-                    <img src="assets/img/logo.png" class="mt-1" style="max-height: 33px;">
+                    <img src="img/logo.png" class="mt-1" style="max-height: 33px;">
                 </div>
                 <div class="logo-name flex-grow-1">
 <!--                    <h5 class="mb-0 fw-bold">LinkPi</h5>-->
@@ -85,12 +85,6 @@
                         <a href="tally.php">
                             <div class="parent-icon"><i class="fa-solid fa-lightbulb"></i></div>
                             <div class="menu-title"><en>Tally</en></div>
-                        </a>
-                    </li>
-                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.mix">
-                        <a href="mix.php">
-                            <div class="parent-icon"><i class="fa-solid fa-chart-simple"></i></div>
-                            <div class="menu-title"><cn>????</cn><en>Video mix (Remove This)</en></div>
                         </a>
                     </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">

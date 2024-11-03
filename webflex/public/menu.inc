@@ -344,6 +344,7 @@
 
            const onToggleMenu = () => {
                state.isMenuToggled.value = !state.isMenuToggled.value;
+               console.log("Menu toggled:", state.isMenuToggled.value);
            }
 
            const onMouseEnter = () => {

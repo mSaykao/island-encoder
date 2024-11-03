@@ -20,35 +20,21 @@
                     <div class="card-body overflow-auto">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>描述</cn>
-                                <en>description</en>
+                                <en>Name</en>
                             </div>
                             <div class="col-5 text-center">
-                                <cn>推流地址</cn>
-                                <en>recive url</en>
+                                <en>Recive URL</en>
                             </div>
                             <div class="col text-center">
-                                <cn>解码频道</cn>
-                                <en>decode channel</en>
+                                <en>Decode Channel</en>
                             </div>
                             <div class="col text-center">
-                                <cn>端口</cn>
-                                <en>port</en>
+                                <en>Port</en>
                             </div>
                             <div class="col text-center">
-                                <cn>密码</cn>
-                                <en>password</en>
+                                <en>Latency</en>
                             </div>
                             <div class="col text-center">
-                                <cn>延时</cn>
-                                <en>delay</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>Stream ID</cn>
-                                <en>stream id</en>
-                            </div>
-                            <div class="col text-center">
-                                <cn>操作</cn>
                                 <en>option</en>
                             </div>
                         </div>
@@ -61,7 +47,7 @@
                                     </div>
                                     <div class="col-5">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" v-model.trim.lazy="item.url" disabled readonly>
+                                            <input type="text" class="form-control" v-model.trim.lazy="item.url" >
                                             <button class="btn btn-primary input-group-text input-group-addon lp-cursor-pointer"
                                                     @click="onCopyReceiveChnUrl(index)">
                                                 <i class="fa-regular fa-copy"></i>
@@ -80,13 +66,7 @@
                                         <input type="text" class="form-control" v-model.trim.lazy="item.port">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.passphrase">
-                                    </div>
-                                    <div class="col">
                                         <input type="text" class="form-control" v-model.trim.lazy="item.latency">
-                                    </div>
-                                    <div class="col lp-align-center">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.streamid">
                                     </div>
 
                                     <div class="col lp-align-center">

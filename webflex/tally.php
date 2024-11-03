@@ -10,7 +10,7 @@
         <main class="page-content intercom" id="app" v-cloak>
     
             <div class="row" v-if="Object.keys(intercomConf).length > 0">
-                <div class="col-lg-6">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
@@ -74,8 +74,8 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6" v-for="(rowItems, rowIndex) in handleDevicesArray" :key="rowIndex">
-                    <div class="row row-cols-2">
+                <div class="col-12" v-for="(rowItems, rowIndex) in handleDevicesArray" :key="rowIndex">
+                    <div class="row row-cols-4">
                         <div class="col-lg-3" v-for="(item, index) in rowItems" :key="index">
                             <div class="card">
                                 <div class="card-body text-center">

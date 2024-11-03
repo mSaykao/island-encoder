@@ -110,7 +110,7 @@
                                             <option value="h264,main">H.264 Main</option>
                                             <option value="h264,high">H.264 High</option>
                                             <option value="h265,main">H.265 Main</option>
-                                            <option value="close,base" cn="å…³é—­" en="Close" v-language-option></option>
+                                            <option value="close,base" cn="关闭" en="Close" v-language-option></option>
                                         </multiple-select>
                                     </div>
                                     <div class="col">
@@ -132,9 +132,9 @@
                                     </div>
                                     <div class="col" style="display: none;">
                                         <multiple-select v-model:value1="item.encv.syncTS" v-model:value2="item.encv.syncTSMode" split=",">
-                                            <option cn="èŠ¯è±¡" en="Sinsam" value="true,sinsam" v-language-option></option>
-                                            <option cn="ç®€æ˜“" en="Normal" value="true,linkpi" v-language-option></option>
-                                            <option cn="å…³é—­" en="Close" value="false,linkpi" v-language-option></option>
+                                            <option cn="芯象" en="Sinsam" value="true,sinsam" v-language-option></option>
+                                            <option cn="简易" en="Normal" value="true,linkpi" v-language-option></option>
+                                            <option cn="关闭" en="Close" value="false,linkpi" v-language-option></option>
                                         </multiple-select>
                                     </div>
                                     <div class="col lp-align-center">
@@ -217,8 +217,8 @@
                                     </div>
                                     <div class="col">
                                         <select class="form-select" v-model="item.enca.channels">
-                                            <option cn="å•å£°é“" en="mono" value="1" v-language-option></option>
-                                            <option cn="ç«‹ä½“å£°" en="stereo" value="2" v-language-option></option>
+                                            <option cn="单声道" en="mono" value="1" v-language-option></option>
+                                            <option cn="立体声" en="stereo" value="2" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -226,8 +226,8 @@
                                     </div>
                                     <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.model==='ENC8'" class="col">
                                         <select v-if="item.enca.audioTrack" class="form-select" v-model.number="item.enca.audioTrack">
-                                            <option cn="æº-Line" en="source-line" value="1" v-language-option></option>
-                                            <option cn="æº-Hdmi" en="source-hdmi" value="2" v-language-option></option>
+                                            <option cn="源-Line" en="source-line" value="1" v-language-option></option>
+                                            <option cn="源-Hdmi" en="source-hdmi" value="2" v-language-option></option>
                                         </select>
                                     </div>
                                 </div>
@@ -283,9 +283,16 @@
                             </div>
                         </div>
                         <? include "srt-help-text.php"; ?>
-                        <div class="row justify-content-center mx-auto">
-                            <div class="col-md-12 text-center" role="group">
-                                <a href="stream.php"><button type="button" class="btn btn-secondary">Advanced stream settings</button></a>
+                        <div class="row justify-content-center mx-auto d-flex">
+                            <div class="col-lg-12 text-center mb-3" role="group">
+                                <a href="stream.php">
+                                    <button type="button" class="btn btn-secondary">Advanced Stream Settings</button>
+                                </a>
+                            </div>
+                            <div class="col-lg-12 text-center" role="group">
+                                <a href="push.php">
+                                    <button type="button" class="btn btn-secondary">Advanced Push Settings</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -335,34 +342,33 @@
                                     <div class="col-2 text-center">
                                         <input type="text" class="form-control" v-model.trim.lazy="item.name">
                                     </div>
+                                    <div class="col-md-1 col-sm-2">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.width" placeholder="Width">
+                                    </div>
+                                    <div class="col-md-1 col-sm-2">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.height" placeholder="Height">
+                                    </div>
                                     <div class="col-2">
-                                        <select class="form-select" v-model="item.cap.rotate">
-                                            <option value="0">0</option>black
-                                            <option value="90">90</option>
-                                            <option value="180">180</option>
-                                            <option value="270">270</option>
+                                        <select class="form-select" v-model="item.encv.gopmode">
+                                            <option value="0">Normal</option>
+                                            <option value="1">SmartP</option>
+                                            <option value="2">DualP</option>
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.L">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.minqp" placeholder="Min QP">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.R">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.maxqp" placeholder="Max QP">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.T">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.Iqp" placeholder="I QP">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" v-model.trim.lazy="item.cap.crop.B">
+                                        <input type="text" class="form-control" v-model.trim.lazy="item.encv.Pqp" placeholder="P QP">
                                     </div>
                                     <div class="col text-center">
-                                        <input type="text" class="form-control" v-if="item.type==='vi'" v-model.trim.lazy="item.cap.contrast">
-                                    </div>
-                                    <div class="col text-center">
-                                        <input type="text" class="form-control" v-if="item.type==='vi'" v-model.trim.lazy="item.cap.contrast">
-                                    </div>
-                                    <div class="col lp-align-center">
-                                        <bs-switch v-model="item.cap.ntsc" v-if="item.type==='vi'"></bs-switch>
+                                        <bs-switch v-model="item.encv.lowLatency"></bs-switch>
                                     </div>
                                 </div>
                                 <hr >
@@ -572,11 +578,11 @@
 
                 // if(maxENC > 0 && sum > maxENC) {
                 //     confirm( {
-                //         title: '<cn>è­¦å‘Š</cn><en>Warning</en>',
-                //         content: '<cn>è¶…å‡ºç¼–ç æ€§èƒ½ä¸Šé™ï¼Œè¯·è°ƒæ•´ç¼–ç å‚æ•°ï¼</cn><en>The limit of encode performance is exceeded. Please adjust the encode parameters!</en>',
+                //         title: '<cn>警告</cn><en>Warning</en>',
+                //         content: '<cn>超出编码性能上限，请调整编码参数！</cn><en>The limit of encode performance is exceeded. Please adjust the encode parameters!</en>',
                 //         buttons: {
                 //             ok: {
-                //                 text: "<cn>çŸ¥é“äº†</cn><en>I know</en>",
+                //                 text: "<cn>知道了</cn><en>I know</en>",
                 //                 btnClass: 'btn-primary',
                 //                 keys: [ 'enter' ],
                 //                 action: () => updateDefaultConf()

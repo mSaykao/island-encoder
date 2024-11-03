@@ -52,8 +52,8 @@
 </head>
 <body>
 <?php include ("./public/menu.inc") ?>
-<div data-simplebar>
-    <main class="page-content output" id="app" v-cloak>
+<div data-simplebar class="p-0">
+    <main class="page-content mix" id="app" v-cloak>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default" style="
@@ -199,453 +199,100 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="
-    background: #212529;
-">
-            <div class="col-md-5">
-                <div class="thumbnail">
-                    <div class="caption ">
-                        <form class="form-inline ">
-                            <div class="form-group ">
-                                <label class="control-label">
-
-                                    Channel:
-                                </label>
-                                <select id="channels" class="form-control"><option value="9">Mix</option></select>
-                                <label class="control-label" style="margin-left: 15px;">
-                                    <cn>布局</cn>
-                                    <en>Layout</en>:
-                                </label>
-                                <select id="SysLayout" class="form-control">
-                                    <!--							<option cn="9宫格" en="grid 3x3" value="0"></option>-->
-                                    <!--							<option cn="4分屏" en="grid 2x2"value="1"></option>-->
-                                    <!--							<option value="2">1+2</option>-->
-                                    <!--							<option cn="画中画" en="PinP" value="3"></option>-->
-                                    <!--							<option cn="单画面" en="Single" value="4"></option>-->
-                                    <!--							<option cn="上下" en="UpDown" value="5"></option>-->
-                                    <!--							<option cn="自定义" en="user" value="6"></option>-->
-                                    <option cn="9宫格" en="grid 3x3" value="0">grid 3x3</option><option cn="4分屏" en="grid 2x2" value="1">grid 2x2</option><option cn="1+2" en="1+2" value="2">1+2</option><option cn="画中画" en="PinP" value="3">PinP</option><option cn="单画面" en="Single" value="4">Single</option><option cn="上下" en="UpDown" value="5">UpDown</option><option cn="单画面(竖屏)" en="Single(vertical)" value="6">Single(vertical)</option></select>
-                                <label id="defLay" style="position: absolute;right: 30px;top:20px;cursor: pointer">
-                                    <i class="fa fa-cog fa-lg"></i>
-                                </label>
+        <div class="row">
+            <div class="col-lg-6 mx-auto lp-equal-height-container">
+                <div class="card lp-equal-height-item">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="d-flex align-items-center gap-3 px-2 py-1">
+                                <div class="flex-grow-0">
+                                    <label class="fw-bold">
+                                        <cn>频道</cn>
+                                        <en>Channel</en>:
+                                    </label>
+                                </div>
+                                <div class="flex-grow-0">
+                                    <select class="form-select">
+                                        <option v-if="defaultConf.length > 0 && mixIndex > -1" :value="defaultConf[mixIndex].id">{{defaultConf[mixIndex].name}}</option>
+                                    </select>
+                                </div>
+                                <div class="flex-grow-0">
+                                    <label class="fw-bold">
+                                        <cn>布局</cn>
+                                        <en>Layout</en>:
+                                    </label>
+                                </div>
+                                <div class="flex-grow-0">
+                                    <select class="form-select" v-model="curLayId" @change="onChangeLayout">
+                                        <option v-for="(item,index) in defLaysConf" :value="item.layId">{{item.layNameEn}}</option>
+                                    </select>
+                                </div>
+                                <div class="flex-grow-1 d-flex justify-content-end pe-3">
+                                    <i class="fa-solid fa-gear fa-lg lp-cursor-pointer" @click="hrefDefLayout"></i>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 mt-2 mb-2">
+                                <div class="card-img-content">
+                                    <div class="card-img-background"></div>
+                                    <img :src="chnImgUrl" class="card-img" :style="handleAutoStyle()">
+                                    <img :src="chnImgUrl" class="card-img" :style="['visibility: hidden;position: relative;height:0',{'paddingTop':imgRatio+'%'}]">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <img id="snap" src="snap9.jpg?rnd=0.7523508302008968">
                 </div>
             </div>
-            <div class="col-md-7">
-                <div class="panel panel-default">
-                    <div class="title">
-                        <h3 class="panel-title">
+
+            <div class="col-lg-6 mx-auto lp-equal-height-container">
+                <div class="card lp-equal-height-item d-flex flex-column">
+                    <div class="card-header bg-transparent flex-grow-0">
+                        <div class="p-2 mb-0 d-flex align-items-end">
                             <cn>布局设定</cn>
                             <en>Layout config</en>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="templeLay" style="position: absolute; padding: 10px; width: 33%;height: 33%; border: 1px solid #ddd; z-index: 0; background-color: #777; display: none; ">
-
-                            <table style="width: 100%;">
-                                <tbody><tr>
-                                    <td width="100%">
-                                        <select onchange="update();" id="laySrc" class="form-control input-sm">
-                                            <option cn="空" en="NULL" value="-1">NULLdddd</option>
-                                            <option value="0" selected>HDMI</option><option value="1">USBCam</option><option value="2">Net1</option><option value="3">Net2</option><option value="4">Net3</option><option value="5">Net4</option><option value="6">NDI Recv</option><option value="7">Carousel</option><option value="8">ColorKey</option><option value="9">Mix</option></select>
-                                    </td>
-                                    <td>
-                                        <button style="width: 36px;" onclick="mute(this);" class="btn btn-sm btn-disable"><i class="fa fa-volume-off"></i></button>
-                                    </td>
-                                </tr>
-                                </tbody></table>
-
                         </div>
-                        <div id="layout" style="position: relative; width: 100%; padding-bottom: 56.25%; background-color: #000;">
-
-
-
-
-                            <div id="templeLay" style="position: absolute; padding: 10px; width: 50%; height: 50%; border: 1px solid rgb(221, 221, 221); z-index: 0; background-color: rgb(128, 128, 128); display: block; left: 0%; top: 0%;">
-
-                                <table style="width: 100%;">
-                                    <tbody><tr>
-                                        <td width="100%">
-                                            <select onchange="update();" id="laySrc" class="form-control input-sm">
-                                                <option cn="空" en="NULL" value="-1">NULL</option>
-                                                <option value="0" selected>HDMI</option><option value="4">Net3</option><option value="5">Net4</option><option value="6">NDI Recv</option><option value="7">Carousel</option><option value="8">ColorKey</option><option value="9">Mix</option></select>
-                                        </td>
-                                        <td>
-                                            <button style="width: 36px;" onclick="mute(this);" class="btn btn-sm btn-warning"><i class="fa fa-volume-up"></i></button>
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-
-                            </div><div id="templeLay" style="position: absolute; padding: 10px; width: 50%; height: 50%; border: 1px solid rgb(221, 221, 221); z-index: 1; background-color: rgb(91, 91, 91); display: block; left: 50%; top: 0%;">
-
-                                <table style="width: 100%;">
-                                    <tbody><tr>
-                                        <td width="100%">
-                                            <select onchange="update();" id="laySrc" class="form-control input-sm">
-                                                <option cn="空" en="NULL" value="-1">NULL</option>
-                                                <option value="1">USBCam</option><option value="4">Net3</option><option value="5">Net4</option><option value="6">NDI Recv</option><option value="7">Carousel</option><option value="8">ColorKey</option><option value="9">Mix</option></select>
-                                        </td>
-                                        <td>
-                                            <button style="width: 36px;" onclick="mute(this);" class="btn btn-sm btn-disable"><i class="fa fa-volume-off"></i></button>
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-
-                            </div><div id="templeLay" style="position: absolute; padding: 10px; width: 50%; height: 50%; border: 1px solid rgb(221, 221, 221); z-index: 2; background-color: rgb(153, 153, 153); display: block; left: 0%; top: 50%;">
-
-                                <table style="width: 100%;">
-                                    <tbody><tr>
-                                        <td width="100%">
-                                            <select onchange="update();" id="laySrc" class="form-control input-sm">
-                                                <option cn="空" en="NULL" value="-1">NULL</option>
-                                                <option value="2">Net1</option><option value="4">Net3</option><option value="5">Net4</option><option value="6">NDI Recv</option><option value="7">Carousel</option><option value="8">ColorKey</option><option value="9">Mix</option></select>
-                                        </td>
-                                        <td>
-                                            <button style="width: 36px;" onclick="mute(this);" class="btn btn-sm btn-disable"><i class="fa fa-volume-off"></i></button>
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-
-                            </div><div id="templeLay" style="position: absolute; padding: 10px; width: 50%; height: 50%; border: 1px solid rgb(221, 221, 221); z-index: 3; background-color: rgb(66, 66, 66); display: block; left: 50%; top: 50%;">
-
-                                <table style="width: 100%;">
-                                    <tbody><tr>
-                                        <td width="100%">
-                                            <select onchange="update();" id="laySrc" class="form-control input-sm">
-                                                <option cn="空" en="NULL" value="-1">NULL</option>
-                                                <option value="3">Net2</option><option value="4">Net3</option><option value="5">Net4</option><option value="6">NDI Recv</option><option value="7">Carousel</option><option value="8">ColorKey</option><option value="9">Mix</option></select>
-                                        </td>
-                                        <td>
-                                            <button style="width: 36px;" onclick="mute(this);" class="btn btn-sm btn-disable"><i class="fa fa-volume-off"></i></button>
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-
-                            </div></div>
+                    </div>
+                    <div class="card-body pb-4 flex-grow-1">
+                        <div class="row flex-grow-1 h-100">
+                            <div class="col-lg-12 mt-2 mb-2">
+                                <div class="layout-bg card-img-content pb-0 h-100">
+                                    <div class="bg-black" :style="handleAutoStyle()">
+                                        <div class="lay-border" v-for="(item,index) in handleActiveDefLayConf.layouts" :style="{position:'absolute',width:item.pos.w * 100+'%',height:item.pos.h*100+'%',left:item.pos.x*100+'%',top:item.pos.y*100+'%',zIndex:item.pos.index}">
+                                            <div :style="{width:'100%',height:'100%',backgroundColor: handleLayBackColor(index)}">
+                                                <div class="d-flex align-items-center gap-1 border-0 px-2 py-1">
+                                                    <div class="flex-grow-1">
+                                                        <select class="form-select" v-model="defaultConf[mixIndex].srcV[index]" @change="updateDefaultConf('noTip')">
+                                                            <option value="-1" cn="空" en="none" v-language-option></option>
+                                                            <option v-for="(it,index) in handleLayoutChnSelect(defaultConf[mixIndex].srcV[index])" :value="it.id">{{it.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="flex-grow-0">
+                                                        <button :class="['btn',{'btn-default':handleActiveVolume(index)},{'px-2 btn-primary':!handleActiveVolume(index)}]" @click="onUpdateActiveVolume(defaultConf[mixIndex].srcV[index])">
+                                                            <i :class="['fa-solid',{'fa-volume-off':handleActiveVolume(index)},{'fa-volume-high':!handleActiveVolume(index)}]"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
+
     </main>
 </div>
-
-<script src="http://mandurphy.zapto.org:30080/vendor/slider/bootstrap-slider.min.js" type="text/javascript"></script>
-<script src="http://mandurphy.zapto.org:30080/vendor/switch/bootstrap-switch.min.js"></script>
-<script type="text/javascript" language="javascript" src="http://mandurphy.zapto.org:30080/js/confirm/jquery-confirm.min.js"></script>
-<script src="http://mandurphy.zapto.org:30080/js/zcfg.js"></script>
-<script>
-    $(".slider").slider();
-    $.fn.bootstrapSwitch.defaults.size = 'small';
-    $.fn.bootstrapSwitch.defaults.onColor = 'warning';
-    navIndex(3);
-    var config = null;
-    var mixCfg = null;
-    var curChn = -1;
-    var defLays = null;
-    var curLayIndex = 0;
-    var SysLayout = [];
-    var mixV = [];
-
-    $("#myModal").on('show.bs.modal', function() {
-        var $this = $(this);
-        var $modal_dialog = $this.find('.modal-dialog');
-        $this.css('display', 'block');
-        $modal_dialog.css({
-            'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 2)
-        });
-    });
-
-    function isMute(obj) {
-        return $(obj).hasClass("btn-disable");
-    }
-
-    function setMute(obj, bMute) {
-        var btn = $(obj).find("i");
-        if (bMute) {
-            btn.removeClass("fa-volume-up");
-            btn.addClass("fa-volume-off");
-            $(obj).removeClass("btn-warning");
-            $(obj).addClass("btn-disable");
-        } else {
-            btn.removeClass("fa-volume-off");
-            btn.addClass("fa-volume-up");
-            $(obj).removeClass("btn-disable");
-            $(obj).addClass("btn-warning");
-        }
-    }
-
-    function mute(obj) {
-        setMute(obj, !isMute(obj));
-        update();
-    }
-
-    function init() {
-        for (var i = 0; i < config.length; i++) {
-            $("#laySrc").append('<option value="' + config[i].id + '">' + config[i].name + '</option>');
-            $("#vgasrc").append('<option value="' + config[i].id + '">' + config[i].name + '</option>');
-            $("#hdmisrc").append('<option value="' + config[i].id + '">' + config[i].name + '</option>');
-
-            if (config[i].type != "mix")
-                continue;
-            mixV = config[i].srcV;
-            $("#channels").append('<option value="' + config[i].id + '">' + config[i].name + '</option>');
-            zcfg("#output", config[i]);
-
-        }
-
-        setInterval(show, 300);
-
-        $("#channels").change(function() {
-            setChannel($("#channels").val());
-        });
-        $("#SysLayout").change(function() {
-            curLayIndex = $("#SysLayout").val();
-            var defLay = defLays[curLayIndex];
-            var temp = [];
-            var type = false;
-            for (var i = 0; i < defLay.layouts.length; i++) {
-                var lay = defLay.layouts[i];
-                if (lay.id < 0) {
-                    temp.push("-1");
-                } else {
-                    type = true;
-                    temp.push(lay.id + "");
-                }
-            }
-            var mixSrcV = mixCfg["srcV"];
-
-            //如果自定义布局中存在指定输入源
-            if (type)
-                mixCfg["srcV"] = temp;
-            // for(var i=0;i<mixSrcV.length;i++){
-            //     if( i >= temp.length)
-            //         break;
-            //     if(mixSrcV[i] == "-1")
-            //         continue;
-            //     var mark = false;
-            //     for(var j=0;j<temp.length;j++){
-            //         if(temp[j] == mixSrcV[i])
-            //             mark = true;
-            //     }
-            //     if(!mark)
-            //         temp[i] = mixSrcV[i];
-            // }
-            // mixCfg["srcV"] = temp;
-            setLayout();
-            update();
-        });
-        setChannel($('#channels option:first').val());
-    }
-
-    function setLayout() {
-        var layout = SysLayout[curLayIndex];
-        $("#userLay").val(JSON.stringify(layout).replace(/},{/g, "},\n{"));
-        $("#layout").html('');
-        for (var i = 0; i < layout.length; i++) {
-            var lay = $("#templeLay").clone();
-            var optlist = lay.find("#laySrc").find("option").toArray();
-            for (var k = optlist.length - 1; k >= 0; k--) {
-                var opt = optlist[k];
-                var id = $(opt).val() + "";
-                for (var n = 0; n < mixV.length; n++) {
-                    if (id == mixV[n] && id != mixV[i] && id != "-1") {
-                        lay.find("#laySrc")[0].options.remove(k);
-                    }
-                }
-            }
-
-            lay.css("display", "block");
-            lay.css("left", (layout[i].x * 100) + "%");
-            lay.css("top", (layout[i].y * 100) + "%");
-            lay.css("width", (layout[i].w * 100) + "%");
-            lay.css("height", (layout[i].h * 100) + "%");
-            lay.css("z-index", i);
-
-            var color = 128;
-            if (i % 2 == 0) {
-                color += 25 * (i / 2);
-            } else {
-                color -= 25 * (i / 2 + 1);
-            }
-            lay.css("background-color", "rgb(" + color + "," + color + "," + color + ")");
-            lay.appendTo("#layout");
-        }
-
-        var srcA = mixCfg["srcA"];
-        var srcV = mixCfg["srcV"];
-
-        for (var i = 0; i < srcV.length && i < $("#layout #templeLay").length; i++) {
-            $("#layout #templeLay").eq(i).find("#laySrc").val(srcV[i]);
-            setMute($("#layout #templeLay").eq(i).find("button"), ($.inArray(srcV[i], srcA) == -1) || srcV[i] == -1);
-        }
-    }
-
-    function setChannel(id) {
-        curChn = id;
-        mixCfg = config[id];
-        // key值重新排序，为对比做准备
-        var layList = [];
-        for (var i = 0; i < mixCfg["layout"].length; i++) {
-            var layout = mixCfg["layout"][i];
-            var layObj = {
-                "a": layout["a"],
-                "x": layout["x"],
-                "y": layout["y"],
-                "w": layout["w"],
-                "h": layout["h"],
-                "index": layout["index"]
-            }
-            layList.push(layObj);
-        }
-        var str = JSON.stringify(layList);
-        curLayIndex = 6;
-        for (var i = 0; i < SysLayout.length; i++) {
-            if (JSON.stringify(SysLayout[i]) == str) {
-                $("#SysLayout").val(i);
-                curLayIndex = i;
-            }
-
-        }
-
-        if (curLayIndex == 6) {
-            $("#SysLayout").val(6);
-            SysLayout[6] = mixCfg["layout"];
-        }
-        setLayout();
-    }
-
-    function update() {
-        var srcV = new Array();
-        var srcA = new Array();
-        for (var i = 0; i < $("#layout #templeLay").length; i++) {
-            var id = $("#layout #templeLay").eq(i).find("#laySrc").val();
-            if ($.inArray(id, srcV) >= 0 && id != -1) {
-                $("#layout #templeLay").eq(i).find("#laySrc").val(-1);
-                setMute($("#layout #templeLay").eq(i).find("button"), true);
-                continue;
-            } else
-                srcV.push(id);
-            if (!isMute($("#layout #templeLay").eq(i).find("button"))) {
-                //				if(config[id].type!="vi")
-                //					setMute($("#layout #templeLay").eq(i).find("button"),true);
-                //				else
-                srcA.push(id);
-            }
-
-        }
-        mixV = srcV;
-        for (var i = 0; i < $("#layout #templeLay").length; i++) {
-            var lay = $("#layout #templeLay").eq(i);
-            lay.find("#laySrc")[0].options.length = 1;
-            for (var k = 0; k < config.length; k++) {
-                if ($.inArray(config[k].id + "", mixV) < 0 || config[k].id + "" == mixV[i]) {
-                    lay.find("#laySrc").append('<option value="' + config[k].id + '">' + config[k].name + '</option>');
-                }
-            }
-            lay.find("#laySrc").val(mixV[i]);
-        }
-
-        mixCfg["srcA"] = srcA;
-        mixCfg["srcV"] = srcV;
-        mixCfg["layout"] = SysLayout[curLayIndex];
-        save();
-    }
-
-
-    function snap() {
-        rpc("enc.snap");
-    }
-
-    function show() {
-        setTimeout(snap, 100);
-        $("#snap").attr("src", "snap" + curChn + ".jpg?rnd=" + Math.random());
-    }
-
-    $("#defLay").click(function() {
-        $.confirm({
-            title: '<cn>布局</cn><en>Layout</en>',
-            content: '<cn>是否打开布局管理器？</cn><en>Jump to Layout Manager?</en>',
-            buttons: {
-                ok: {
-                    text: "<cn>打开</cn><en>Confirm</en>",
-                    btnClass: 'btn-warning',
-                    keys: ['enter'],
-                    action: function() {
-                        window.location.href = "defLayout.php";
-                    }
-                },
-                cancel: {
-                    text: "<cn>取消</cn><en>Cancel</en>"
-                }
-
-            }
-        });
-    });
-
-
-    function save() {
-        rpc("enc.update", [JSON.stringify(config, null, 2)], function(data) {
-            if (typeof(data.error) != "undefined") {
-                htmlAlert("#alert", "danger", "<cn>保存设置失败！</cn><en>Save config failed!</en>", "", 2000);
-            }
-        });
-    }
-
-    $("#save").click(function(e) {
-        rpc("enc.update", [JSON.stringify(config, null, 2)], function(data) {
-            if (typeof(data.error) != "undefined") {
-                htmlAlert("#alertOut", "danger", "<cn>保存设置失败！</cn><en>Save config failed!</en>", "", 2000);
-            } else
-                htmlAlert("#alertOut", "success", "<cn>保存设置成功！</cn><en>Save config success!</en>", "", 2000);
-        });
-    });
-
-    $.ajaxSettings.async = false;
-    $.getJSON("config/defLays.json?rnd=" + Math.random(), function(result) {
-        defLays = result;
-        for (var i = 0; i < defLays.length; i++) {
-            var defLay = defLays[i];
-            var las = defLay.layouts;
-            var layout = [];
-            for (var j = 0; j < las.length; j++) {
-                layout.push(las[j].pos);
-            }
-            SysLayout.push(layout);
-            $("#SysLayout").append("<option cn='" + defLay.layName + "' en='" + defLay.layNameEn + "' value='" + defLay.layId + "'></option>");
-        }
-    });
-
-    $.getJSON("config/config.json?rnd=" + Math.random(), function(result) {
-        config = result;
-        init();
-    });
-    $.ajaxSettings.async = true;
-
-    setInterval(function() {
-        $.getJSON("config/defLays.json?rnd=" + Math.random(), function(result) {
-            defLays = result;
-            SysLayout = [];
-            for (var i = 0; i < defLays.length; i++) {
-                var defLay = defLays[i];
-                var las = defLay.layouts;
-                var layout = [];
-                for (var j = 0; j < las.length; j++) {
-                    layout.push(las[j].pos);
-                }
-                SysLayout.push(layout);
-            }
-        });
-    }, 1000)
-</script>
 <?php include ("./public/foot.inc") ?>
 <script type="module">
 
-    import { useDefaultConf,useHardwareConf,useBoardConf } from "./assets/js/vue.hooks.js";
+    import { rpc,confirm } from "./assets/js/lp.utils.js";
+    import { useDefaultConf,useDefLaysConf,useHardwareConf } from "./assets/js/vue.hooks.js";
     import { ignoreCustomElementPlugin,filterKeywordPlugin,bootstrapSwitchComponent,nouiSliderComponent,languageOptionDirective } from "./assets/js/vue.helper.js"
+    import mutationObserver from './assets/plugins/polyfill/mutationobserver.esm.js';
     import vue from "./assets/js/vue.build.js";
 
     const {createApp,ref,reactive,watchEffect,computed,onMounted} = vue;
@@ -660,25 +307,222 @@
         setup(props,context) {
 
             const { defaultConf,updateDefaultConf } = useDefaultConf();
+            const { defLaysConf } = useDefLaysConf();
             const { hardwareConf } = useHardwareConf();
-            const { boardConf } = useBoardConf();
 
             const state = {
+                chnImgUrl: ref(""),
+                curLayId: ref(-1),
                 mixIndex: ref(-1),
+                curTheme: ref("default"),
+                imgRatio: ref("56.25")
             }
 
+            const updateChnImage = () => {
+                if(defaultConf[state.mixIndex.value].enable)
+                    state.chnImgUrl.value = "snap/snap" + defaultConf[state.mixIndex.value].id + ".jpg?rnd=" + Math.random();
+                else
+                    state.chnImgUrl.value = "assets/img/nosignal.jpg";
+                setTimeout(() => { rpc( "enc.snap" ) },200)
+                setTimeout(updateChnImage,500);
+            }
+
+            const handleEnableConf = computed(()=>{
+                return defaultConf.filter((item,index)=>{
+                    return !!item.enable;
+                })
+            })
+
+            const handleActiveDefLayConf = computed(()=>{
+                return defLaysConf.find((item) => item.layId === state.curLayId.value) || {};
+            });
+
+            const handleLayoutChnSelect = computed(() => {
+                return (chnId) => {
+                    let srcV = defaultConf[state.mixIndex.value].srcV;
+                    return defaultConf.filter((item,index)=>{
+                        return !(srcV.indexOf(item.id) > -1 && item.id !== chnId);
+                    });
+                };
+            });
+
+            const handleActiveVolume = index => {
+                if(index < defaultConf[state.mixIndex.value].srcV.length) {
+                    const idx = defaultConf[state.mixIndex.value].srcV[index].toString();
+                    return !defaultConf[state.mixIndex.value].srcA.includes(idx) && !defaultConf[state.mixIndex.value].srcA.includes(Number(idx));
+                }
+            };
+
+            const onUpdateActiveVolume = chnId => {
+                if(chnId === "-1")
+                    return;
+                chnId = chnId.toString();
+                defaultConf[state.mixIndex.value].srcA = defaultConf[state.mixIndex.value].srcA.map(item => item = item.toString());
+                defaultConf[state.mixIndex.value].srcV = defaultConf[state.mixIndex.value].srcV.map(item => item = item.toString());
+                let idx = defaultConf[state.mixIndex.value].srcA.indexOf(chnId);
+                if(idx === -1)
+                    defaultConf[state.mixIndex.value].srcA.push(chnId);
+                else
+                    defaultConf[state.mixIndex.value].srcA.splice(idx, 1);
+                updateDefaultConf("noTip");
+            };
+
             const unwatch = watchEffect(()=>{
-                if(defaultConf.length > 0) {
+                if(defaultConf.length > 0 && Object.keys(defLaysConf).length > 0) {
                     for(let i=0;i<defaultConf.length;i++) {
                         if(defaultConf[i].type !== "mix")
                             continue;
+
+                        var layList = [];
+                        let mixChn = defaultConf[i];
+                        for (let j = 0; j < mixChn.layout.length; j++) {
+                            let layout = mixChn.layout[j];
+                            let layObj = {
+                                "a": layout.a,
+                                "x": layout.x,
+                                "y": layout.y,
+                                "w": layout.w,
+                                "h": layout.h,
+                                "index": layout.index
+                            }
+                            layList.push(layObj);
+                        }
+                        let curLayStr = JSON.stringify(layList);
+
+                        for (let j = 0; j < defLaysConf.length; j++) {
+                            let las = defLaysConf[j].layouts;
+                            let layout = [];
+                            for (let k = 0; k < las.length; k++) {
+                                layout.push(las[k].pos);
+                            }
+                            if(curLayStr === JSON.stringify(layout)) {
+                                state.curLayId.value = defLaysConf[j].layId;
+                                break;
+                            }
+                        }
+
+                        let { width, height} = mixChn.encv;
+                        width = Number(width) > 0 ? Number(width) : 1920;
+                        height = Number(height) > 0 ? Number(height) : 1080;
+
+                        if(width < height)
+                            state.imgRatio.value = "85";
                         state.mixIndex.value = i;
                     }
+                    updateChnImage();
                     unwatch();
                 }
             })
 
-            return {...state,defaultConf,hardwareConf,boardConf,updateDefaultConf}
+            const handleAutoStyle = () => {
+                if(state.mixIndex.value < 0)
+                    return "";
+                const encv = defaultConf[state.mixIndex.value].encv;
+                let { width, height} = encv;
+                width = Number(width) > 0 ? Number(width) : 1920;
+                height = Number(height) > 0 ? Number(height) : 1080;
+                let ww = "100%";
+                let hh = height / (width * state.imgRatio.value/100) * 100 + "%";
+                if (width < height) {
+                    hh = "100%";
+                    ww = (state.imgRatio.value/100 * width) / height * 100 + "%";
+                }
+                return `position: absolute;margin:0 auto;width: ${ww};height: ${hh};`;
+            };
+
+            const hrefDefLayout = () => {
+                confirm({
+                    title: '<cn>布局</cn><en>Layout</en>',
+                    content: '<cn>是否打开布局管理器？</cn><en>Jump to Layout Manager?</en>',
+                    buttons: {
+                        ok: {
+                            text: "<cn>打开</cn><en>Confirm</en>",
+                            btnClass: 'btn-primary',
+                            keys: ['enter'],
+                            action: () => window.location.href = "defLayout.php"
+                        },
+                        cancel: {
+                            text: "<cn>取消</cn><en>Cancel</en>",
+                            action: () => {}
+                        }
+                    }
+                });
+            }
+
+            const onChangeLayout = () => {
+                let layout = [];
+                let srcV = [];
+                let srcA = [];
+                let markV = false;
+                let markA = false;
+                for(let i=0;i<defLaysConf.length;i++) {
+                    if(state.curLayId.value === defLaysConf[i].layId) {
+                        let las = defLaysConf[i].layouts;
+                        for (let j = 0; j < las.length; j++) {
+                            layout.push(las[j].pos);
+                            if(las[j].id < 0) {
+                                srcV.push("-1");
+                            } else {
+                                srcV.push(las[j].id + "");
+                                markV = true;
+                                if(las[j].ado) {
+                                    srcA.push(las[j].id + "")
+                                    markA = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if(!markV) {
+                    if (srcV.length >= defaultConf[state.mixIndex.value].srcV.length)
+                        srcV.splice(0, defaultConf[state.mixIndex.value].srcV.length, ...defaultConf[state.mixIndex.value].srcV);
+                    else
+                        srcV = defaultConf[state.mixIndex.value].srcV.slice(0, srcV.length);
+                }
+
+                defaultConf[state.mixIndex.value].srcV.splice(0, defaultConf[state.mixIndex.value].srcV.length, ...srcV);
+                defaultConf[state.mixIndex.value].layout.splice(0, defaultConf[state.mixIndex.value].layout.length, ...layout);
+                if(markA)
+                    defaultConf[state.mixIndex.value].srcA.splice(0, defaultConf[state.mixIndex.value].srcA.length, ...srcA);
+                updateDefaultConf("noTip");
+                const options = document.querySelectorAll(`option[cn]`);
+                options.forEach(option => {
+                    option.textContent = option.getAttribute('cn');
+                });
+            }
+
+            const handleLayBackColor = (idx) => {
+                let color = 0;
+                if(state.curTheme.value !== "dark") {
+                    if(idx % 2 === 0)
+                        color = 128 + 25 * (idx / 2);
+                    else
+                        color = 128 - 25 * (idx / 2 + 1);
+                } else
+                    color = 85 - 15 * (idx / 2 + 1);
+                return "rgb(" + color + "," + color + "," + color + ")";
+            }
+
+            onMounted(()=>{
+                const html = document.querySelector('html');
+                const observer = new mutationObserver(mutations => {
+                    mutations.forEach(mutation => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === "data-bs-theme")
+                            state.curTheme.value = mutation.target.getAttribute("data-bs-theme");
+                    });
+                });
+                const config = {
+                    attributes: true,
+                    attributeFilter: ["data-bs-theme"],
+                    subtree: false
+                };
+                observer.observe(html, config);
+            });
+
+            return {...state,defaultConf,defLaysConf,hardwareConf,handleEnableConf,handleActiveDefLayConf,
+                hrefDefLayout,onChangeLayout,handleLayBackColor,handleActiveVolume,onUpdateActiveVolume,
+                handleAutoStyle,handleLayoutChnSelect,updateDefaultConf}
         }
     });
     app.use(ignoreCustomElementPlugin);

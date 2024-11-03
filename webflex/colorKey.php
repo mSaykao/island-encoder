@@ -15,7 +15,6 @@
                     <div class="card lp-equal-height-item">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <cn>通道预览</cn>
                                 <en>Channel Preview</en>
                             </div>
                         </div>
@@ -37,7 +36,6 @@
                     <div class="card lp-equal-height-item">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <cn>参数设定</cn>
                                 <en>Setting</en>
                             </div>
                         </div>
@@ -302,11 +300,11 @@
 
             const delCurrentRes = resName => {
                 confirm( {
-                    title: '<cn>删除资源</cn><en>Delete effect</en>',
-                    content: '<cn>是否确认删除</cn><en>Delete effect</en> '+ resName + '?',
+                    title: '<en>Delete effect</en>',
+                    content: '<en>Delete effect</en> '+ resName + '?',
                     buttons: {
                         ok: {
-                            text: "<cn>确认删除</cn><en>Confirm</en>",
+                            text: "<en>Confirm</en>",
                             btnClass: 'btn-primary',
                             keys: [ 'enter' ],
                             action: () => {
@@ -314,7 +312,7 @@
                             }
                         },
                         cancel: {
-                            text: "<cn>取消</cn><en>Cancel</en>"
+                            text: "<en>Cancel</en>"
                         }
                     }
                 } );

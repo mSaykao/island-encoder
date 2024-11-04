@@ -5,7 +5,9 @@
                 <div v-if="isMenuToggled" class="btn-toggle-menu" @click="onToggleMenu">
                     <i class="fa-solid fa-bars"></i>
                 </div>
-                <div v-else ></div>
+                <div v-else class="sidebar-close" @click="onCloseSidebar">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
                 <search-setting></search-setting>
                 <ul class="navbar-nav top-right-menu gap-2">
                     <li class="nav-item">
@@ -43,10 +45,6 @@
                 </div>
                 <div class="logo-name flex-grow-1">
 <!--                    <h5 class="mb-0 fw-bold">LinkPi</h5>-->
-                </div>
-
-                <div class="sidebar-close" @click="onCloseSidebar">
-                    <i class="fa-solid fa-xmark"></i>
                 </div>
             </div>
             <div class="sidebar-nav" ref="simplebarEle">
@@ -368,7 +366,7 @@
            }
 
            const onToggleMenu = () => {
-               state.isMenuToggled.value = !state.isMenuToggled.value;
+               state.isMenuToggled.value = false;
                console.log("Menu toggled:", state.isMenuToggled.value);
            }
 
@@ -383,7 +381,7 @@
            };
 
            const onCloseSidebar = () => {
-               state.isMenuToggled.value = false;
+               state.isMenuToggled.value = true;
            }
 
            const hadLedDevice = () => func("/system/hadLedDevice").then(ret => state.hadLed.value = ret.data);

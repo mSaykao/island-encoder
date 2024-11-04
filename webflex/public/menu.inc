@@ -87,12 +87,6 @@
                             <div class="menu-title"><en>Tally</en></div>
                         </a>
                     </li>
-                    <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.mix">
-                        <a href="mix.php">
-                            <div class="parent-icon"><i class="fa-solid fa-chart-simple"></i></div>
-                            <div class="menu-title"><cn>????</cn><en>Video mix (Remove This)</en></div>
-                        </a>
-                    </li>
                     <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.chip !== 'HI3516CV610'">
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="fa-solid fa-gears"></i></div>
@@ -280,7 +274,6 @@
 </div>
 <script type="module">
     import vue from "../assets/js/vue.build.js";
-    import { ref, watch } from 'vue';
     import Metismenu from '../assets/plugins/metismenu/js/metisMenu.esm.js';
     import { func,updateSysLanguage,confirm } from "../assets/js/lp.utils.js";
     import { useThemeConf,useHardwareConf,useWebVerConf } from "../assets/js/vue.hooks.js"
@@ -345,13 +338,12 @@
 
            watch(state.isMenuToggled,() => {
                const body = document.querySelector('body');
-               console.log("isMenuToggled changed:", state.isMenuToggled.value);
+               console.log("isMenuToggled changed:", newValue);
                if(state.isMenuToggled.value)
                    body.classList.add('toggled');
                else
                    body.classList.remove('toggled');
            })
-
 
             const observeMenuChanges = element => {
                 const observer = new mutationObserver((mutations) => {

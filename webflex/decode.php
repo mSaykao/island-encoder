@@ -72,7 +72,6 @@
                                     <div class="col lp-align-center">
                                         <button type="button" class="btn btn-primary border-1 px-3"
                                                 @click="onDelReceiveChn(index)">
-                                            <cn>删除</cn>
                                             <en>delete</en>
                                         </button>
                                     </div>
@@ -81,14 +80,12 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col lp-align-center">
-                                <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                    <en>Add</en>
-                                </button>
-                                <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                    <en>Save</en>
-                                </button>
-                            </div>
+                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                                <en>Add</en>
+                            </button>
+                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                                <en>Save</en>
+                            </button>
                             <div class="col-lg-12 tips">
                                 <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 SRT 流。</cn>
                                 <en>1. The device is used as a streaming media server and can receive SRT streams pushed by other devices.</en>
@@ -976,7 +973,7 @@
                         clearReactiveArray(state.ndiList);
                         state.ndiList.push(...data);
                         if (tip !== "noTip")
-                            alertMsg("<cn>刷新NDI源列表成功</cn><en>Refresh ndi source list successfully</en>");
+                            alertMsg("<en>Refresh ndi source list successfully</en>");
                     }
                 });
             };

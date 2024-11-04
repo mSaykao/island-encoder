@@ -103,6 +103,28 @@
                                     <div class="menu-title"><cn>????</cn><en>System</en></div>
                                 </a>
                             </li>
+                            <li>
+                                <a href="nosignal.php">
+                                    <i class="fa fa-image"></i>
+                                    <div class="menu-title"><en>Change No Signal graphic</en></div>
+                                </a>
+                            </li>
+                            <li><a href="updates.php"><i class="fa fa-wrench"></i><div class="menu-title"><en>Updates</en></div></a></li>
+                            <li><a href="syncer-live.php"><i class="fa-solid fa-clock"></i><div class="menu-title"><en>Syncer</en></div></a></li>
+                            <?
+                            if ($_SESSION['login'] == "admin") {
+                            ?>
+                            <li><a href="sys.php"><i class="fa fa-gear"></i><div class="menu-title"><en>System</en></div></a></li>
+                            <?
+                            } else {
+                            ?>
+                            <li><a href="sys-user.php"><i class="fa fa-gear"></i><div class="menu-title"><en>Network settings</en></div></a></li>
+                            <?
+                            }
+                            ?>
+                            <? if ($chip == "SS524V100" || $chip == "SS528V100") { ?>
+                            <li><a href="format-disk.php"><i class="fa fa-floppy-o"></i></i><div class="menu-title"><ev>Format Disk</en></div></a></li>
+                            <? } ?>
                         </ul>
                     </li>
                     <li>
@@ -249,6 +271,7 @@
                                     <div class="menu-title"><en>Stream</en></div>
                                 </a>
                             </li>
+                            <li><a href="output-v1.php"><i class="fa fa-upload"></i><div class="menu-title"><en>Output (Advanced)</en></div></a></li>
                         </ul>
                     </li>
                 </ul>

@@ -871,14 +871,27 @@
                 let success = document.execCommand("copy");
                 document.body.removeChild(textarea);
                 if (!success) {
-                    alertMsg('<cn>复制失败，请手动复制</cn><en>Copy failed, please copy manually</en>', 'error');
+                    alertMsg('<en>Copy failed, please copy manually</en>', 'error');
                     return;
                 }
-                alertMsg('<cn>已复制</cn><en>Have copied</en>', 'success');
+                alertMsg('<en>Have copied</en>', 'success');
             }
 
             const onCopySrtUrl =(index, type = '') => {
+                const textarea = document.createElement("textarea");
+
                 textarea.value = srtPushConf[index].url
+
+                document.body.appendChild(textarea);
+                textarea.select();
+                let success = document.execCommand("copy");
+                document.body.removeChild(textarea);
+
+                if (!success) {
+                    alertMsg('<en>Copy failed, please copy manually</en>', 'error');
+                    return;
+                }
+                alertMsg('<en>Have copied</en>', 'success');
             }
 
             const onAddReceiveChn = () => {
@@ -986,6 +999,7 @@
             }
 
             const saveSrtChnConf = () => {
+                let hadBind = false;
                 srtPushConf.forEach(item => {
                         if (item.bind !== "-1") {
                             defaultConf.forEach(conf => {

@@ -11,7 +11,7 @@
     <main class="page-content decode" id="app" v-cloak>
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <div class="card" v-if="tabType==='srt'">
+                <div class="card">
                     <div class="card-header bg-transparent">
                         <div class="p-2 mb-0 d-flex align-items-end">
                             <en>Receive SRT</en>
@@ -80,10 +80,10 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
+                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn; tabType = 'net'">
                                 <en>Add</en>
                             </button>
-                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
+                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf; tabType = 'net'">
                                 <en>Save</en>
                             </button>
                             <div class="col-lg-12 tips">

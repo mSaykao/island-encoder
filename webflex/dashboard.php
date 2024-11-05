@@ -13,16 +13,15 @@
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <cn>é¢„è§ˆ</cn>
                                 <en>Preview</en>
                                 <small style="margin-left: 5px;color: grey;font-size: 12px;">
-                                    <cn>éžå®žæ—¶è§†é¢‘ï¼Œä»…é¢„è§ˆå›¾ç‰‡</cn>
                                     <en>Not a realtime video, picture only</en>
                                 </small>
+                                <bs-switch :size="'normal'" @change="updatePrevDisplay"></bs-switch>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row row-cols-2 row-cols-lg-4 g-3">
+                            <div class="row row-cols-2 row-cols-lg-4 g-3" v-if="prevDisplay==true">
                                 <div v-for="(item,index) in preview" :key="index" class="col">
                                     <div class="card">
                                         <div class="card-img-content">
@@ -237,6 +236,7 @@
                   tickColor:ref("#eeeeee"),
                   borderColor:ref("#cccccc"),
                   useTheme: ""
+                  prevDisplay: true
               }
 
               const { defaultConf } = useDefaultConf();
@@ -263,6 +263,10 @@
                       })
                   }
               })
+
+              const updatePrevDisplay= () => {
+                state.prevDisplay = !state.prevDisplay;
+              }
 
               const getData1 = (d) => {
                   state.data1.shift();
@@ -441,7 +445,7 @@
                 }
               )
 
-              return {...state,hardwareConf,handleChnVolume}
+              return {...state,hardwareConf,handleChnVolume, updatePrevDisplay,}
           }
       })
       app.use(ignoreCustomElementPlugin);

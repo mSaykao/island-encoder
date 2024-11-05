@@ -19,6 +19,7 @@
                                     <cn>非实时视频，仅预览图片</cn>
                                     <en>Not a realtime video, picture only</en>
                                 </small>
+                                <bs-switch id="previewSwitch" v-model="hadPreView"></bs-switch>
                             </div>
                         </div>
                         <div class="card-body">
@@ -199,6 +200,7 @@
   <script src="assets/plugins/easyPieChart/jquery.easypiechart.js" type="module"></script>
   <script src="assets/plugins/flotChart/jquery.flot.js" type="module"></script>
   <script src="assets/plugins/flotChart/jquery.flot.resize.js" type="module"></script>
+  <script src="vendor/switch/bootstrap-switch.js"></script>
 
   <script type="module">
       import { rpc,isEmpty } from "./assets/js/lp.utils.js";

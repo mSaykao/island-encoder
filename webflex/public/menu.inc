@@ -2,13 +2,8 @@
     <menu :class="['menu',{'sidebar-hovered': isSidebarHovered}]">
         <header class="top-header">
             <nav class="navbar navbar-expand justify-content-between">
-                <div v-if="isMenuToggled" class="btn-toggle-menu" @click="onToggleMenu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <div v-else class="sidebar-close" @click="onCloseSidebar">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
                 <search-setting></search-setting>
+
                 <ul class="navbar-nav top-right-menu gap-2">
                     <li class="nav-item">
                         <a class="nav-link" v-if="Object.keys(themeConf).length > 0 && themeConf.mod  === 'link'">
@@ -24,6 +19,12 @@
                     <li class="nav-item" v-if="hadLed">
                         <led-option></led-option>
                     </li>
+                    <li v-if="!isMenuToggled" class="btn-toggle-menu" @click="onToggleMenu">
+                        <i class="fa-solid fa-bars"></i>
+                    </li>
+                    <li v-else="isMenuToggled" class="btn-toggle-menu" @click="onCloseSidebar">
+                        <i class="fa-solid fa-xmark"></i>
+                    </li>
                     <li class="nav-item">
                         <usb-option></usb-option>
                     </li>
@@ -38,7 +39,7 @@
 
         </header>
 
-        <aside class="sidebar-wrapper" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+        <aside class="sidebar-wrapper">
             <div class="sidebar-header">
                 <div class="logo-icon lp-cursor-pointer" @click="onHrefDash">
                     <img src="img/logo.png" class="mt-1" style="max-height: 33px;">
@@ -317,8 +318,8 @@
            const state = {
                simplebarEle: ref(null),
                metismenuEle: ref(null),
-               isMenuToggled : ref(true),
-               isSidebarHovered: ref(true),
+               isMenuToggled : ref(false),
+               isSidebarHovered: ref(false),
                hadLed: ref(false),
                simplebar: null,
            }
@@ -359,7 +360,7 @@
 
            watch(state.isMenuToggled,() => {
                const body = document.querySelector('body');
-               console.log("isMenuToggled changed:", newValue);
+               console.log("isMenuToggled changed:", state.isMenuToggled);
                if(state.isMenuToggled.value)
                    body.classList.add('toggled');
                else
@@ -389,7 +390,7 @@
            }
 
            const onToggleMenu = () => {
-               state.isMenuToggled.value = false;
+               state.isMenuToggled.value = true;
                console.log("Menu toggled:", state.isMenuToggled.value);
            }
 
@@ -404,7 +405,7 @@
            };
 
            const onCloseSidebar = () => {
-               state.isMenuToggled.value = true;
+               state.isMenuToggled.value = false;
            }
 
            const hadLedDevice = () => func("/system/hadLedDevice").then(ret => state.hadLed.value = ret.data);

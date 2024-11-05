@@ -2,8 +2,12 @@
     <menu :class="['menu',{'sidebar-hovered': isSidebarHovered}]">
         <header class="top-header">
             <nav class="navbar navbar-expand justify-content-between">
+                <div v-if="!isMenuToggled" class="btn-toggle-menu" @click="onToggleMenu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div v-else>
+                </div>
                 <search-setting></search-setting>
-
                 <ul class="navbar-nav top-right-menu gap-2">
                     <li class="nav-item">
                         <a class="nav-link" v-if="Object.keys(themeConf).length > 0 && themeConf.mod  === 'link'">
@@ -18,12 +22,6 @@
                     </li>
                     <li class="nav-item" v-if="hadLed">
                         <led-option></led-option>
-                    </li>
-                    <li v-if="!isMenuToggled" class="btn-toggle-menu" @click="onToggleMenu">
-                        <i class="fa-solid fa-bars"></i>
-                    </li>
-                    <li v-else="isMenuToggled" class="btn-toggle-menu" @click="onCloseSidebar">
-                        <i class="fa-solid fa-xmark"></i>
                     </li>
                     <li class="nav-item">
                         <usb-option></usb-option>
@@ -46,6 +44,11 @@
                 </div>
                 <div class="logo-name flex-grow-1">
 <!--                    <h5 class="mb-0 fw-bold">LinkPi</h5>-->
+                </div>
+                <div v-if="!isMenuToggled">
+                </div>
+                <div v-else="isMenuToggled" class="btn-toggle-menu" @click="onCloseSidebar">
+                    <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
             <div class="sidebar-nav" ref="simplebarEle">
@@ -96,12 +99,6 @@
                                 <a href="tailscale.php">
                                     <i class="fa-solid fa-plug"></i>
                                     <div class="menu-title"><en>VPN & ATEM Link</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sys.php">
-                                    <i class="fa-solid fa-gear"></i>
-                                    <div class="menu-title"><cn>????</cn><en>System</en></div>
                                 </a>
                             </li>
                             <li>

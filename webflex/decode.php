@@ -11,7 +11,7 @@
     <main class="page-content decode" id="app" v-cloak>
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <div class="card" v-if="tabType==='srt'">
+                <div class="card" tabType='srt'>
                     <div class="card-header bg-transparent">
                         <div class="p-2 mb-0 d-flex align-items-end">
                             <en>Receive SRT</en>

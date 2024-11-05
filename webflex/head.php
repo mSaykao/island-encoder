@@ -20,7 +20,7 @@ include("headhead.php");
         <li><a href="sendsettings.php"><i class="fa fa-upload menuIcon"></i>
             SEND
           </a></li>
-        <li><a href="receivesettings.php"><i class="fa fa-download menuIcon"></i>
+        <li><a href="decode.php"><i class="fa fa-download menuIcon"></i>
             RECEIVE
           </a></li>
         <li><a href="output.php"><i class="fa fa-external-link menuIcon"></i>
@@ -31,7 +31,7 @@ include("headhead.php");
               RECORD
             </a></li>
         <? } ?>
-        <li><a href="tally-light.php"><i class="fa fa-lightbulb-o menuIcon"></i>
+        <li><a href="tally.php"><i class="fa fa-lightbulb-o menuIcon"></i>
             TALLY
           </a></li>
 

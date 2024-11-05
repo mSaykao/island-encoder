@@ -110,7 +110,7 @@
                                             <option value="h264,main">H.264 Main</option>
                                             <option value="h264,high">H.264 High</option>
                                             <option value="h265,main">H.265 Main</option>
-                                            <option value="close,base" cn="关闭" en="Close" v-language-option></option>
+                                            <option value="close,base" cn="??" en="Close" v-language-option></option>
                                         </multiple-select>
                                     </div>
                                     <div class="col">
@@ -132,9 +132,9 @@
                                     </div>
                                     <div class="col" style="display: none;">
                                         <multiple-select v-model:value1="item.encv.syncTS" v-model:value2="item.encv.syncTSMode" split=",">
-                                            <option cn="芯象" en="Sinsam" value="true,sinsam" v-language-option></option>
-                                            <option cn="简易" en="Normal" value="true,linkpi" v-language-option></option>
-                                            <option cn="关闭" en="Close" value="false,linkpi" v-language-option></option>
+                                            <option cn="??" en="Sinsam" value="true,sinsam" v-language-option></option>
+                                            <option cn="??" en="Normal" value="true,linkpi" v-language-option></option>
+                                            <option cn="??" en="Close" value="false,linkpi" v-language-option></option>
                                         </multiple-select>
                                     </div>
                                     <div class="col lp-align-center">
@@ -217,8 +217,8 @@
                                     </div>
                                     <div class="col">
                                         <select class="form-select" v-model="item.enca.channels">
-                                            <option cn="单声道" en="mono" value="1" v-language-option></option>
-                                            <option cn="立体声" en="stereo" value="2" v-language-option></option>
+                                            <option cn="???" en="mono" value="1" v-language-option></option>
+                                            <option cn="???" en="stereo" value="2" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -226,8 +226,8 @@
                                     </div>
                                     <div v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.model==='ENC8'" class="col">
                                         <select v-if="item.enca.audioTrack" class="form-select" v-model.number="item.enca.audioTrack">
-                                            <option cn="源-Line" en="source-line" value="1" v-language-option></option>
-                                            <option cn="源-Hdmi" en="source-hdmi" value="2" v-language-option></option>
+                                            <option cn="?-Line" en="source-line" value="1" v-language-option></option>
+                                            <option cn="?-Hdmi" en="source-hdmi" value="2" v-language-option></option>
                                         </select>
                                     </div>
                                 </div>
@@ -336,7 +336,7 @@
                             </div>
                         </div>
                         <hr >
-                        <div class="row mt-1" v-for="(item,index) in handleVdoConf" :key="item.id">
+                        <div class="row mt-1" v-for="(item,index) in handleEncConf" :key="item.id">
                             <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-2 text-center">
@@ -477,7 +477,7 @@
                 if(defaultConf.length === 0) return [];
                 const vodConf = [];
                 defaultConf.forEach((item,index) => {
-                    if(['net', 'vi', 'usb', 'mix'].includes(item.type)) {
+                    if(item.type === 'net' || item.type === 'vi') {
                         if(item.type === 'net') {
                             if (!item.hasOwnProperty("cap")) {
                                 item.cap = {
@@ -578,11 +578,11 @@
 
                 // if(maxENC > 0 && sum > maxENC) {
                 //     confirm( {
-                //         title: '<cn>警告</cn><en>Warning</en>',
-                //         content: '<cn>超出编码性能上限，请调整编码参数！</cn><en>The limit of encode performance is exceeded. Please adjust the encode parameters!</en>',
+                //         title: '<cn>??</cn><en>Warning</en>',
+                //         content: '<cn>????????,???????!</cn><en>The limit of encode performance is exceeded. Please adjust the encode parameters!</en>',
                 //         buttons: {
                 //             ok: {
-                //                 text: "<cn>知道了</cn><en>I know</en>",
+                //                 text: "<cn>???</cn><en>I know</en>",
                 //                 btnClass: 'btn-primary',
                 //                 keys: [ 'enter' ],
                 //                 action: () => updateDefaultConf()

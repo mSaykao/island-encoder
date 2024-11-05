@@ -47,15 +47,15 @@
                                                 <div class="row">
                                                     <div class="col-lg-4 text-center">
                                                         <cn>自动跟踪</cn>
-                                                        <en>auto track</en>
+                                                        <en>Automatic Tracking</en>
                                                     </div>
                                                     <div class="col-lg-4 text-center">
                                                         <cn>白板跟踪</cn>
-                                                        <en>whiteboard</en>
+                                                        <en>Whiteboard Tracking</en>
                                                     </div>
                                                     <div class="col-lg-4 text-center">
                                                         <cn>俯拍模式</cn>
-                                                        <en>Overhead</en>
+                                                        <en>Overhead mode</en>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -75,14 +75,14 @@
                                                 <div class="row">
                                                     <div class="col-lg-4 text-center">
                                                         <cn>桌面模式</cn>
-                                                        <en>desktop mode</en>
+                                                        <en>Desktop mode</en>
                                                     </div>
                                                     <div class="col-lg-4 text-center">
                                                         HDR
                                                     </div>
                                                     <div class="col-lg-4 text-center">
                                                         <cn>镜像</cn>
-                                                        <en>mirror</en>
+                                                        <en>Mirror Image</en>
                                                     </div>
                                                 </div>
                                                 <hr>

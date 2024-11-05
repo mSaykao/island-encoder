@@ -100,8 +100,8 @@
                     </div>
                 </div>
             </div>
-            <tally-modal :modal-title="'Tally灯测试&Tally test'" :modal-show="showTallyModal"
-                           :confirm-btn-name="'测试&Test'" :cancel-btn-name="'取消&Cancel'" @confirm-btn-click="onTallyTest">
+            <tally-modal :modal-title="'Tally???&Tally test'" :modal-show="showTallyModal"
+                           :confirm-btn-name="'??&Test'" :cancel-btn-name="'??&Cancel'" @confirm-btn-click="onTallyTest">
                 <div class="row">
                     <div class="col-lg-2 lp-align-center">
                         <cn>PVM</cn>

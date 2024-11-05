@@ -13,15 +13,16 @@
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
+                                <cn>预览</cn>
                                 <en>Preview</en>
                                 <small style="margin-left: 5px;color: grey;font-size: 12px;">
+                                    <cn>非实时视频，仅预览图片</cn>
                                     <en>Not a realtime video, picture only</en>
                                 </small>
-                                <bs-switch :size="'normal'" @change="updatePrevDisplay"></bs-switch>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row row-cols-2 row-cols-lg-4 g-3" v-if="state.prevDisplay.value">
+                            <div class="row row-cols-2 row-cols-lg-4 g-3">
                                 <div v-for="(item,index) in preview" :key="index" class="col">
                                     <div class="card">
                                         <div class="card-img-content">
@@ -88,7 +89,7 @@
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <cn>ç³»ç»ŸçŠ¶æ€</cn>
+                                <cn>系统状态</cn>
                                 <en>System state</en>
                             </div>
                         </div>
@@ -97,21 +98,21 @@
                                 <div class="col-lg-4 ">
                                     <pie-chart v-if="theme_color" v-model="cpu" :active-color="theme_color"></pie-chart>
                                     <div>
-                                        <cn>CPUä½¿ç”¨çŽ‡</cn>
+                                        <cn>CPU使用率</cn>
                                         <en>CPU Usage</en>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 text-center">
                                     <pie-chart v-if="theme_color" v-model="mem" :active-color="theme_color"></pie-chart>
                                     <div>
-                                        <cn>å†…å­˜ä½¿ç”¨çŽ‡</cn>
+                                        <cn>内存使用率</cn>
                                         <en>Memory usage</en>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 text-center">
                                     <tmp-compt v-if="theme_color" v-model="tmp" :active-color="theme_color"></tmp-compt>
                                     <div>
-                                        <cn>æ ¸å¿ƒæ¸©åº¦</cn>
+                                        <cn>核心温度</cn>
                                         <en>Core temperature</en>
                                     </div>
                                 </div>
@@ -124,7 +125,7 @@
                     <div class="card">
                         <div class="card-header bg-transparent">
                             <div class="p-2 mb-0 d-flex align-items-end">
-                                <cn>ç½‘ç»œçŠ¶æ€</cn>
+                                <cn>网络状态</cn>
                                 <en>Network state</en>
                             </div>
                         </div>
@@ -235,8 +236,7 @@
                   tipTxtColor:ref("#555555"),
                   tickColor:ref("#eeeeee"),
                   borderColor:ref("#cccccc"),
-                  useTheme: "",
-                  prevDisplay: ref(true),
+                  useTheme: ""
               }
 
               const { defaultConf } = useDefaultConf();
@@ -263,10 +263,6 @@
                       })
                   }
               })
-
-              const updatePrevDisplay = () => {
-                    state.prevDisplay.value = !state.prevDisplay.value;
-              }
 
               const getData1 = (d) => {
                   state.data1.shift();
@@ -445,7 +441,7 @@
                 }
               )
 
-              return {...state,hardwareConf,handleChnVolume, updatePrevDisplay,}
+              return {...state,hardwareConf,handleChnVolume}
           }
       })
       app.use(ignoreCustomElementPlugin);

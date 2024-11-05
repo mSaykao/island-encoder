@@ -59,7 +59,7 @@
                                             <option v-if="handleNetConf.length > 0" v-for="(it,index) in handleNetConf"
                                                     :key="index" :value="it.id">{{it.name}}
                                             </option>
-                                            <option value="-1" cn="关闭" en="Close" v-language-option></option>
+                                            <option value="-1" cn="??" en="Close" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -113,7 +113,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fa-brands fa-internet-explorer me-1"></i></div>
                                 <div class="tab-title">
-                                    <cn>网络拉流</cn>
+                                    <cn>????</cn>
                                     <en>Network stream</en>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fa-regular fa-file-audio me-1"></i></div>
                                 <div class="tab-title">
-                                    <cn>文件轮播</cn>
+                                    <cn>????</cn>
                                     <en>File carousel</en>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fa-solid fa-arrow-down-short-wide me-1"></i></div>
                                 <div class="tab-title">
-                                    <cn>接收rtmp流</cn>
+                                    <cn>??rtmp?</cn>
                                     <en>Receive rtmp</en>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="tab-icon"><i class="fa-brands fa-audible me-1"></i></div>
                                 <div class="tab-title">
-                                    <cn>NDI解码</cn>
+                                    <cn>NDI??</cn>
                                     <en>Decode ndi</en>
                                 </div>
                             </div>
@@ -158,39 +158,39 @@
                     <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>频道名称</cn>
+                                <cn>????</cn>
                                 <en>channel name</en>
                             </div>
                             <div class="col-4 text-center">
-                                <cn>拉流地址</cn>
+                                <cn>????</cn>
                                 <en>stream url</en>
                             </div>
                             <div class="col text-center">
-                                <cn>帧率</cn>
+                                <cn>??</cn>
                                 <en>framerate</en>
                             </div>
                             <div class="col text-center">
-                                <cn>缓冲模式</cn>
+                                <cn>????</cn>
                                 <en>buffer mode</en>
                             </div>
                             <div class="col text-center">
-                                <cn>缓冲时间</cn>
+                                <cn>????</cn>
                                 <en>buffer time</en>
                             </div>
                             <div class="col text-center">
-                                <cn>协议</cn>
+                                <cn>??</cn>
                                 <en>protocol</en>
                             </div>
                             <div class="col text-center">
-                                <cn>视频解码</cn>
+                                <cn>????</cn>
                                 <en>video decode</en>
                             </div>
                             <div class="col text-center">
-                                <cn>音频解码</cn>
+                                <cn>????</cn>
                                 <en>audio decode</en>
                             </div>
                             <div class="col text-center">
-                                <cn>开关</cn>
+                                <cn>??</cn>
                                 <en>enable</en>
                             </div>
                             <div class="col text-center">
@@ -213,10 +213,10 @@
                                     </div>
                                     <div class="col">
                                         <select class="form-select" v-model="item.net.bufferMode">
-                                            <option value="0" cn="一般" en="Normal" v-language-option></option>
-                                            <option value="1" cn="实时" en="NoBuffer" v-language-option></option>
-                                            <option value="2" cn="缓冲" en="Buffer" v-language-option></option>
-                                            <option value="3" cn="帧同步" en="Sync" v-language-option></option>
+                                            <option value="0" cn="??" en="Normal" v-language-option></option>
+                                            <option value="1" cn="??" en="NoBuffer" v-language-option></option>
+                                            <option value="2" cn="??" en="Buffer" v-language-option></option>
+                                            <option value="3" cn="???" en="Sync" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -240,7 +240,7 @@
                                     <div class="col lp-align-center">
                                         <button type="button" class="btn btn-primary border-1 px-3"
                                                 @click="onDisplayHdmi(item.id,item.enable)">
-                                            <cn>输出</cn>
+                                            <cn>??</cn>
                                             <en>display</en>
                                         </button>
                                     </div>
@@ -252,19 +252,19 @@
                     <div class="tab-pane fade" id="tab2" role="tabpanel">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>频道名称</cn>
+                                <cn>????</cn>
                                 <en>channel name</en>
                             </div>
                             <div class="col text-center">
-                                <cn>视频解码</cn>
+                                <cn>????</cn>
                                 <en>video decode</en>
                             </div>
                             <div class="col text-center">
-                                <cn>音频解码</cn>
+                                <cn>????</cn>
                                 <en>audio decode</en>
                             </div>
                             <div class="col text-center">
-                                <cn>开关</cn>
+                                <cn>??</cn>
                                 <en>enable</en>
                             </div>
                             <div class="col text-center">
@@ -293,7 +293,7 @@
                                     <div class="col lp-align-center">
                                         <button type="button" class="btn btn-primary border-1 px-3"
                                                 @click="onDisplayHdmi(handleVideoFileConf.id,handleVideoFileConf.enable)">
-                                            <cn>输出</cn>
+                                            <cn>??</cn>
                                             <en>display</en>
                                         </button>
                                     </div>
@@ -307,23 +307,23 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col text-center">
-                                                <cn>序号</cn>
+                                                <cn>??</cn>
                                                 <en>Num.</en>
                                             </div>
                                             <div class="col-3 text-center">
-                                                <cn>文件名称</cn>
+                                                <cn>????</cn>
                                                 <en>File name</en>
                                             </div>
                                             <div class="col text-center">
-                                                <cn>时长</cn>
+                                                <cn>??</cn>
                                                 <en>Duration</en>
                                             </div>
                                             <div class="col-4 text-center">
-                                                <cn>时间轴</cn>
+                                                <cn>???</cn>
                                                 <en>Timeline</en>
                                             </div>
                                             <div class="col-3 text-center">
-                                                <cn>操作</cn>
+                                                <cn>??</cn>
                                                 <en>Option</en>
                                             </div>
                                         </div>
@@ -334,7 +334,7 @@
                                             </div>
                                             <div class="col-3">
                                                 <select class="form-select" v-model="handleVideoFileConf.file[index]">
-                                                    <option cn="无" en="none" value="" v-language-option></option>
+                                                    <option cn="?" en="none" value="" v-language-option></option>
                                                     <option v-for="(it,idx) in handleUsbMp4File" :key="idx"
                                                             :value="it.name">{{it.name}}
                                                     </option>
@@ -377,35 +377,35 @@
                     <div class="tab-pane fade" id="tab3" role="tabpanel">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>描述</cn>
+                                <cn>??</cn>
                                 <en>description</en>
                             </div>
                             <div class="col-2 text-center">
-                                <cn>服务器</cn>
+                                <cn>???</cn>
                                 <en>server</en>
                             </div>
                             <div class="col-3 text-center">
-                                <cn>推流码</cn>
+                                <cn>???</cn>
                                 <en>stream key</en>
                             </div>
                             <div class="col text-center">
-                                <cn>解码频道</cn>
+                                <cn>????</cn>
                                 <en>decode channel</en>
                             </div>
                             <div class="col text-center">
-                                <cn>用户名</cn>
+                                <cn>???</cn>
                                 <en>username</en>
                             </div>
                             <div class="col text-center">
-                                <cn>密码</cn>
+                                <cn>??</cn>
                                 <en>password</en>
                             </div>
                             <div class="col text-center">
-                                <cn>启用认证</cn>
+                                <cn>????</cn>
                                 <en>auth</en>
                             </div>
                             <div class="col text-center">
-                                <cn>操作</cn>
+                                <cn>??</cn>
                                 <en>option</en>
                             </div>
                         </div>
@@ -443,7 +443,7 @@
                                             <option v-if="handleNetConf.length > 0" v-for="(it,index) in handleNetConf"
                                                     :key="index" :value="it.id">{{it.name}}
                                             </option>
-                                            <option value="-1" cn="关闭" en="Close" v-language-option></option>
+                                            <option value="-1" cn="??" en="Close" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -459,7 +459,7 @@
                                     <div class="col lp-align-center">
                                         <button type="button" class="btn btn-primary border-1 px-3"
                                                 @click="onDelReceiveChn(index)">
-                                            <cn>删除</cn>
+                                            <cn>??</cn>
                                             <en>delete</en>
                                         </button>
                                     </div>
@@ -469,15 +469,15 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-lg-12 tips">
-                                <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 RTMP 流。</cn>
+                                <cn>1?????????????,??????????? RTMP ??</cn>
                                 <en>1. The device is used as a streaming media server and can receive RTMP streams pushed by other devices.</en>
                             </div>
                             <div class="col-lg-12 tips">
-                                <cn>2、需要绑定解码频道时，请确定要绑定的频道没有正在使用。</cn>
+                                <cn>2??????????,????????????????</cn>
                                 <en>2. Make sure that the binding channel is not in use</en>
                             </div>
                             <div class="col-lg-12 tips">
-                                <cn>3、设置解码频道后，保存时会自动把该频道的拉流地址替换为对应的解码地址。</cn>
+                                <cn>3????????,??????????????????????????</cn>
                                 <en>3. After the decoding channel is set, the stream address of the corresponding
                                     channel is automatically replaced with the current decoding address when saving.
                                 </en>
@@ -487,19 +487,19 @@
                     <div class="tab-pane fade" id="tab5" role="tabpanel">
                         <div class="row">
                             <div class="col-2 text-center">
-                                <cn>描述</cn>
+                                <cn>??</cn>
                                 <en>description</en>
                             </div>
                             <div class="col-5 text-center">
-                                <cn>NDI源</cn>
+                                <cn>NDI?</cn>
                                 <en>ndi source</en>
                             </div>
                             <div class="col-1 text-center">
-                                <cn>解码频道</cn>
+                                <cn>????</cn>
                                 <en>decode channel</en>
                             </div>
                             <div class="col-1 text-center">
-                                <cn>操作</cn>
+                                <cn>??</cn>
                                 <en>option</en>
                             </div>
                         </div>
@@ -526,13 +526,13 @@
                                             <option v-if="handleNetConf.length > 0" v-for="(it,index) in handleNetConf"
                                                     :key="index" :value="it.id">{{it.name}}
                                             </option>
-                                            <option value="-1" cn="关闭" en="Close" v-language-option></option>
+                                            <option value="-1" cn="??" en="Close" v-language-option></option>
                                         </select>
                                     </div>
                                     <div class="col-1 lp-align-center">
                                         <button type="button" class="btn btn-primary border-1 px-3"
                                                 @click="onDelReceiveChn(index)">
-                                            <cn>删除</cn>
+                                            <cn>??</cn>
                                             <en>delete</en>
                                         </button>
                                     </div>
@@ -542,15 +542,15 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-lg-12 tips">
-                                <cn>1、设备支持解码NDI HX协议流。</cn>
+                                <cn>1???????NDI HX????</cn>
                                 <en>1. The device supports decoding NDI HX protocol streams.</en>
                             </div>
                             <div class="col-lg-12 tips">
-                                <cn>2、需要绑定解码频道时，请确定要绑定的频道没有正在使用。</cn>
+                                <cn>2??????????,????????????????</cn>
                                 <en>2. Make sure that the binding channel is not in use</en>
                             </div>
                             <div class="col-lg-12 tips">
-                                <cn>3、设置解码频道后，保存时会自动把该频道的拉流地址替换为对应的解码地址。</cn>
+                                <cn>3????????,??????????????????????????</cn>
                                 <en>3. After the decoding channel is set, the stream address of the corresponding
                                     channel is automatically replaced with the current decoding address when saving.
                                 </en>
@@ -561,31 +561,31 @@
                         <div class="col-lg-12 text-center" v-if="tabType!=='rtmp' && tabType!=='srt' && tabType!=='ndi'">
                             <button type="button" class="btn btn-primary border-3 px-5 me-2" v-if="tabType==='file'"
                                     @click="onAddVideoFile">
-                                <cn>添加</cn>
+                                <cn>??</cn>
                                 <en>Add</en>
                             </button>
                             <button type="button" class="btn btn-primary border-3 px-5" @click="saveDefaultConf">
-                                <cn>保存</cn>
+                                <cn>??</cn>
                                 <en>Save</en>
                             </button>
                         </div>
                         <div class="col-lg-12 text-center" v-if="tabType==='rtmp'">
                             <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                <cn>添加</cn>
+                                <cn>??</cn>
                                 <en>Add</en>
                             </button>
                             <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                <cn>保存</cn>
+                                <cn>??</cn>
                                 <en>Save</en>
                             </button>
                         </div>
                         <div class="col-lg-12 text-center" v-if="tabType==='ndi'">
                             <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn">
-                                <cn>添加</cn>
+                                <cn>??</cn>
                                 <en>Add</en>
                             </button>
                             <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf">
-                                <cn>保存</cn>
+                                <cn>??</cn>
                                 <en>Save</en>
                             </button>
                         </div>
@@ -651,10 +651,10 @@
                     const mix = defaultConf.find(item => item.type === "mix");
                     mix.output.src = chnId;
                     updateDefaultConf("noTip").then(() => {
-                        alertMsg("<cn>输出至HDMI成功</cn><en>Display hdmi successfully!</en>", "success");
+                        alertMsg("<cn>???HDMI??</cn><en>Display hdmi successfully!</en>", "success");
                     })
                 } else
-                    alertMsg("<cn>通道未开启</cn><en>Display hdmi successfully!</en>", "error");
+                    alertMsg("<cn>?????</cn><en>Display hdmi successfully!</en>", "error");
             }
 
             const handleVideoFileConf = computed(() => {
@@ -802,11 +802,11 @@
                 //
                 // if (maxENC > 0 && sum > maxENC) {
                 //     confirm({
-                //         title: '<cn>警告</cn><en>Warning</en>',
-                //         content: '<cn>超出编码性能上限，请调整编码参数！</cn><en>The limit of encode performance is exceeded. Please adjust the encode parameters!</en>',
+                //         title: '<cn>??</cn><en>Warning</en>',
+                //         content: '<cn>????????,???????!</cn><en>The limit of encode performance is exceeded. Please adjust the encode parameters!</en>',
                 //         buttons: {
                 //             ok: {
-                //                 text: "<cn>知道了</cn><en>I know</en>",
+                //                 text: "<cn>???</cn><en>I know</en>",
                 //                 btnClass: 'btn-primary',
                 //                 keys: ['enter'],
                 //                 action: () => updateDefaultConf()

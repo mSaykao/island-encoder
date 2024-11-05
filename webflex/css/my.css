@@ -141,6 +141,119 @@ cn {
 	background-color: #333 !important;
 }
 
+/* Sidebar container */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #32174d;
+  color: #FFF;
+  overflow-y: auto;
+}
+
+/* Sidebar brand logo */
+.sidebar-header {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.sidebar-brand img {
+  width: 100px;
+  height: auto;
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: #FFF;
+  font-size: 18px;
+}
+
+/* Sidebar navigation links */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav > li {
+  width: 100%;
+}
+
+.sidebar-nav > li > a {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.sidebar-nav > li > a:hover,
+.sidebar-nav > li.active > a {
+  background-color: #000;
+  color: #fb0;
+}
+
+/* Sidebar icon styling */
+.sidebar-nav .menuIcon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Dropdown menu in sidebar */
+.sidebar-nav .dropdown-menu {
+  background-color: #333;
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.sidebar-nav .dropdown-menu > li > a {
+  padding: 10px 30px;
+  color: #fff;
+}
+
+.sidebar-nav .dropdown-menu > li > a:hover {
+  background-color: #000;
+  color: #fb0;
+}
+
+/* Logout button styling in sidebar */
+.sidebar-nav .btn {
+  width: 100%;
+  text-align: center;
+  border: none;
+  background: none;
+  color: #FFF;
+}
+
+/* Main content area */
+.main {
+  margin-left: 250px;
+  padding: 20px;
+  background-color: #333;
+  color: #FFF;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 4px;
+}
+
+
 @keyframes menuHover {
 	from {
 		color: #fff;

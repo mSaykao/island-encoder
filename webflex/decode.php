@@ -80,10 +80,10 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddReceiveChn; tabType = 'net'">
+                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="{onAddReceiveChn; tabType = 'net';}">
                                 <en>Add</en>
                             </button>
-                            <button type="button" class="btn btn-primary border-3 px-5" @click="saveReceiveChnConf; tabType = 'net'">
+                            <button type="button" class="btn btn-primary border-3 px-5" @click="{saveReceiveChnConf; tabType = 'net';}">
                                 <en>Save</en>
                             </button>
                             <div class="col-lg-12 tips">

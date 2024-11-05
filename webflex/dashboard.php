@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row row-cols-2 row-cols-lg-4 g-3" v-if="prevDisplay==true">
+                            <div class="row row-cols-2 row-cols-lg-4 g-3" v-if="state.prevDisplay.value">
                                 <div v-for="(item,index) in preview" :key="index" class="col">
                                     <div class="card">
                                         <div class="card-img-content">
@@ -235,8 +235,8 @@
                   tipTxtColor:ref("#555555"),
                   tickColor:ref("#eeeeee"),
                   borderColor:ref("#cccccc"),
-                  useTheme: ""
-                  prevDisplay: true
+                  useTheme: "",
+                  prevDisplay: ref(true),
               }
 
               const { defaultConf } = useDefaultConf();
@@ -264,8 +264,8 @@
                   }
               })
 
-              const updatePrevDisplay= () => {
-                state.prevDisplay = !state.prevDisplay;
+              const updatePrevDisplay = () => {
+                    state.prevDisplay.value = !state.prevDisplay.value;
               }
 
               const getData1 = (d) => {

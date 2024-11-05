@@ -13,7 +13,7 @@
              <div class="card">
                  <div class="card-header bg-transparent">
                      <div class="p-2 mb-0 d-flex align-items-end">
-                         <cn>全局配置</cn>
+                         <cn>å…¨å±€é…ç½®</cn>
                          <en>Overall config</en>
                      </div>
                  </div>
@@ -47,22 +47,22 @@
                                      <en>SRT</en>
                                  </div>
                                  <div class="col text-center">
-                                     <cn>组播</cn>
+                                     <cn>ç»„æ’­</cn>
                                      <en>multicast</en>
                                  </div>
                                  <div class="col-2 text-center">
-                                     <cn>组播地址</cn>
+                                     <cn>ç»„æ’­åœ°å€</cn>
                                      <en>multicast addr</en>
                                  </div>
                                  <div class="col text-center">
-                                     <cn>推流</cn>
+                                     <cn>æŽ¨æµ</cn>
                                      <en>push</en>
                                  </div>
                                  <div class="col"></div>
                              </div>
                              <div class="row mt-1">
                                  <div class="col-2 text-center p-0 pt-2">
-                                     <cn>主流协议</cn>
+                                     <cn>ä¸»æµåè®®</cn>
                                      <en>Main protocol</en>
                                  </div>
                                  <div class="col lp-align-center">
@@ -97,7 +97,7 @@
     
                              <div class="row mt-2">
                                  <div class="col-2 text-center p-0 pt-2">
-                                     <cn>辅流协议</cn>
+                                     <cn>è¾…æµåè®®</cn>
                                      <en>Sub protocol</en>
                                  </div>
                                  <div class="col lp-align-center">
@@ -133,7 +133,7 @@
                              <div class="row text-center">
                                  <div class="col-lg-12">
                                      <button type="button" class="btn  border-3 btn-primary me-2" @click="saveGlobalConfByLocal">
-                                         <cn>应用到全部</cn>
+                                         <cn>åº”ç”¨åˆ°å…¨éƒ¨</cn>
                                          <en>Apply to all</en>
                                      </button>
                                  </div>
@@ -152,7 +152,7 @@
                      <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab" aria-selected="true">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-upload me-1"></i></div>
-                             <div class="tab-title"><cn>码流配置</cn><en>Stream config</en></div>
+                             <div class="tab-title"><cn>ç æµé…ç½®</cn><en>Stream config</en></div>
                          </div>
                      </a>
                  </li>
@@ -160,7 +160,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-gear me-1"></i></div>
-                             <div class="tab-title"><cn>TS设置</cn><en>TS config</en></div>
+                             <div class="tab-title"><cn>TSè®¾ç½®</cn><en>TS config</en></div>
                          </div>
                      </a>
                  </li>
@@ -168,7 +168,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab3" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-gear me-1"></i></div>
-                             <div class="tab-title"><cn>HLS设置</cn><en>HLS config</en></div>
+                             <div class="tab-title"><cn>HLSè®¾ç½®</cn><en>HLS config</en></div>
                          </div>
                      </a>
                  </li>
@@ -176,7 +176,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab4" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-gear me-1"></i></div>
-                             <div class="tab-title"><cn>RTSP设置</cn><en>RTSP config</en></div>
+                             <div class="tab-title"><cn>RTSPè®¾ç½®</cn><en>RTSP config</en></div>
                          </div>
                      </a>
                  </li>
@@ -185,7 +185,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab5" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-gear me-1"></i></div>
-                             <div class="tab-title"><cn>SRT设置</cn><en>SRT config</en></div>
+                             <div class="tab-title"><cn>SRTè®¾ç½®</cn><en>SRT config</en></div>
                          </div>
                      </a>
                  </li>
@@ -193,7 +193,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab6" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-gear me-1"></i></div>
-                             <div class="tab-title"><cn>NDI设置</cn><en>NDI config</en></div>
+                             <div class="tab-title"><cn>NDIè®¾ç½®</cn><en>NDI config</en></div>
                          </div>
                      </a>
                  </li>
@@ -201,7 +201,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab7" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-solid fa-podcast me-1"></i></div>
-                             <div class="tab-title"><cn>推流设置</ cn><en>Push config</en></div>
+                             <div class="tab-title"><en>Push config</en></div>
                          </div>
                      </a>
                  </li>
@@ -209,7 +209,7 @@
                      <a class="nav-link" data-bs-toggle="tab" href="#tab8" role="tab" aria-selected="false">
                          <div class="d-flex align-items-center">
                              <div class="tab-icon"><i class="fa-regular fa-circle-play me-1"></i></div>
-                             <div class="tab-title"><cn>播放地址</cn><en>Play URL</en></div>
+                             <div class="tab-title"><cn>æ’­æ”¾åœ°å€</cn><en>Play URL</en></div>
                          </div>
                      </a>
                  </li>
@@ -218,7 +218,7 @@
                  <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col text-center">
@@ -246,19 +246,19 @@
                              <en>SRT</en>
                          </div>
                          <div class="col text-center">
-                             <cn>组播</cn>
+                             <cn>ç»„æ’­</cn>
                              <en>multicast</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>组播地址</cn>
+                             <cn>ç»„æ’­åœ°å€</cn>
                              <en>multicast addr</en>
                          </div>
                          <div class="col text-center">
-                             <cn>推流</cn>
+                             <cn>æŽ¨æµ</cn>
                              <en>push</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>推流地址</cn>
+                             <cn>æŽ¨æµåœ°å€</cn>
                              <en>push url</en>
                          </div>
                      </div>
@@ -341,7 +341,7 @@
                  <div class="tab-pane fade" id="tab2" role="tabpanel">
                      <div class="row">
                          <div class="col text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col-10">
@@ -350,11 +350,11 @@
                                      TTL
                                  </div>
                                  <div class="col text-center">
-                                     <cn>流控</cn>
+                                     <cn>æµæŽ§</cn>
                                      <en>Flow Control</en>
                                  </div>
                                  <div class="col text-center">
-                                     <cn>带宽</cn>
+                                     <cn>å¸¦å®½</cn>
                                      <en>Bandwidth</en>
                                  </div>
                                  <div class="col text-center">
@@ -441,23 +441,23 @@
                  <div class="tab-pane fade" id="tab3" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>分片长度(秒)</cn>
+                             <cn>åˆ†ç‰‡é•¿åº¦(ç§’)</cn>
                              <en>Segment length(s)</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>列表长度</cn>
+                             <cn>åˆ—è¡¨é•¿åº¦</cn>
                              <en>List length</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>URL前缀</cn>
+                             <cn>URLå‰ç¼€</cn>
                              <en>Base url</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>文件名后缀</cn>
+                             <cn>æ–‡ä»¶ååŽç¼€</cn>
                              <en>Name format</en>
                          </div>
                      </div>
@@ -488,19 +488,19 @@
                  <div class="tab-pane fade" id="tab4" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>用户名</cn>
+                             <cn>ç”¨æˆ·å</cn>
                              <en>username</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>密码</cn>
+                             <cn>å¯†ç </cn>
                              <en>password</en>
                          </div>
                          <div class="col-1 text-center">
-                             <cn>启用认证</cn>
+                             <cn>å¯ç”¨è®¤è¯</cn>
                              <en>auth</en>
                          </div>
                          <div class="col-1 text-center">
@@ -508,7 +508,7 @@
                              <en>onvif</en>
                          </div>
                          <div class="col-1 text-center">
-                             <cn>开关</cn>
+                             <cn>å¼€å…³</cn>
                              <en>enable</en>
                          </div>
                      </div>
@@ -560,11 +560,11 @@
                  <div class="tab-pane fade" id="tab5" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col text-center">
-                             <cn>模式</cn>
+                             <cn>æ¨¡å¼</cn>
                              <en>Mode</en>
                          </div>
                          <div class="col text-center">
@@ -574,19 +574,19 @@
                              StreamID
                          </div>
                          <div class="col text-center">
-                             <cn>端口</cn>
+                             <cn>ç«¯å£</cn>
                              <en>Port</en>
                          </div>
                          <div class="col text-center">
-                             <cn>延时</cn>
+                             <cn>å»¶æ—¶</cn>
                              <en>Latency</en>
                          </div>
                          <div class="col text-center">
-                             <cn>密码</cn>
+                             <cn>å¯†ç </cn>
                              <en>Password</en>
                          </div>
                          <div class="col text-center">
-                             <cn>开关</cn>
+                             <cn>å¼€å…³</cn>
                              <en>Enable</en>
                          </div>
                      </div>
@@ -658,19 +658,19 @@
                  <div class="tab-pane fade" id="tab6" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>NDI名称</cn>
+                             <cn>NDIåç§°</cn>
                              <en>NDI name</en>
                          </div>
                          <div class="col-2 text-center">
-                             <cn>NDI分组</cn>
+                             <cn>NDIåˆ†ç»„</cn>
                              <en>NDI group</en>
                          </div>
                          <div class="col-1 text-center">
-                             <cn>开关</cn>
+                             <cn>å¼€å…³</cn>
                              <en>Enable</en>
                          </div>
                      </div>
@@ -698,7 +698,7 @@
                  <div class="tab-pane fade" id="tab7" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col-2 text-center">
@@ -708,11 +708,11 @@
                              Format
                          </div>
                          <div class="col-2 text-center">
-                             <cn>兼容性</cn>
+                             <cn>å…¼å®¹æ€§</cn>
                              <en>Compatible</en>
                          </div>
                          <div class="col-1 text-center">
-                             <cn>上传速度</cn>
+                             <cn>ä¸Šä¼ é€Ÿåº¦</cn>
                              <en>Push speed</en>
                          </div>
                      </div>
@@ -738,7 +738,7 @@
                                  </div>
                                  <div class="col-2">
                                      <select class="form-select" v-model="item.stream.push.flvflags">
-                                         <option cn="标准" en="normal" value="" v-language-option></option>
+                                         <option cn="æ ‡å‡†" en="normal" value="" v-language-option></option>
                                          <option value="ext_header">enhanced-rtmp</option>
                                      </select>
                                  </div>
@@ -763,7 +763,7 @@
                                  </div>
                                  <div class="col-2">
                                      <select class="form-select" v-model="item.stream2.push.flvflags">
-                                         <option cn="标准" en="normal" value="" v-language-option></option>
+                                         <option cn="æ ‡å‡†" en="normal" value="" v-language-option></option>
                                          <option value="ext_header">enhanced-rtmp</option>
                                      </select>
                                  </div>
@@ -778,17 +778,17 @@
                  <div class="tab-pane fade" id="tab8" role="tabpanel">
                      <div class="row">
                          <div class="col-2 text-center">
-                             <cn>频道名称</cn>
+                             <cn>é¢‘é“åç§°</cn>
                              <en>Channel name</en>
                          </div>
                          <div class="col-5">
                              <div class="row">
                                  <div class="col-3 text-center">
-                                     <cn>主码流标识</cn>
+                                     <cn>ä¸»ç æµæ ‡è¯†</cn>
                                      <en>Main Suffix</en>
                                  </div>
                                  <div class="col text-center">
-                                     <cn>主码流地址</cn>
+                                     <cn>ä¸»ç æµåœ°å€</cn>
                                      <en>Main URL</en>
                                  </div>
                              </div>
@@ -796,11 +796,11 @@
                          <div class="col-5">
                              <div class="row">
                                  <div class="col-3 text-center">
-                                     <cn>辅码流标识</cn>
+                                     <cn>è¾…ç æµæ ‡è¯†</cn>
                                      <en>Sub Suffix</en>
                                  </div>
                                  <div class="col text-center">
-                                     <cn>辅码流地址</cn>
+                                     <cn>è¾…ç æµåœ°å€</cn>
                                      <en>Sub URL</en>
                                  </div>
                              </div>
@@ -865,7 +865,7 @@
                  <div class="row mt-3">
                      <div class="col-lg-12 text-center">
                          <button type="button" class="btn btn-primary border-3 px-5" @click="saveDefaultConf">
-                             <cn>保存</cn>
+                             <cn>ä¿å­˜</cn>
                              <en>Save</en>
                          </button>
                      </div>
@@ -983,10 +983,10 @@
                 let success = document.execCommand("copy");
                 document.body.removeChild(textarea);
                 if (!success) {
-                    alertMsg('<cn>复制失败，请手动复制</cn><en>Copy failed, please copy manually</en>', 'error');
+                    alertMsg('<cn>å¤åˆ¶å¤±è´¥ï¼Œè¯·æ‰‹åŠ¨å¤åˆ¶</cn><en>Copy failed, please copy manually</en>', 'error');
                     return;
                 }
-                alertMsg('<cn>已复制</cn><en>Have copied</en>', 'success');
+                alertMsg('<cn>å·²å¤åˆ¶</cn><en>Have copied</en>', 'success');
             }
 
             const getPushSpeed = () => {
@@ -1065,7 +1065,7 @@
             const onProtocolSwitchChange = (state,codecA,codecV,type) => {
                 if(state) {
                     if(type === "rtmp" && codecA === "opus") {
-                        alertMsg("<cn>当前通道音频编码格式为OPUS,RTMP协议流不支持该格式,请调整音频编码参数后在重试</cn><en>OPUS audio is unsupported by RTMP, please change the audio codec settings and retry.</en>", "warning",8000);
+                        alertMsg("<cn>å½“å‰é€šé“éŸ³é¢‘ç¼–ç æ ¼å¼ä¸ºOPUS,RTMPåè®®æµä¸æ”¯æŒè¯¥æ ¼å¼,è¯·è°ƒæ•´éŸ³é¢‘ç¼–ç å‚æ•°åŽåœ¨é‡è¯•</cn><en>OPUS audio is unsupported by RTMP, please change the audio codec settings and retry.</en>", "warning",8000);
                         setTimeout(()=>{
                             defaultConf.forEach(item => {
                                 if(item.hasOwnProperty("enca")) {
@@ -1080,9 +1080,9 @@
 
                     if(type === "webrtc") {
                         if(codecA !== "opus" && codecA !== "close")
-                            alertMsg("<cn>WebRTC协议流仅支持OPUS音频编码格式,请调整音频编码参数后在重试</cn><en>WebRTC only supports OPUS audio, please change the audio codec settings and retry.</en>", "warning",8000);
+                            alertMsg("<cn>WebRTCåè®®æµä»…æ”¯æŒOPUSéŸ³é¢‘ç¼–ç æ ¼å¼,è¯·è°ƒæ•´éŸ³é¢‘ç¼–ç å‚æ•°åŽåœ¨é‡è¯•</cn><en>WebRTC only supports OPUS audio, please change the audio codec settings and retry.</en>", "warning",8000);
                         if(codecV !== "h264")
-                            alertMsg("<cn>WebRTC协议流仅支持H264视频编码格式,请调整视频编码参数后在重试</cn><en>WebRTC only supports H264 video, please change the video codec settings and retry.</en>", "warning",8000);
+                            alertMsg("<cn>WebRTCåè®®æµä»…æ”¯æŒH264è§†é¢‘ç¼–ç æ ¼å¼,è¯·è°ƒæ•´è§†é¢‘ç¼–ç å‚æ•°åŽåœ¨é‡è¯•</cn><en>WebRTC only supports H264 video, please change the video codec settings and retry.</en>", "warning",8000);
                         setTimeout(()=>{
                             defaultConf.forEach(item => {
                                 if(item.hasOwnProperty("enca")) {

@@ -121,157 +121,168 @@
                             }
                             ?>
                             <? if ($chip == "SS524V100" || $chip == "SS528V100") { ?>
-                            <li><a href="format-disk.php"><i class="fa fa-floppy-o"></i></i><div class="menu-title"><ev>Format Disk</en></div></a></li>
+                            <li><a href="format-disk.php"><i class="fa-solid fa-floppy-disk"></i><div class="menu-title"><ev>Format Disk</en></div></a></li>
                             <? } ?>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="fa-solid fa-mug-saucer"></i></div>
-                            <div class="menu-title"><en>Advanced</en></div>
-                        </a>
-                        <ul class="ps-3">
+                    <?
+                    if ($_SESSION['login'] == "admin") {
+                    ?>
+                      <li>
+                          <a href="javascript:;" class="has-arrow">
+                              <div class="parent-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                              <div class="menu-title"><en>Advanced</en></div>
+                          </a>
+                          <ul class="ps-3">
 <!--                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.ndi">-->
 <!--                                <a href="ndi.php">-->
 <!--                                    <i class="fa-solid fa-desktop"></i>-->
 <!--                                    <div class="menu-title"><cn>NDI??</cn><en>NDI Decode</en></div>-->
 <!--                                </a>-->
 <!--                            </li>-->
-                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
-                                <a href="record.php">
-                                    <i class="fa-solid fa-folder-open"></i>
-                                    <div class="menu-title"><cn>????</cn><en>Record</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="player.php">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                    <div class="menu-title"><en>H5 Player</en></div>
-                                </a>
-                            </li>
-                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.intercom">
-                                <a href="intercom.php">
-                                    <i class="fa-solid fa-headset"></i>
-                                    <div class="menu-title"><en>Intercom</en></div>
-                                </a>
-                            </li>
-                            <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.remote)">
-                                <a href="remote.php">
-                                    <i class="fa-brands fa-cloudsmith"></i>
-                                    <div class="menu-title"><en>Remote</en></div>
-                                </a>
-                            </li>
-                            <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.serialport || hardwareConf.function.button)">
-                                <a href="uart.php">
-                                    <i class="fa-solid fa-link"></i>
-                                    <div class="menu-title"><en>Serial Port</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="gb28181.php">
-                                    <i class="fa-solid fa-cloud"></i>
-                                    <div class="menu-title"><en>GB28181</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="roi.php">
-                                    <i class="fa-solid fa-circle-user"></i>
-                                    <div class="menu-title"><en>ROI</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="insta360.php">
-                                    <i class="fa-solid fa-camera"></i>
-                                    <div class="menu-title"><en>Insta360 Link</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="onvif.php">
-                                    <i class="fa fa-video-camera"></i>
-                                    <div class="menu-title"><en>Onvif PTZ</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="colorKey.php">
-                                    <i class="fa fa-cut"></i>
-                                    <div class="menu-title"><en>ColorKey</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sync.php">
-                                    <i class="fa-solid fa-bars-staggered"></i>
-                                    <div class="menu-title"><en>Synchronization</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="group.php">
-                                    <i class="fa-solid fa-server"></i>
-                                    <div class="menu-title"><en>Group</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="rproxy.php">
-                                    <i class="fa-solid fa-comments"></i>
-                                    <div class="menu-title"><en>Reverse Proxy</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="disk.php">
-                                    <i class="fa fa-database"></i>
-                                    <div class="menu-title"><en>Mount Disk</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="explorer.php">
-                                    <i class="fa-regular fa-folder-open"></i>
-                                    <div class="menu-title"><en>USB Disk</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ndi.php">
-                                    <i class="fa fa-television"></i>
-                                    <div class="menu-title"><en>NDI decode</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="encode.php">
-                                    <i class="fa fa-image"></i>
-                                    <div class="menu-title"><en>Encode</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="service.php">
-                                    <i class="fa-solid fa-cloud"></i>
-                                    <div class="menu-title"><en>Service</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="carousel.php">
-                                    <i class="fa-solid fa-square-caret-right"></i>
-                                    <div class="menu-title"><en>Video Carousel</en></div>
-                                </a>
-                            </liv>
-                            <li>
-                                <a href="push.php">
-                                    <i class="fa-solid fa-circle-arrow-up"></i>
-                                    <div class="menu-title"><en>Mulitple Push</en></div>
-                                </a>
-                            </li>
-                            <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.overlay">
-                                <a href="overlay.php">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                    <div class="menu-title"><en>Overlay</en></div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="stream.php">
-                                    <i class="fa fa-upload"></i>
-                                    <div class="menu-title"><en>Stream</en></div>
-                                </a>
-                            </li>
-                            <li><a href="output-v1.php"><i class="fa fa-upload"></i><div class="menu-title"><en>Output (Advanced)</en></div></a></li>
-                        </ul>
-                    </li>
+                              <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.record">
+                                  <a href="record.php">
+                                      <i class="fa-solid fa-folder-open"></i>
+                                      <div class="menu-title"><cn>????</cn><en>Record</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="player.php">
+                                      <i class="fa-solid fa-circle-play"></i>
+                                      <div class="menu-title"><en>H5 Player</en></div>
+                                  </a>
+                              </li>
+                              <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.intercom">
+                                  <a href="intercom.php">
+                                      <i class="fa-solid fa-headset"></i>
+                                      <div class="menu-title"><en>Intercom</en></div>
+                                  </a>
+                              </li>
+                              <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.remote)">
+                                  <a href="remote.php">
+                                      <i class="fa-brands fa-cloudsmith"></i>
+                                      <div class="menu-title"><en>Remote</en></div>
+                                  </a>
+                              </li>
+                              <li v-if="Object.keys(hardwareConf).length > 0 && (hardwareConf.function.serialport || hardwareConf.function.button)">
+                                  <a href="uart.php">
+                                      <i class="fa-solid fa-link"></i>
+                                      <div class="menu-title"><en>Serial Port</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="gb28181.php">
+                                      <i class="fa-solid fa-cloud"></i>
+                                      <div class="menu-title"><en>GB28181</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="roi.php">
+                                      <i class="fa-solid fa-circle-user"></i>
+                                      <div class="menu-title"><en>ROI</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="insta360.php">
+                                      <i class="fa-solid fa-camera"></i>
+                                      <div class="menu-title"><en>Insta360 Link</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="onvif.php">
+                                      <i class="fa fa-video-camera"></i>
+                                      <div class="menu-title"><en>Onvif PTZ</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="colorKey.php">
+                                      <i class="fa fa-cut"></i>
+                                      <div class="menu-title"><en>ColorKey</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="sync.php">
+                                      <i class="fa-solid fa-bars-staggered"></i>
+                                      <div class="menu-title"><en>Synchronization</en></div>
+                                  </a>
+                              </li>
+                                <li>
+                                  <a href="group.php">
+                                      <i class="fa-solid fa-server"></i>
+                                      <div class="menu-title"><en>Group</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="rproxy.php">
+                                      <i class="fa-solid fa-comments"></i>
+                                      <div class="menu-title"><en>Reverse Proxy</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="disk.php">
+                                      <i class="fa fa-database"></i>
+                                      <div class="menu-title"><en>Mount Disk</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="explorer.php">
+                                      <i class="fa-regular fa-folder-open"></i>
+                                      <div class="menu-title"><en>USB Disk</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="ndi.php">
+                                      <i class="fa fa-television"></i>
+                                      <div class="menu-title"><en>NDI decode</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="encode.php">
+                                      <i class="fa fa-image"></i>
+                                      <div class="menu-title"><en>Encode</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="service.php">
+                                      <i class="fa-solid fa-cloud"></i>
+                                      <div class="menu-title"><en>Service</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="carousel.php">
+                                      <i class="fa-solid fa-square-caret-right"></i>
+                                      <div class="menu-title"><en>Video Carousel</en></div>
+                                  </a>
+                              </liv>
+                              <li>
+                                  <a href="push.php">
+                                      <i class="fa-solid fa-circle-arrow-up"></i>
+                                      <div class="menu-title"><en>Mulitple Push</en></div>
+                                  </a>
+                              </li>
+                              <li v-if="Object.keys(hardwareConf).length > 0 && hardwareConf.function.overlay">
+                                  <a href="overlay.php">
+                                      <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                      <div class="menu-title"><en>Overlay</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="stream.php">
+                                      <i class="fa fa-upload"></i>
+                                      <div class="menu-title"><en>Stream</en></div>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="output-v1.php">
+                                      <i class="fa fa-upload"></i>
+                                      <div class="menu-title"><en>Output (Advanced)</en></div>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                    <?
+                    }
+                    ?>
                 </ul>
             </div>
             <div class="sidebar-bottom">

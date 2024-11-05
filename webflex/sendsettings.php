@@ -477,7 +477,7 @@
                 if(defaultConf.length === 0) return [];
                 const vodConf = [];
                 defaultConf.forEach((item,index) => {
-                    if(item.type === 'net' || item.type === 'vi') {
+                    if(['net', 'vi', 'usb', 'mix'].includes(item.type)) {
                         if(item.type === 'net') {
                             if (!item.hasOwnProperty("cap")) {
                                 item.cap = {

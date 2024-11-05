@@ -49,7 +49,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" v-model.trim.lazy="item.url" >
                                             <button class="btn btn-primary input-group-text input-group-addon lp-cursor-pointer"
-                                                    @click="onCopyReceiveChnUrl(index)">
+                                                    @click="onCopySrtUrl(index)">
                                                 <i class="fa-regular fa-copy"></i>
                                             </button>
                                         </div>
@@ -71,7 +71,7 @@
 
                                     <div class="col lp-align-center">
                                         <button type="button" class="btn btn-primary border-1 px-3"
-                                                @click="onDelReceiveChn(index)">
+                                                @click="onDelSrtChn(index)">
                                             <en>delete</en>
                                         </button>
                                     </div>
@@ -80,22 +80,21 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="{onAddReceiveChn; tabType = 'net';}">
-                                <en>Add</en>
-                            </button>
-                            <button type="button" class="btn btn-primary border-3 px-5" @click="{saveReceiveChnConf; tabType = 'net';}">
-                                <en>Save</en>
-                            </button>
+                            <div class="col-lg-12 text-center">
+                                <button type="button" class="btn btn-primary border-3 px-5 me-2" @click="onAddSrtChn">
+                                    <en>Add</en>
+                                </button>
+                                <button type="button" class="btn btn-primary border-3 px-5" @click="saveSrtChnConf">
+                                    <en>Save</en>
+                                </button>
+                            </div>
                             <div class="col-lg-12 tips">
-                                <cn>1、设备作为流媒体服务器使用，可以接收其他设备推送的 SRT 流。</cn>
                                 <en>1. The device is used as a streaming media server and can receive SRT streams pushed by other devices.</en>
                             </div>
                             <div class="col-lg-12 tips">
-                                <cn>2、需要绑定解码频道时，请确定要绑定的频道没有正在使用。</cn>
                                 <en>2. Make sure that the binding channel is not in use</en>
                             </div>
                             <div class="col-lg-12 tips">
-                                <cn>3、设置解码频道后，保存时会自动把该频道的拉流地址替换为对应的解码地址。</cn>
                                 <en>3. After the decoding channel is set, the stream address of the corresponding
                                     channel is automatically replaced with the current decoding address when saving.
                                 </en>
@@ -878,6 +877,10 @@
                 alertMsg('<cn>已复制</cn><en>Have copied</en>', 'success');
             }
 
+            const onCopySrtUrl =(index, type = '') => {
+                textarea.value = srtPushConf[index].url
+            }
+
             const onAddReceiveChn = () => {
                 if(state.tabType.value === 'rtmp') {
                     rxPushConf.push({
@@ -908,6 +911,19 @@
                     })
                 }
             }
+
+            const onAddSrtChn = () => {
+                srtPushConf.push({
+                        "desc": "New Recive",
+                        "bind": -1,
+                        "port": "700"+(srtPushConf.length+1),
+                        "latency": "50",
+                        "passphrase": "",
+                        "streamid": "",
+                        "url": "srt://127.0.0.1:7001?mode=caller&latency=50"
+                    })
+            }
+
             const onDelReceiveChn = index => {
                 if(state.tabType.value === 'rtmp')
                     rxPushConf.splice(index, 1);
@@ -915,6 +931,10 @@
                     srtPushConf.splice(index, 1);
                 if(state.tabType.value === 'ndi')
                     ndiReciveConf.splice(index, 1);
+            }
+
+            const onDelSrtChn = index => {
+                srtPushConf.splice(index, 1);
             }
 
             const saveReceiveChnConf = () => {
@@ -965,6 +985,22 @@
                 if (hadBind) updateDefaultConf('noTip');
             }
 
+            const saveSrtChnConf = () => {
+                srtPushConf.forEach(item => {
+                        if (item.bind !== "-1") {
+                            defaultConf.forEach(conf => {
+                                if (conf.id === item.bind && conf.type === 'net') {
+                                    hadBind = true;
+                                    //item.url = item.url.replace(location.hostname, '127.0.0.1');
+                                    item.url = item.url.replace('mode=caller','mode=listener');
+                                    conf.net.path = item.url;
+                                }
+                            })
+                        }
+                    })
+                    updateSrtPushConf();
+            }
+
             const refreshNdiSourceList = (tip, retryCount = 0) => {
                 rpc("enc.getNDIList").then(data => {
                     if (data.length === 0 && retryCount < 5) {
@@ -987,7 +1023,8 @@
             return {...state, defaultConf, hardwareConf, handleVideoFileConf, handleUsbMp4File, onAddVideoFile, onVideoFileOption,
                 formatTime, onTimelineSliderEnd, onHandleFileDuration, onHandleFilePostion, onDisplayHdmi, handleNetConf,
                 saveGlobalConfByLocal, saveDefaultConf, handleRXPushConf, onResetRXPushChnUrl, onCopyReceiveChnUrl,
-                onAddReceiveChn, onDelReceiveChn,handleSrtPushConf,saveReceiveChnConf,ndiReciveConf,refreshNdiSourceList}
+                onAddReceiveChn, onDelReceiveChn,handleSrtPushConf,saveReceiveChnConf,ndiReciveConf,refreshNdiSourceList,
+                onCopySrtUrl, onAddSrtChn, onDelSrtChn, saveSrtChnConf}
         }
     });
     app.use(ignoreCustomElementPlugin);
